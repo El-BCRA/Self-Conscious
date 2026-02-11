@@ -14,6 +14,27 @@ namespace SelfConscious
     {
         [SerializeField] private Unit currentUnit;
         [SerializeField] private BattlePositionKind kind;
+        [SerializeField] private SpriteRenderer activeIndicator;
+
+        void Start()
+        {
+            SetInactive();
+        }
+
+        public BattlePositionKind GetBPKind()
+        {
+            return kind;
+        }
+
+        public void SetActive()
+        {
+            activeIndicator.enabled = true;
+        }
+
+        public void SetInactive()
+        {
+            activeIndicator.enabled = false;
+        }
 
         public Unit GetUnit() { return currentUnit; }
 
