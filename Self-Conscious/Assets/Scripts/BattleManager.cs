@@ -15,7 +15,11 @@ namespace SelfConscious
     public class BattleManager : MonoBehaviour
     {
         [SerializeField] private BattleState battleState;
-        [SerializeField] private List<Transform> playerBattlePositions = new List<Transform>();
+        [SerializeField] private BattlePosition playerBPAttackFront;
+        [SerializeField] private BattlePosition playerBPAttackBack;
+        [SerializeField] private BattlePosition playerBPDefense;
+        [SerializeField] private BattlePosition playerBPSupport;
+
         [SerializeField] private List<Transform> enemyBattlePositions = new List<Transform>();
 
         [SerializeField] private List<Unit> playerParty = new List<Unit>();
