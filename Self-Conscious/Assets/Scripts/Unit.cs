@@ -29,7 +29,9 @@ namespace SelfConscious
 
         void Update()
         {
-            
+            nameText.text = unitName;
+            healthText.text = "HP: " + currentHP + "/" + maxHP;
+            willpowerText.text = "WP: " + currentWP + "/" + maxWP;
         }
     }
 }

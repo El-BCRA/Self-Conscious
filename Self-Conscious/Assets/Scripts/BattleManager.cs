@@ -24,6 +24,8 @@ namespace SelfConscious
 
         [SerializeField] private List<Transform> enemyBattlePositions = new List<Transform>();
 
+        private bool attacking = false;
+
         [SerializeField] private List<Unit> playerParty = new List<Unit>();
         [SerializeField] private List<Unit> enemyParty = new List<Unit>();
 
@@ -114,7 +116,7 @@ namespace SelfConscious
 
         public void OnAttackButton()
         {
-            if (battleState != BattleState.PLAYERTURN)
+            if (battleState != BattleState.PLAYERTURN || attacking)
             {
                 return;
             }
@@ -150,11 +152,21 @@ namespace SelfConscious
         // Allow player to select an ability and target an enemy
         IEnumerator PlayerAttack()
         {
+            attacking = true;
+            Debug.Log("" + activeBP.GetUnit().unitName + " is attacking.");
+
+            Unit target = enemyParty[Random.Range(0, 3)];
+
+            target.currentHP -= 2;
+
             // Target an enemy
             // Damage the targeted enemy
             yield return new WaitForSeconds(2f);
 
+            Debug.Log("" + target.name + " took 2 damage.");
+
             NextBattlePosition();
+            attacking = false;
 
             if (activeBP == playerBPDefense)
             {
