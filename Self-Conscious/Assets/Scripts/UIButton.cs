@@ -1,21 +1,29 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace SelfConscious
 {
-    public class UIButton : MonoBehaviour
+    public class UIButton : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
-        [SerializeField] private RectTransform position;
-        [SerializeField] private RectTransform cursorPosition;
+        [SerializeField] private Button button;
+        [SerializeField] private GameObject selectionHighlight;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            position = GetComponent<RectTransform>();
+            button = GetComponent<Button>();
+            selectionHighlight.SetActive(false);
         }
 
-        public RectTransform GetCursorPosition()
+        public void OnSelect(BaseEventData eventData)
         {
-            return cursorPosition;
+            selectionHighlight.SetActive(true);
+        }
+
+        public void OnDeselect(BaseEventData eventData)
+        {
+            selectionHighlight.SetActive(false);
         }
     }
 }

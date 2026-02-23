@@ -16,13 +16,17 @@ namespace SelfConscious
     public class BattleManager : MonoBehaviour
     {
         [SerializeField] private BattleState battleState;
+
+        #region BATTLEPOSITIONS
         [SerializeField] private BattlePosition playerBPAttackFront;
         [SerializeField] private BattlePosition playerBPAttackBack;
         [SerializeField] private BattlePosition playerBPDefense;
         [SerializeField] private BattlePosition playerBPSupport;
         [SerializeField] private BattlePosition activeBP;
-
         [SerializeField] private List<Transform> enemyBattlePositions = new List<Transform>();
+        #endregion
+
+        [SerializeField] private CanvasGroup battleSelections;
 
         private bool attacking = false;
 
@@ -50,6 +54,9 @@ namespace SelfConscious
         {
             battleState = BattleState.START;
 
+            battleSelections.interactable = false;
+            battleSelections.alpha = 0f;
+
             StartCoroutine(InitializeBattle());
         }
 
@@ -63,13 +70,22 @@ namespace SelfConscious
         {
             battleState = newState;
 
-            switch(newState)
+            switch (battleState)
             {
                 case BattleState.PLAYERTURN:
                     {
                         activeBP = playerBPDefense;
                         activeBP.SetActive();
+                        battleSelections.interactable = true;
+                        battleSelections.alpha = 1f;
                         StartCoroutine(PlayerTurn());
+                        break;
+                    }
+                case BattleState.ENEMYTURN:
+                    {
+                        battleSelections.interactable = false;
+                        battleSelections.alpha = 0f;
+                        StartCoroutine(EnemyTurn());
                         break;
                     }
                 default:
@@ -124,6 +140,36 @@ namespace SelfConscious
             StartCoroutine(PlayerAttack());
         }
 
+        public void OnItemsButton()
+        {
+            if (battleState != BattleState.PLAYERTURN || attacking)
+            {
+                return;
+            }
+
+            // StartCoroutine(PlayerAttack());
+        }
+
+        public void OnRepositionButton()
+        {
+            if (battleState != BattleState.PLAYERTURN || attacking)
+            {
+                return;
+            }
+
+            // StartCoroutine(PlayerAttack());
+        }
+
+        public void OnFleeButton()
+        {
+            if (battleState != BattleState.PLAYERTURN || attacking)
+            {
+                return;
+            }
+
+            // StartCoroutine(PlayerAttack());
+        }
+
         #region COROUTINES
         IEnumerator InitializeBattle()
         {
@@ -170,13 +216,15 @@ namespace SelfConscious
 
             if (activeBP == playerBPDefense)
             {
-                StartCoroutine(EnemyTurn());
+                ChangeBattleState(BattleState.ENEMYTURN);
             }
         }
 
         IEnumerator EnemyTurn()
         {
+            Debug.Log("The enemies are taking their turns.");
             yield return new WaitForSeconds(2f);
+            ChangeBattleState(BattleState.PLAYERTURN);
         }
         #endregion
     }
