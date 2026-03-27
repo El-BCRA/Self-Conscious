@@ -23,9 +23,9 @@ namespace SelfConscious
         void Update()
         {
             referencedUnit = referencedBattlePosition.GetUnit();
-            unitNameText.text = referencedUnit.name;
-            healthText.text = "" + referencedUnit.currentHP + "/" + referencedUnit.maxHP;
-            willpowerText.text = "" + referencedUnit.currentWP + "/" + referencedUnit.maxWP;
+            unitNameText.text = referencedUnit.GetName();
+            healthText.text = "" + referencedUnit.GetCurrentHP() + "/" + referencedUnit.GetMaxHP();
+            willpowerText.text = "" + referencedUnit.GetCurrentWP() + "/" + referencedUnit.GetMaxWP();
         }
     }
 }

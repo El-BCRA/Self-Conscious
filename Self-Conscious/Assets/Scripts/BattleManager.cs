@@ -38,6 +38,7 @@ namespace SelfConscious
         [SerializeField] private Button defaultBSHighlight;
         [SerializeField] private CanvasGroup attackSelections;
         [SerializeField] private Button defaultASHighlight;
+        [SerializeField] private List<UIAbilityButton> abilityButtons;
         [SerializeField] private CanvasGroup allyTargetingSelections;
         [SerializeField] private Button defaultATSHighlight;
         [SerializeField] private CanvasGroup enemyTargetingSelections;
@@ -47,7 +48,7 @@ namespace SelfConscious
         private InputAction cancelAction;
 
         [Header("Units")]
-        [SerializeField] private List<Unit> playerParty = new List<Unit>();
+        [SerializeField] private List<PlayerControlledUnit> playerParty = new List<PlayerControlledUnit>();
         [SerializeField] private List<Unit> enemyParty = new List<Unit>();
 
         [Header("Flags")]
@@ -123,7 +124,6 @@ namespace SelfConscious
 
             // Any other state transition functionality that may need to happen later
         }
-        #endregion
 
         // Cycle through the player turn in a predefined order
         public void NextBattlePosition()
@@ -156,7 +156,9 @@ namespace SelfConscious
                     }
             }
         }
+        #endregion
 
+        #region UI EVENTS
         public void OnAttackButton()
         {
             if (battleState != BattleState.PLAYERTURN || !selectionUIVisible)
@@ -201,15 +203,57 @@ namespace SelfConscious
         {
             StartCoroutine(PlayerTargetSelect());
         }
+        #endregion
+
+        #region UI FUNCTIONS
+        public void AddToAbilitiesUIList(UIAbilityButton abilityUI)
+        {
+            abilityButtons.Add(abilityUI);
+        }
+
+        public void RefreshAbilitiesUI()
+        {
+            for (int i = 0; i < abilityButtons.Count; i++)
+            {
+                switch (activeBP.GetBPKind())
+                {
+                    case (BattlePositionKind.ATTACKFRONT):
+                        {
+                            abilityButtons[i].SetAbility(activeBP.GetUnit().GetAttackAbilities()[i]);
+                            abilityButtons[i].ReplaceUIText();
+                            break;
+                        }
+                    case (BattlePositionKind.ATTACKBACK):
+                        {
+                            abilityButtons[i].SetAbility(activeBP.GetUnit().GetAttackAbilities()[i]);
+                            abilityButtons[i].ReplaceUIText();
+                            break;
+                        }
+                    case (BattlePositionKind.DEFENSE):
+                        {
+                            abilityButtons[i].SetAbility(activeBP.GetUnit().GetDefenseAbilities()[i]);
+                            abilityButtons[i].ReplaceUIText();
+                            break;
+                        }
+                    case (BattlePositionKind.SUPPORT):
+                        {
+                            abilityButtons[i].SetAbility(activeBP.GetUnit().GetSupportAbilities()[i]);
+                            abilityButtons[i].ReplaceUIText();
+                            break;
+                        }
+                }
+            }
+        }
+        #endregion
 
         #region HELPERS
-        public void DeactivateCanvasGroup(CanvasGroup cg)
+        private void DeactivateCanvasGroup(CanvasGroup cg)
         {
             cg.interactable = false;
             cg.alpha = 0.0f;
         }
 
-        public void ActivateCanvasGroup(CanvasGroup cg, Button button)
+        private void ActivateCanvasGroup(CanvasGroup cg, Button button)
         {
             cg.interactable = true;
             cg.alpha = 1.0f;
@@ -255,6 +299,7 @@ namespace SelfConscious
         // Bring up ability selection screen
         IEnumerator PlayerAttack()
         {
+            RefreshAbilitiesUI();
             DeactivateCanvasGroup(battleSelections);
             ActivateCanvasGroup(attackSelections, defaultASHighlight);
             fallbackLayer = battleSelections;

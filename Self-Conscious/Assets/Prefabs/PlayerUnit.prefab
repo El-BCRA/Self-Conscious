@@ -191,7 +191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4395147913017249144}
-  - component: {fileID: 4966324705460068713}
+  - component: {fileID: 132369376992996769}
   m_Layer: 0
   m_Name: PlayerUnit
   m_TagString: Untagged
@@ -217,7 +217,7 @@ Transform:
   - {fileID: 4495367743532733059}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4966324705460068713
+--- !u!114 &132369376992996769
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,19 +226,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 2176044983333890467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3faed8a0aad72be4f81f8b9d17b02c5c, type: 3}
+  m_Script: {fileID: 11500000, guid: b0a852fef00fe8a4187e7d2d9c27e9bf, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Unit
-  unitName: Ian
-  unitLevel: 2
-  damage: 5
-  maxHP: 30
-  currentHP: 30
-  maxWP: 15
-  currentWP: 15
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.PlayerControlledUnit
+  unitName: 
+  unitLevel: 0
+  maxHP: 0
+  currentHP: 0
+  maxWP: 0
+  currentWP: 0
   nameText: {fileID: 6571109402851366111}
-  healthText: {fileID: 0}
-  willpowerText: {fileID: 0}
+  attackAbilities:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  defenseAbilities:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  supportAbilities:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &6850702343305911583
 GameObject:
   m_ObjectHideFlags: 0

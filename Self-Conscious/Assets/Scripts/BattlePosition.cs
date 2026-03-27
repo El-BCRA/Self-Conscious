@@ -12,7 +12,7 @@ namespace SelfConscious
 
     public class BattlePosition : MonoBehaviour
     {
-        [SerializeField] private Unit currentUnit;
+        [SerializeField] private PlayerControlledUnit currentUnit;
         [SerializeField] private BattlePositionKind kind;
         [SerializeField] private SpriteRenderer activeIndicator;
 
@@ -36,9 +36,9 @@ namespace SelfConscious
             activeIndicator.enabled = false;
         }
 
-        public Unit GetUnit() { return currentUnit; }
+        public PlayerControlledUnit GetUnit() { return currentUnit; }
 
-        public void SetUnit(Unit unit)
+        public void SetUnit(PlayerControlledUnit unit)
         {
             currentUnit = unit;
         }
@@ -49,7 +49,7 @@ namespace SelfConscious
         {
             if (Occupied() && otherBP.Occupied())
             {
-                Unit temp = currentUnit;
+                PlayerControlledUnit temp = currentUnit;
                 currentUnit = otherBP.GetUnit();
                 otherBP.SetUnit(temp);
             } else if (Occupied())

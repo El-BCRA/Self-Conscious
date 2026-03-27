@@ -1,16 +1,39 @@
 using UnityEngine;
 
-public class PlayerControlledUnit : MonoBehaviour
+namespace SelfConscious
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class PlayerControlledUnit : Unit
     {
-        
-    }
+        [Header("Abilities")]
+        [SerializeField] private AbilityData[] attackAbilities;
+        [SerializeField] private AbilityData[] defenseAbilities;
+        [SerializeField] private AbilityData[] supportAbilities;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        public AbilityData[] GetAttackAbilities()
+        {
+            return attackAbilities;
+        }
+
+        public AbilityData[] GetDefenseAbilities()
+        {
+            return defenseAbilities;
+        }
+
+        public AbilityData[] GetSupportAbilities()
+        {
+            return supportAbilities;
+        }
     }
 }
