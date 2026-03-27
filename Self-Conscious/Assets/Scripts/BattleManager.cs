@@ -1,6 +1,9 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.UI;
 
 namespace SelfConscious
 {
@@ -15,25 +18,43 @@ namespace SelfConscious
 
     public class BattleManager : MonoBehaviour
     {
+        #region VARIABLES
+        [Header("Current Battle State")]
         [SerializeField] private BattleState battleState;
 
-        #region BATTLEPOSITIONS
+        [Header("Party Battle Positions")]
         [SerializeField] private BattlePosition playerBPAttackFront;
         [SerializeField] private BattlePosition playerBPAttackBack;
         [SerializeField] private BattlePosition playerBPDefense;
         [SerializeField] private BattlePosition playerBPSupport;
         [SerializeField] private BattlePosition activeBP;
+
+        [Header("Enemy Battle Positions")]
         [SerializeField] private List<Transform> enemyBattlePositions = new List<Transform>();
-        #endregion
 
+        [Header("UI")]
+        [SerializeField] private List<CanvasGroup> contextualUI;
         [SerializeField] private CanvasGroup battleSelections;
+        [SerializeField] private Button defaultBSHighlight;
+        [SerializeField] private CanvasGroup attackSelections;
+        [SerializeField] private Button defaultASHighlight;
+        [SerializeField] private CanvasGroup allyTargetingSelections;
+        [SerializeField] private Button defaultATSHighlight;
+        [SerializeField] private CanvasGroup enemyTargetingSelections;
+        [SerializeField] private Button defaultETSHighlight;
+        private CanvasGroup fallbackLayer;
+        private CanvasGroup currentLayer;
+        private InputAction cancelAction;
 
-        private bool attacking = false;
-
+        [Header("Units")]
         [SerializeField] private List<Unit> playerParty = new List<Unit>();
         [SerializeField] private List<Unit> enemyParty = new List<Unit>();
 
+        [Header("Flags")]
+        private bool selectionUIVisible = false;
+
         public static BattleManager instance;
+        #endregion
 
         private void Awake()
         {
@@ -52,12 +73,24 @@ namespace SelfConscious
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            cancelAction = InputSystem.actions.FindAction("Cancel");
+
             battleState = BattleState.START;
 
-            battleSelections.interactable = false;
-            battleSelections.alpha = 0f;
+            foreach (CanvasGroup cg in contextualUI)
+            {
+                DeactivateCanvasGroup(cg);
+            }
 
             StartCoroutine(InitializeBattle());
+        }
+
+        void Update()
+        {
+            if(cancelAction.IsPressed())
+            {
+
+            }
         }
 
         #region BATTLE STATE
@@ -74,17 +107,11 @@ namespace SelfConscious
             {
                 case BattleState.PLAYERTURN:
                     {
-                        activeBP = playerBPDefense;
-                        activeBP.SetActive();
-                        battleSelections.interactable = true;
-                        battleSelections.alpha = 1f;
                         StartCoroutine(PlayerTurn());
                         break;
                     }
                 case BattleState.ENEMYTURN:
                     {
-                        battleSelections.interactable = false;
-                        battleSelections.alpha = 0f;
                         StartCoroutine(EnemyTurn());
                         break;
                     }
@@ -132,7 +159,7 @@ namespace SelfConscious
 
         public void OnAttackButton()
         {
-            if (battleState != BattleState.PLAYERTURN || attacking)
+            if (battleState != BattleState.PLAYERTURN || !selectionUIVisible)
             {
                 return;
             }
@@ -142,7 +169,7 @@ namespace SelfConscious
 
         public void OnItemsButton()
         {
-            if (battleState != BattleState.PLAYERTURN || attacking)
+            if (battleState != BattleState.PLAYERTURN || !selectionUIVisible)
             {
                 return;
             }
@@ -152,7 +179,7 @@ namespace SelfConscious
 
         public void OnRepositionButton()
         {
-            if (battleState != BattleState.PLAYERTURN || attacking)
+            if (battleState != BattleState.PLAYERTURN || !selectionUIVisible)
             {
                 return;
             }
@@ -162,7 +189,7 @@ namespace SelfConscious
 
         public void OnFleeButton()
         {
-            if (battleState != BattleState.PLAYERTURN || attacking)
+            if (battleState != BattleState.PLAYERTURN || !selectionUIVisible)
             {
                 return;
             }
@@ -170,15 +197,41 @@ namespace SelfConscious
             // StartCoroutine(PlayerAttack());
         }
 
+        public void OnAbilitySelect()
+        {
+            StartCoroutine(PlayerTargetSelect());
+        }
+
+        #region HELPERS
+        public void DeactivateCanvasGroup(CanvasGroup cg)
+        {
+            cg.interactable = false;
+            cg.alpha = 0.0f;
+        }
+
+        public void ActivateCanvasGroup(CanvasGroup cg, Button button)
+        {
+            cg.interactable = true;
+            cg.alpha = 1.0f;
+            EventSystem.current.SetSelectedGameObject(button.gameObject);
+            currentLayer = cg;
+        }
+        #endregion
+
         #region COROUTINES
         IEnumerator InitializeBattle()
         {
             // Spawn in player and enemy units to their appropriate battle positions
+
             // TODO: Rather than existing in the scene already, should spawn new Units
             playerBPDefense.SetUnit(playerParty[0]);
             playerBPAttackFront.SetUnit(playerParty[1]);
             playerBPAttackBack.SetUnit(playerParty[2]);
             playerBPSupport.SetUnit(playerParty[3]);
+
+            // TODO: Populate the targetingSelections CanvasGroup with all the targeting highlights
+            // for the enemies currently on the battlefield
+
 
             // Battle screen startup delay
             yield return new WaitForSeconds(2f);
@@ -188,36 +241,58 @@ namespace SelfConscious
             ChangeBattleState(BattleState.PLAYERTURN);
         }
 
-        // Allow player to cycle through menu options until an action has been confirmed
+        // Turn on player interactables
         IEnumerator PlayerTurn()
         {
-            Debug.Log("Player turn has started");
-            yield return new WaitForSeconds(2f);
+            activeBP = playerBPDefense;
+            activeBP.SetActive();
+            ActivateCanvasGroup(battleSelections, defaultBSHighlight);
+            selectionUIVisible = true;
+            fallbackLayer = null;
+            yield return null;
         }
 
-        // Allow player to select an ability and target an enemy
+        // Bring up ability selection screen
         IEnumerator PlayerAttack()
         {
-            attacking = true;
-            Debug.Log("" + activeBP.GetUnit().unitName + " is attacking.");
+            DeactivateCanvasGroup(battleSelections);
+            ActivateCanvasGroup(attackSelections, defaultASHighlight);
+            fallbackLayer = battleSelections;
+            yield return null;
+        }
 
-            Unit target = enemyParty[Random.Range(0, 3)];
+        // Select target for the currently selected ability
+        IEnumerator PlayerTargetSelect()
+        {
+            DeactivateCanvasGroup(attackSelections);
+            // TODO: Activate a different canvas group based on the kind of ability selected
+            ActivateCanvasGroup(enemyTargetingSelections, defaultETSHighlight);
+            fallbackLayer = attackSelections;
+            yield return null;
+        }
 
-            target.currentHP -= 2;
+        // Ability and target confirmed, carry out damage
+        IEnumerator PlayerTargetConfirm()
+        {
+            // TODO: Deactivate a different canvas group based on the kind of ability selected
+            DeactivateCanvasGroup(enemyTargetingSelections);
+            selectionUIVisible = false;
+            yield return null;
+        }
 
-            // Target an enemy
-            // Damage the targeted enemy
-            yield return new WaitForSeconds(2f);
-
-            Debug.Log("" + target.name + " took 2 damage.");
-
+        // Called once the last of the player's units has carried out their turn
+        IEnumerator PlayerEndTurn()
+        {
             NextBattlePosition();
-            attacking = false;
-
             if (activeBP == playerBPDefense)
             {
                 ChangeBattleState(BattleState.ENEMYTURN);
             }
+            else
+            {
+                selectionUIVisible = true;
+            }
+            yield return null;
         }
 
         IEnumerator EnemyTurn()
