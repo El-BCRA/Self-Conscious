@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SelfConscious
 {
@@ -9,14 +10,16 @@ namespace SelfConscious
         [SerializeField] private TMP_Text battlePositionText;
         [SerializeField] private TMP_Text healthText;
         [SerializeField] private TMP_Text willpowerText;
+        [SerializeField] private Image battlePortrait;
         [SerializeField] private BattlePosition referencedBattlePosition;
-        private Unit referencedUnit;
+        private PlayerControlledUnit referencedUnit;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             battlePositionText.text = referencedBattlePosition.GetBPKind().ToString();
             referencedUnit = referencedBattlePosition.GetUnit();
+            battlePortrait.sprite = referencedUnit.GetPortrait();
         }
 
         // Update is called once per frame

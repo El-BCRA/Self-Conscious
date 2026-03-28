@@ -5,20 +5,20 @@ namespace SelfConscious
 {
     public class Unit : MonoBehaviour
     {
+        [Header("Local UI")]
+        [SerializeField] protected TMP_Text nameText;
+        [SerializeField] private Sprite UIPortrait;
+
         [Header("Unit Data Fields")]
         [SerializeField] protected string unitName;
         [SerializeField] protected int unitLevel;
         [SerializeField] protected int maxHP;
         [SerializeField] protected int currentHP;
-        [SerializeField] protected int maxWP;
-        [SerializeField] protected int currentWP;
 
-        [Header("Local UI")]
-        [SerializeField] protected TMP_Text nameText;
-
-        void Start()
+        #region GETTERS & SETTERS
+        public Sprite GetPortrait()
         {
-            nameText.text = unitName;
+            return UIPortrait;
         }
 
         public string GetName()
@@ -36,14 +36,10 @@ namespace SelfConscious
             return currentHP;
         }
 
-        public int GetMaxWP()
+        public void SetCurrentHP(int val)
         {
-            return maxWP;
+            currentHP = val;
         }
-
-        public int GetCurrentWP()
-        {
-            return currentWP;
-        }
+        #endregion
     }
 }

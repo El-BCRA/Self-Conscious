@@ -16,6 +16,17 @@ namespace SelfConscious
         LOSE
     }
 
+    public enum BattleUIFallback
+    {
+        MAIN,
+        FIGHT,
+        FIGHTTARGET,
+        ITEMS,
+        ITEMSTARGET,
+        REPOSITION,
+        FLEE,
+    }
+
     public class BattleManager : MonoBehaviour
     {
         #region VARIABLES
@@ -35,17 +46,20 @@ namespace SelfConscious
         [Header("UI")]
         [SerializeField] private List<CanvasGroup> contextualUI;
         [SerializeField] private CanvasGroup battleSelections;
-        [SerializeField] private Button defaultBSHighlight;
+        [SerializeField] private GameObject defaultBSHighlight;
         [SerializeField] private CanvasGroup attackSelections;
-        [SerializeField] private Button defaultASHighlight;
+        [SerializeField] private GameObject defaultASHighlight;
         [SerializeField] private List<UIAbilityButton> abilityButtons;
         [SerializeField] private CanvasGroup allyTargetingSelections;
-        [SerializeField] private Button defaultATSHighlight;
+        [SerializeField] private GameObject defaultATSHighlight;
         [SerializeField] private CanvasGroup enemyTargetingSelections;
-        [SerializeField] private Button defaultETSHighlight;
-        private CanvasGroup fallbackLayer;
-        private CanvasGroup currentLayer;
+        [SerializeField] private GameObject defaultETSHighlight;
+        private BattleUIFallback fallbackLayer;
+        private GameObject lastSelected;
         private InputAction cancelAction;
+
+        [Header("Actions")]
+        private AbilityData primedAbility;
 
         [Header("Units")]
         [SerializeField] private List<PlayerControlledUnit> playerParty = new List<PlayerControlledUnit>();
@@ -88,9 +102,9 @@ namespace SelfConscious
 
         void Update()
         {
-            if(cancelAction.IsPressed())
+            if(cancelAction.WasPressedThisFrame())
             {
-
+                UIMenuFallback();
             }
         }
 
@@ -165,7 +179,7 @@ namespace SelfConscious
             {
                 return;
             }
-
+            lastSelected = EventSystem.current.currentSelectedGameObject;
             StartCoroutine(PlayerAttack());
         }
 
@@ -175,7 +189,7 @@ namespace SelfConscious
             {
                 return;
             }
-
+            lastSelected = EventSystem.current.currentSelectedGameObject;
             // StartCoroutine(PlayerAttack());
         }
 
@@ -185,7 +199,7 @@ namespace SelfConscious
             {
                 return;
             }
-
+            lastSelected = EventSystem.current.currentSelectedGameObject;
             // StartCoroutine(PlayerAttack());
         }
 
@@ -195,17 +209,59 @@ namespace SelfConscious
             {
                 return;
             }
-
+            lastSelected = EventSystem.current.currentSelectedGameObject;
             // StartCoroutine(PlayerAttack());
         }
 
         public void OnAbilitySelect()
         {
+            lastSelected = EventSystem.current.currentSelectedGameObject;
             StartCoroutine(PlayerTargetSelect());
+        }
+
+        public void OnTargetConfirm()
+        {
+            lastSelected = null;
+            StartCoroutine(PlayerTargetConfirm());
         }
         #endregion
 
         #region UI FUNCTIONS
+        public void UIMenuFallback()
+        {
+            switch (fallbackLayer)
+            {
+                case (BattleUIFallback.MAIN):
+                    {
+                        // No layer to roll back
+                        break;
+                    }
+                case (BattleUIFallback.FIGHT):
+                    {
+                        DeactivateCanvasGroup(attackSelections);
+                        if (lastSelected is null)
+                        {
+                            ActivateCanvasGroup(battleSelections, defaultBSHighlight);
+                        } else
+                        {
+                            ActivateCanvasGroup(battleSelections, lastSelected);
+                        }
+                        fallbackLayer = BattleUIFallback.MAIN;
+                        lastSelected = null;
+                        break;
+                    }
+                case (BattleUIFallback.FIGHTTARGET):
+                    {
+                        DeactivateCanvasGroup(enemyTargetingSelections);
+                        DeactivateCanvasGroup(allyTargetingSelections);
+                        ActivateCanvasGroup(attackSelections, lastSelected);
+                        fallbackLayer = BattleUIFallback.FIGHT;
+                        lastSelected = null;
+                        break;
+                    }
+            }
+        }
+        
         public void AddToAbilitiesUIList(UIAbilityButton abilityUI)
         {
             abilityButtons.Add(abilityUI);
@@ -251,12 +307,11 @@ namespace SelfConscious
             cg.alpha = 0.0f;
         }
 
-        private void ActivateCanvasGroup(CanvasGroup cg, Button button)
+        private void ActivateCanvasGroup(CanvasGroup cg, GameObject button)
         {
             cg.interactable = true;
             cg.alpha = 1.0f;
-            EventSystem.current.SetSelectedGameObject(button.gameObject);
-            currentLayer = cg;
+            EventSystem.current.SetSelectedGameObject(button);
         }
         #endregion
 
@@ -274,13 +329,11 @@ namespace SelfConscious
             // TODO: Populate the targetingSelections CanvasGroup with all the targeting highlights
             // for the enemies currently on the battlefield
 
-
-            // Battle screen startup delay
-            yield return new WaitForSeconds(2f);
-
             // TODO: Determine turn order (if this is a speed-based system), switch to enemy
             // turn or player turn based on that
             ChangeBattleState(BattleState.PLAYERTURN);
+
+            yield return null;
         }
 
         // Turn on player interactables
@@ -290,7 +343,7 @@ namespace SelfConscious
             activeBP.SetActive();
             ActivateCanvasGroup(battleSelections, defaultBSHighlight);
             selectionUIVisible = true;
-            fallbackLayer = null;
+            fallbackLayer = BattleUIFallback.MAIN;
             yield return null;
         }
 
@@ -300,7 +353,7 @@ namespace SelfConscious
             RefreshAbilitiesUI();
             DeactivateCanvasGroup(battleSelections);
             ActivateCanvasGroup(attackSelections, defaultASHighlight);
-            fallbackLayer = battleSelections;
+            fallbackLayer = BattleUIFallback.FIGHT;
             yield return null;
         }
 
@@ -310,7 +363,7 @@ namespace SelfConscious
             DeactivateCanvasGroup(attackSelections);
             // TODO: Activate a different canvas group based on the kind of ability selected
             ActivateCanvasGroup(enemyTargetingSelections, defaultETSHighlight);
-            fallbackLayer = attackSelections;
+            fallbackLayer = BattleUIFallback.FIGHTTARGET;
             yield return null;
         }
 
@@ -319,7 +372,14 @@ namespace SelfConscious
         {
             // TODO: Deactivate a different canvas group based on the kind of ability selected
             DeactivateCanvasGroup(enemyTargetingSelections);
+            DeactivateCanvasGroup(allyTargetingSelections);
             selectionUIVisible = false;
+            // StartCoroutine();
+            yield return null;
+        }
+
+        IEnumerator AbilityActivate(AbilityData ability)
+        {
             yield return null;
         }
 

@@ -229,13 +229,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a852fef00fe8a4187e7d2d9c27e9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.PlayerControlledUnit
+  nameText: {fileID: 6571109402851366111}
   unitName: 
   unitLevel: 0
   maxHP: 0
   currentHP: 0
   maxWP: 0
   currentWP: 0
-  nameText: {fileID: 6571109402851366111}
   attackAbilities:
   - {fileID: 0}
   - {fileID: 0}

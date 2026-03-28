@@ -403,6 +403,22 @@ PrefabInstance:
       propertyPath: unitName
       value: Stevil
       objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: maxHP
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: unitName
+      value: Stevil
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: currentHP
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: unitLevel
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -784,6 +800,22 @@ PrefabInstance:
     - target: {fileID: 4966324705460068713, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
       propertyPath: unitName
       value: Evilyn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: maxHP
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: unitName
+      value: Evilyn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: currentHP
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: unitLevel
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1179,6 +1211,11 @@ PrefabInstance:
 --- !u!224 &361286465 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3603582490612141660, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
+  m_PrefabInstance: {fileID: 361286464}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &361286466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 879697156155549516, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
   m_PrefabInstance: {fileID: 361286464}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &376869211
@@ -1625,17 +1662,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487336320}
   m_CullTransparentMesh: 1
---- !u!114 &524708211 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4966324705460068713, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
-  m_PrefabInstance: {fileID: 109321815}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3faed8a0aad72be4f81f8b9d17b02c5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Unit
 --- !u!4 &524708212 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4395147913017249144, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
@@ -1715,7 +1741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 807654693126854996, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.92499995
+      value: 0.98749995
       objectReference: {fileID: 0}
     - target: {fileID: 807654693126854996, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1743,17 +1769,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 807654693126854996, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
   m_PrefabInstance: {fileID: 532048614}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &532048617 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6412645504103555626, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
+--- !u!1 &532048616 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3819735708689723460, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
   m_PrefabInstance: {fileID: 532048614}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &577769910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1828,7 +1848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 807654693126854996, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.92499995
+      value: 0.98749995
       objectReference: {fileID: 0}
     - target: {fileID: 807654693126854996, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2043,6 +2063,22 @@ PrefabInstance:
       propertyPath: unitName
       value: Reesevil
       objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: maxHP
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: unitName
+      value: Reesevil
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: currentHP
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: unitLevel
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2158,6 +2194,10 @@ PrefabInstance:
       propertyPath: unitLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: UIPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: e6dbd353bb7294e4da10b2f9bba154aa, type: 3}
     - target: {fileID: 2176044983333890467, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
       propertyPath: m_Name
       value: Owen
@@ -2318,6 +2358,10 @@ PrefabInstance:
       propertyPath: unitLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: UIPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: e6dbd353bb7294e4da10b2f9bba154aa, type: 3}
     - target: {fileID: 2176044983333890467, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
       propertyPath: m_Name
       value: Sally
@@ -3003,27 +3047,27 @@ MonoBehaviour:
   - {fileID: 1080272980}
   - {fileID: 1612500985}
   battleSelections: {fileID: 656281975}
-  defaultBSHighlight: {fileID: 1212880228}
+  defaultBSHighlight: {fileID: 1212880225}
   attackSelections: {fileID: 806677532}
-  defaultASHighlight: {fileID: 2055583438}
+  defaultASHighlight: {fileID: 361286466}
   abilityButtons:
   - {fileID: 2055583440}
   - {fileID: 2052965583}
   - {fileID: 2077173233}
   - {fileID: 1511097579}
   allyTargetingSelections: {fileID: 1080272980}
-  defaultATSHighlight: {fileID: 2056027230}
+  defaultATSHighlight: {fileID: 1596257123}
   enemyTargetingSelections: {fileID: 1612500985}
-  defaultETSHighlight: {fileID: 532048617}
+  defaultETSHighlight: {fileID: 532048616}
   playerParty:
   - {fileID: 5479974119321358427}
   - {fileID: 764500724}
   - {fileID: 1421407248}
   - {fileID: 787294666}
   enemyParty:
-  - {fileID: 524708211}
-  - {fileID: 1604842215}
-  - {fileID: 1173018594}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &958662875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3951,17 +3995,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172979236}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1173018594 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4966324705460068713, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
-  m_PrefabInstance: {fileID: 676401922}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3faed8a0aad72be4f81f8b9d17b02c5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Unit
 --- !u!4 &1173018595 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4395147913017249144, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
@@ -3977,17 +4010,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5032518187235976033, guid: 5f834118047415246a105690e924bb86, type: 3}
   m_PrefabInstance: {fileID: 2490111402891101845}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1212880228 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
-  m_PrefabInstance: {fileID: 2490111402891101845}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212880225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1223273799
 GameObject:
   m_ObjectHideFlags: 0
@@ -4360,6 +4382,10 @@ PrefabInstance:
       propertyPath: unitLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: UIPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: e6dbd353bb7294e4da10b2f9bba154aa, type: 3}
     - target: {fileID: 2176044983333890467, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
       propertyPath: m_Name
       value: Tam
@@ -5007,17 +5033,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 807654693126854996, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
   m_PrefabInstance: {fileID: 1596257121}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1604842215 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4966324705460068713, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
-  m_PrefabInstance: {fileID: 307141553}
+--- !u!1 &1596257123 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3819735708689723460, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
+  m_PrefabInstance: {fileID: 1596257121}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3faed8a0aad72be4f81f8b9d17b02c5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Unit
 --- !u!4 &1604842216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4395147913017249144, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
@@ -6012,39 +6032,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83930d7508df1149aa98c5bce9411b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIAbilityButton
---- !u!114 &2055583438 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
-  m_PrefabInstance: {fileID: 361286464}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &2055583440 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1742897301453728667, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
   m_PrefabInstance: {fileID: 361286464}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 361286466}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f83930d7508df1149aa98c5bce9411b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIAbilityButton
---- !u!114 &2056027230 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6412645504103555626, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
-  m_PrefabInstance: {fileID: 1596257121}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &2065685779
 GameObject:
   m_ObjectHideFlags: 0
@@ -6567,7 +6565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 807654693126854996, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.92499995
+      value: 0.98749995
       objectReference: {fileID: 0}
     - target: {fileID: 807654693126854996, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6811,6 +6809,10 @@ PrefabInstance:
       propertyPath: unitLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: UIPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: e6dbd353bb7294e4da10b2f9bba154aa, type: 3}
     - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
       propertyPath: 'attackAbilities.Array.data[0]'
       value: 

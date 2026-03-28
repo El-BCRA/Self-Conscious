@@ -4,6 +4,9 @@ namespace SelfConscious
 {
     public class PlayerControlledUnit : Unit
     {
+        [SerializeField] private int maxWP;
+        [SerializeField] private int currentWP;
+
         [Header("Abilities")]
         [SerializeField] private AbilityData[] attackAbilities;
         [SerializeField] private AbilityData[] defenseAbilities;
@@ -12,7 +15,7 @@ namespace SelfConscious
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-
+            nameText.text = unitName;
         }
 
         // Update is called once per frame
@@ -34,6 +37,21 @@ namespace SelfConscious
         public AbilityData[] GetSupportAbilities()
         {
             return supportAbilities;
+        }
+
+        public int GetMaxWP()
+        {
+            return maxWP;
+        }
+
+        public int GetCurrentWP()
+        {
+            return currentWP;
+        }
+
+        public void SetCurrentWP(int val)
+        {
+            currentWP = val;
         }
     }
 }
