@@ -31,5 +31,7 @@ namespace SelfConscious
         public AbilityType abilityEffect;
         public string abilityName;
         public string abilityDescription;
+
+        public int modAmount;
     }
 }
