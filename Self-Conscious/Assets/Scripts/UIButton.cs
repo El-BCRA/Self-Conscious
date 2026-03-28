@@ -16,7 +16,12 @@ namespace SelfConscious
             selectionHighlight.SetActive(false);
         }
 
-        public void OnSelect(BaseEventData eventData)
+        public void ResetSelectionHighlight()
+        {
+            selectionHighlight.SetActive(false);
+        }
+
+        public virtual void OnSelect(BaseEventData eventData)
         {
             selectionHighlight.SetActive(true);
         }

@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 0
   abilityEffect: 0
-  abilityName: 
-  abilityDescription: 
+  resourceCost: 1
+  abilityName: Big Attack
+  abilityDescription: Deal 3 damage to an opponent.
+  cost: 2
+  modAmount: 3

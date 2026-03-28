@@ -1051,6 +1051,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ability1
       objectReference: {fileID: 0}
+    - target: {fileID: 1742897301453728667, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
+      propertyPath: abilityDescriptionText
+      value: 
+      objectReference: {fileID: 108515159}
     - target: {fileID: 3603582490612141660, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3002,15 +3006,20 @@ MonoBehaviour:
   defaultBSHighlight: {fileID: 1212880228}
   attackSelections: {fileID: 806677532}
   defaultASHighlight: {fileID: 2055583438}
+  abilityButtons:
+  - {fileID: 2055583440}
+  - {fileID: 2052965583}
+  - {fileID: 2077173233}
+  - {fileID: 1511097579}
   allyTargetingSelections: {fileID: 1080272980}
   defaultATSHighlight: {fileID: 2056027230}
   enemyTargetingSelections: {fileID: 1612500985}
   defaultETSHighlight: {fileID: 532048617}
   playerParty:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5479974119321358427}
+  - {fileID: 764500724}
+  - {fileID: 1421407248}
+  - {fileID: 787294666}
   enemyParty:
   - {fileID: 524708211}
   - {fileID: 1604842215}
@@ -4646,6 +4655,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ability4
       objectReference: {fileID: 0}
+    - target: {fileID: 1742897301453728667, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
+      propertyPath: abilityDescriptionText
+      value: 
+      objectReference: {fileID: 108515159}
     - target: {fileID: 3603582490612141660, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4772,6 +4785,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3603582490612141660, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
   m_PrefabInstance: {fileID: 1511097574}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1511097579 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1742897301453728667, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
+  m_PrefabInstance: {fileID: 1511097574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83930d7508df1149aa98c5bce9411b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIAbilityButton
 --- !u!1001 &1541833320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5847,6 +5871,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ability2
       objectReference: {fileID: 0}
+    - target: {fileID: 1742897301453728667, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
+      propertyPath: abilityDescriptionText
+      value: 
+      objectReference: {fileID: 108515159}
     - target: {fileID: 3603582490612141660, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5973,6 +6001,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3603582490612141660, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
   m_PrefabInstance: {fileID: 2052965578}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2052965583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1742897301453728667, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
+  m_PrefabInstance: {fileID: 2052965578}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83930d7508df1149aa98c5bce9411b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIAbilityButton
 --- !u!114 &2055583438 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
@@ -5984,6 +6023,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &2055583440 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1742897301453728667, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
+  m_PrefabInstance: {fileID: 361286464}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83930d7508df1149aa98c5bce9411b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIAbilityButton
 --- !u!114 &2056027230 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6412645504103555626, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
@@ -6075,6 +6125,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ability3
       objectReference: {fileID: 0}
+    - target: {fileID: 1742897301453728667, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
+      propertyPath: abilityDescriptionText
+      value: 
+      objectReference: {fileID: 108515159}
     - target: {fileID: 3603582490612141660, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6201,6 +6255,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3603582490612141660, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
   m_PrefabInstance: {fileID: 2077173228}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2077173233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1742897301453728667, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
+  m_PrefabInstance: {fileID: 2077173228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83930d7508df1149aa98c5bce9411b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIAbilityButton
 --- !u!1 &2103816267
 GameObject:
   m_ObjectHideFlags: 0
@@ -6746,6 +6811,54 @@ PrefabInstance:
       propertyPath: unitLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: 'attackAbilities.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 70aca01cdb5c6aa43bde022aa28f3eed, type: 2}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: 'attackAbilities.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 756d2d44de80ea14cb37fd86e2b804a3, type: 2}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: 'attackAbilities.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6a2a04f5d76e2324a994bbf52c125d01, type: 2}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: 'attackAbilities.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a4c88566912537645a44829bd408c458, type: 2}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: 'defenseAbilities.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 145f97fe2d46172409a2abda890b2fac, type: 2}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: 'defenseAbilities.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b010a7135cafbf448c41b6b4005ef73, type: 2}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: 'defenseAbilities.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ad778282b8c31941b932f2fb67ef5e5, type: 2}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: 'defenseAbilities.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e3fd828369dd4c749978df9aee41d31b, type: 2}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: 'supportAbilities.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3b8e446aebff07744a5b7aba6e6c076c, type: 2}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: 'supportAbilities.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 25b5c889cdddd4e47866ec4fbcfeb259, type: 2}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: 'supportAbilities.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d2d60e9de99daba43a0dcfd51e92dd7d, type: 2}
+    - target: {fileID: 132369376992996769, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
+      propertyPath: 'supportAbilities.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1619fb717e9f9144293ad3595471c975, type: 2}
     - target: {fileID: 2176044983333890467, guid: 036f1ccf4f326db418acfa8147aa985c, type: 3}
       propertyPath: m_Name
       value: Ian

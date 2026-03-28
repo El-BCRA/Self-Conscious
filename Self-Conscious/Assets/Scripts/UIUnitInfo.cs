@@ -22,7 +22,6 @@ namespace SelfConscious
         // Update is called once per frame
         void Update()
         {
-            referencedUnit = referencedBattlePosition.GetUnit();
             unitNameText.text = referencedUnit.GetName();
             healthText.text = "" + referencedUnit.GetCurrentHP() + "/" + referencedUnit.GetMaxHP();
             willpowerText.text = "" + referencedUnit.GetCurrentWP() + "/" + referencedUnit.GetMaxWP();

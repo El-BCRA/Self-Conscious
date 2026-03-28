@@ -220,28 +220,26 @@ namespace SelfConscious
                     case (BattlePositionKind.ATTACKFRONT):
                         {
                             abilityButtons[i].SetAbility(activeBP.GetUnit().GetAttackAbilities()[i]);
-                            abilityButtons[i].ReplaceUIText();
                             break;
                         }
                     case (BattlePositionKind.ATTACKBACK):
                         {
                             abilityButtons[i].SetAbility(activeBP.GetUnit().GetAttackAbilities()[i]);
-                            abilityButtons[i].ReplaceUIText();
                             break;
                         }
                     case (BattlePositionKind.DEFENSE):
                         {
                             abilityButtons[i].SetAbility(activeBP.GetUnit().GetDefenseAbilities()[i]);
-                            abilityButtons[i].ReplaceUIText();
                             break;
                         }
                     case (BattlePositionKind.SUPPORT):
                         {
                             abilityButtons[i].SetAbility(activeBP.GetUnit().GetSupportAbilities()[i]);
-                            abilityButtons[i].ReplaceUIText();
                             break;
                         }
                 }
+                abilityButtons[i].ReplaceUIText();
+                abilityButtons[i].ResetSelectionHighlight();
             }
         }
         #endregion

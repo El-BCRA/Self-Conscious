@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 0
   abilityEffect: 0
+  resourceCost: 2
   abilityName: 
   abilityDescription: 
+  cost: 0
+  modAmount: 0

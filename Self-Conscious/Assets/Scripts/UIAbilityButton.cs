@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace SelfConscious
 {
@@ -9,15 +10,10 @@ namespace SelfConscious
         [SerializeField] private TMP_Text abilityNameText;
         [SerializeField] private TMP_Text abilityDescriptionText;
 
-        private void Awake()
-        {
-            BattleManager.instance.AddToAbilitiesUIList(this);
-        }
-
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-
+            // BattleManager.instance.AddToAbilitiesUIList(this);
         }
 
         public void ReplaceUIText()
@@ -29,6 +25,12 @@ namespace SelfConscious
         public void SetAbility(AbilityData newAbility)
         {
             ability = newAbility;
+        }
+
+        public override void OnSelect(BaseEventData eventData)
+        {
+            base.OnSelect(eventData);
+            ReplaceUIText();
         }
     }
 }

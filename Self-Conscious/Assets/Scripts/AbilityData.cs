@@ -24,14 +24,23 @@ namespace SelfConscious
         CONDITION
     }
 
+    public enum ResourceCost
+    {
+        HEALTH,
+        WILLPOWER,
+        NONE
+    }
+
     [CreateAssetMenu(fileName = "AbilityData", menuName = "Scriptable Objects/AbilityData")]
     public class AbilityData : ScriptableObject
     {
         public TargetingType targetingType;
         public AbilityType abilityEffect;
+        public ResourceCost resourceCost;
         public string abilityName;
         public string abilityDescription;
 
+        public int cost;
         public int modAmount;
     }
 }

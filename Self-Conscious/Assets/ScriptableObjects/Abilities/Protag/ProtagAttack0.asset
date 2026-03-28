@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 0
   abilityEffect: 0
-  abilityName: 
-  abilityDescription: 
+  resourceCost: 2
+  abilityName: Attack
+  abilityDescription: Deal 1 damage to an opponent.
+  cost: 0
+  modAmount: 1

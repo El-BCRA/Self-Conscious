@@ -96,8 +96,61 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Selectable Ability
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6298098698266695376, guid: 5f834118047415246a105690e924bb86, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8926178893198985841, guid: 5f834118047415246a105690e924bb86, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1742897301453728667}
   m_SourcePrefab: {fileID: 100100000, guid: 5f834118047415246a105690e924bb86, type: 3}
+--- !u!1 &879697156155549516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8926178893198985841, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 8634921720205389117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1742897301453728667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879697156155549516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83930d7508df1149aa98c5bce9411b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIAbilityButton
+  button: {fileID: 7046279195908437282}
+  selectionHighlight: {fileID: 8872101037732241621}
+  ability: {fileID: 0}
+  abilityNameText: {fileID: 7389031503198875054}
+  abilityDescriptionText: {fileID: 0}
+--- !u!114 &7046279195908437282 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 8634921720205389117}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879697156155549516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &7389031503198875054 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1251572500424507539, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 8634921720205389117}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &8872101037732241621 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 933775012383559144, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 8634921720205389117}
+  m_PrefabAsset: {fileID: 0}
