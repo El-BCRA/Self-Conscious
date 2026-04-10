@@ -13,7 +13,7 @@ namespace SelfConscious
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            // BattleManager.instance.AddToAbilitiesUIList(this);
+
         }
 
         public void ReplaceUIText()
@@ -31,6 +31,12 @@ namespace SelfConscious
         {
             base.OnSelect(eventData);
             ReplaceUIText();
+        }
+
+        public void TriggerTargetingUI()
+        {
+            BattleManager.Instance.CacheAbility(ability);
+            BattleManager.Instance.OnAbilitySelect();
         }
     }
 }

@@ -44,22 +44,29 @@ namespace SelfConscious
         [SerializeField] private List<Transform> enemyBattlePositions = new List<Transform>();
 
         [Header("UI")]
+        [Tooltip("Any CanvasGroups that should only appear in certain contexts. Should include all " +
+            "CanvasGroups which appear under this header.")]
         [SerializeField] private List<CanvasGroup> contextualUI;
         [SerializeField] private CanvasGroup battleSelections;
         [SerializeField] private GameObject defaultBSHighlight;
         [SerializeField] private CanvasGroup attackSelections;
         [SerializeField] private GameObject defaultASHighlight;
         [SerializeField] private List<UIAbilityButton> abilityButtons;
-        [SerializeField] private CanvasGroup allyTargetingSelections;
-        [SerializeField] private GameObject defaultATSHighlight;
-        [SerializeField] private CanvasGroup enemyTargetingSelections;
-        [SerializeField] private GameObject defaultETSHighlight;
+        [SerializeField] private CanvasGroup targetingAllAlliesSelection;
+        [SerializeField] private GameObject highlightTAAS;
+        [SerializeField] private CanvasGroup targetingAllEnemiesSelection;
+        [SerializeField] private GameObject highlightTAES;
+        [SerializeField] private CanvasGroup targetingAllUnitsSelection;
+        [SerializeField] private GameObject highlightTAUS;
+        [SerializeField] private List<CanvasGroup> playerUnitSelections;
+        [SerializeField] private List<CanvasGroup> enemyUnitSelections;
         private BattleUIFallback fallbackLayer;
         private GameObject lastSelected;
         private InputAction cancelAction;
 
-        [Header("Actions")]
-        private AbilityData primedAbility;
+        [Header("Ability Select & Targeting")]
+        [SerializeField] private AbilityData cachedAbility;
+        [SerializeField] private List<Unit> cachedTargets;
 
         [Header("Units")]
         [SerializeField] private List<PlayerControlledUnit> playerParty = new List<PlayerControlledUnit>();
@@ -68,16 +75,16 @@ namespace SelfConscious
         [Header("Flags")]
         private bool selectionUIVisible = false;
 
-        public static BattleManager instance;
+        public static BattleManager Instance;
         #endregion
 
         private void Awake()
         {
-            if (instance == null)
+            if (Instance == null)
             {
-                instance = this;
+                Instance = this;
             }
-            else if (instance != this)
+            else if (Instance != this)
             {
                 Destroy(this);
             }
@@ -179,7 +186,6 @@ namespace SelfConscious
             {
                 return;
             }
-            lastSelected = EventSystem.current.currentSelectedGameObject;
             StartCoroutine(PlayerAttack());
         }
 
@@ -189,7 +195,6 @@ namespace SelfConscious
             {
                 return;
             }
-            lastSelected = EventSystem.current.currentSelectedGameObject;
             // StartCoroutine(PlayerAttack());
         }
 
@@ -199,7 +204,6 @@ namespace SelfConscious
             {
                 return;
             }
-            lastSelected = EventSystem.current.currentSelectedGameObject;
             // StartCoroutine(PlayerAttack());
         }
 
@@ -209,13 +213,11 @@ namespace SelfConscious
             {
                 return;
             }
-            lastSelected = EventSystem.current.currentSelectedGameObject;
             // StartCoroutine(PlayerAttack());
         }
 
         public void OnAbilitySelect()
         {
-            lastSelected = EventSystem.current.currentSelectedGameObject;
             StartCoroutine(PlayerTargetSelect());
         }
 
@@ -252,11 +254,61 @@ namespace SelfConscious
                     }
                 case (BattleUIFallback.FIGHTTARGET):
                     {
-                        DeactivateCanvasGroup(enemyTargetingSelections);
-                        DeactivateCanvasGroup(allyTargetingSelections);
+                        DeactivateTargetingUI();
+                        ClearAbilityCache();
                         ActivateCanvasGroup(attackSelections, lastSelected);
                         fallbackLayer = BattleUIFallback.FIGHT;
                         lastSelected = null;
+                        break;
+                    }
+            }
+        }
+
+        public void DeactivateTargetingUI()
+        {
+            switch (cachedAbility.targetingType)
+            {
+                case TargetingType.ENEMYSINGLE:
+                    {
+                        foreach (CanvasGroup cg in enemyUnitSelections)
+                        {
+                            DeactivateCanvasGroup(cg);
+                        }
+                        break;
+                    }
+                case TargetingType.ENEMYALL:
+                    {
+                        DeactivateCanvasGroup(targetingAllEnemiesSelection);
+                        break;
+                    }
+                case TargetingType.ALLYSINGLE:
+                    {
+                        foreach (CanvasGroup cg in playerUnitSelections)
+                        {
+                            DeactivateCanvasGroup(cg);
+                        }
+                        break;
+                    }
+                case TargetingType.ALLYALL:
+                    {
+                        DeactivateCanvasGroup(targetingAllAlliesSelection);
+                        break;
+                    }
+                case TargetingType.ALLUNITS:
+                    {
+                        DeactivateCanvasGroup(targetingAllUnitsSelection);
+                        break;
+                    }
+                case TargetingType.SELF:
+                    {
+                        DeactivateCanvasGroup(activeBP.GetUnit().GetTargetingSelection());
+                        break;
+                    }
+                case TargetingType.NONE:
+                    {
+                        // This shouldn't ever happen, this is a programming logic error
+                        Debug.Log("Tried to deactivate a targeting selection on an ability with a " +
+                            "TargetingType of NONE" + cachedAbility);
                         break;
                     }
             }
@@ -315,6 +367,18 @@ namespace SelfConscious
         }
         #endregion
 
+        #region GETTERS & SETTERS
+        public void CacheAbility(AbilityData data)
+        {
+            cachedAbility = data;
+        }
+
+        public void ClearAbilityCache()
+        {
+            cachedAbility = null;
+        }
+        #endregion
+
         #region COROUTINES
         IEnumerator InitializeBattle()
         {
@@ -331,6 +395,9 @@ namespace SelfConscious
 
             // TODO: Determine turn order (if this is a speed-based system), switch to enemy
             // turn or player turn based on that
+            activeBP = playerBPDefense;
+            activeBP.SetActive();
+            Debug.Log("Active selection highlight should be on");
             ChangeBattleState(BattleState.PLAYERTURN);
 
             yield return null;
@@ -339,8 +406,6 @@ namespace SelfConscious
         // Turn on player interactables
         IEnumerator PlayerTurn()
         {
-            activeBP = playerBPDefense;
-            activeBP.SetActive();
             ActivateCanvasGroup(battleSelections, defaultBSHighlight);
             selectionUIVisible = true;
             fallbackLayer = BattleUIFallback.MAIN;
@@ -350,6 +415,7 @@ namespace SelfConscious
         // Bring up ability selection screen
         IEnumerator PlayerAttack()
         {
+            lastSelected = EventSystem.current.currentSelectedGameObject;
             RefreshAbilitiesUI();
             DeactivateCanvasGroup(battleSelections);
             ActivateCanvasGroup(attackSelections, defaultASHighlight);
@@ -360,9 +426,55 @@ namespace SelfConscious
         // Select target for the currently selected ability
         IEnumerator PlayerTargetSelect()
         {
+            lastSelected = EventSystem.current.currentSelectedGameObject;
             DeactivateCanvasGroup(attackSelections);
-            // TODO: Activate a different canvas group based on the kind of ability selected
-            ActivateCanvasGroup(enemyTargetingSelections, defaultETSHighlight);
+            switch (cachedAbility.targetingType)
+            {
+                case TargetingType.ENEMYSINGLE:
+                    {
+                        foreach (CanvasGroup cg in enemyUnitSelections)
+                        {
+                            ActivateCanvasGroup(cg, enemyParty[0].GetSelectionHighlight());
+                        }
+                        break;
+                    }
+                case TargetingType.ENEMYALL:
+                    {
+                        ActivateCanvasGroup(targetingAllEnemiesSelection, highlightTAES);
+                        break;
+                    }
+                case TargetingType.ALLYSINGLE:
+                    {
+                        foreach (CanvasGroup cg in playerUnitSelections)
+                        {
+                            ActivateCanvasGroup(cg, activeBP.GetUnit().GetSelectionHighlight());
+                        }
+                        break;
+                    }
+                case TargetingType.ALLYALL:
+                    {
+                        ActivateCanvasGroup(targetingAllAlliesSelection, highlightTAAS);
+                        break;
+                    }
+                case TargetingType.ALLUNITS:
+                    {
+                        ActivateCanvasGroup(targetingAllUnitsSelection, highlightTAUS);
+                        break;
+                    }
+                case TargetingType.SELF:
+                    {
+                        ActivateCanvasGroup(activeBP.GetUnit().GetTargetingSelection(), 
+                            activeBP.GetUnit().GetSelectionHighlight());
+                        break;
+                    }
+                case TargetingType.NONE:
+                    {
+                        // This shouldn't ever happen, this is a programming logic error
+                        Debug.Log("Tried to activate a targeting selection on an ability with a " +
+                            "TargetingType of NONE" + cachedAbility);
+                        break;
+                    }
+            }
             fallbackLayer = BattleUIFallback.FIGHTTARGET;
             yield return null;
         }
@@ -370,16 +482,15 @@ namespace SelfConscious
         // Ability and target confirmed, carry out damage
         IEnumerator PlayerTargetConfirm()
         {
-            // TODO: Deactivate a different canvas group based on the kind of ability selected
-            DeactivateCanvasGroup(enemyTargetingSelections);
-            DeactivateCanvasGroup(allyTargetingSelections);
+            DeactivateTargetingUI();
             selectionUIVisible = false;
-            // StartCoroutine();
+            StartCoroutine(AbilityActivate(cachedAbility, activeBP.GetUnit(), cachedTargets));
             yield return null;
         }
 
-        IEnumerator AbilityActivate(AbilityData ability)
+        IEnumerator AbilityActivate(AbilityData ability, Unit source, List<Unit> targets)
         {
+            StartCoroutine(PlayerEndTurn());
             yield return null;
         }
 
@@ -393,7 +504,7 @@ namespace SelfConscious
             }
             else
             {
-                selectionUIVisible = true;
+                StartCoroutine(PlayerTurn());
             }
             yield return null;
         }

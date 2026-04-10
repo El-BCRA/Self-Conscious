@@ -4,6 +4,7 @@ namespace SelfConscious
 {
     public enum TargetingType
     {
+        NONE,
         ENEMYSINGLE,
         ENEMYALL,
         ALLYSINGLE,

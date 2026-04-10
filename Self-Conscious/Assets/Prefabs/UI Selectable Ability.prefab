@@ -12,6 +12,34 @@ PrefabInstance:
       propertyPath: m_Navigation.m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1742897301453728667}
+    - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerTargetingUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SelfConscious.UIAbilityButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5032518187235976033, guid: 5f834118047415246a105690e924bb86, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -122,22 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83930d7508df1149aa98c5bce9411b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIAbilityButton
-  button: {fileID: 7046279195908437282}
   selectionHighlight: {fileID: 8872101037732241621}
   ability: {fileID: 0}
   abilityNameText: {fileID: 7389031503198875054}
   abilityDescriptionText: {fileID: 0}
---- !u!114 &7046279195908437282 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
-  m_PrefabInstance: {fileID: 8634921720205389117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879697156155549516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &7389031503198875054 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1251572500424507539, guid: 5f834118047415246a105690e924bb86, type: 3}

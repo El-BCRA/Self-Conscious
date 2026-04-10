@@ -8,6 +8,8 @@ namespace SelfConscious
         [Header("Local UI")]
         [SerializeField] protected TMP_Text nameText;
         [SerializeField] private Sprite UIPortrait;
+        [SerializeField] private CanvasGroup targetingSelection;
+        [SerializeField] private UIButton targetingButton;
 
         [Header("Unit Data Fields")]
         [SerializeField] protected string unitName;
@@ -19,6 +21,16 @@ namespace SelfConscious
         public Sprite GetPortrait()
         {
             return UIPortrait;
+        }
+
+        public CanvasGroup GetTargetingSelection()
+        {
+            return targetingSelection;
+        }
+
+        public GameObject GetSelectionHighlight()
+        {
+            return targetingButton.GetSelectionHighlight();
         }
 
         public string GetName()

@@ -1186,7 +1186,7 @@ PrefabInstance:
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 958662874}
+      objectReference: {fileID: 2055583440}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1197,11 +1197,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnAbilitySelect
+      value: TriggerTargetingUI
       objectReference: {fileID: 0}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SelfConscious.BattleManager, Assembly-CSharp
+      value: SelfConscious.UIAbilityButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -1779,11 +1779,6 @@ PrefabInstance:
 --- !u!224 &532048615 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 807654693126854996, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
-  m_PrefabInstance: {fileID: 532048614}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &532048616 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3819735708689723460, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
   m_PrefabInstance: {fileID: 532048614}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &577769910
@@ -3067,10 +3062,16 @@ MonoBehaviour:
   - {fileID: 2052965583}
   - {fileID: 2077173233}
   - {fileID: 1511097579}
-  allyTargetingSelections: {fileID: 1080272980}
-  defaultATSHighlight: {fileID: 1596257123}
-  enemyTargetingSelections: {fileID: 1612500985}
-  defaultETSHighlight: {fileID: 532048616}
+  targetingAllAlliesSelection: {fileID: 0}
+  highlightTAAS: {fileID: 0}
+  targetingAllEnemiesSelection: {fileID: 0}
+  highlightTAES: {fileID: 0}
+  targetingAllUnitsSelection: {fileID: 0}
+  highlightTAUS: {fileID: 0}
+  playerUnitSelections: []
+  enemyUnitSelections: []
+  cachedAbility: {fileID: 0}
+  cachedTargets: []
   playerParty:
   - {fileID: 5479974119321358427}
   - {fileID: 764500724}
@@ -4792,18 +4793,18 @@ PrefabInstance:
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 958662874}
+      objectReference: {fileID: 1511097579}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnAbilitySelect
+      value: TriggerTargetingUI
       objectReference: {fileID: 0}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SelfConscious.BattleManager, Assembly-CSharp
+      value: SelfConscious.UIAbilityButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -5043,11 +5044,6 @@ PrefabInstance:
 --- !u!224 &1596257122 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 807654693126854996, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
-  m_PrefabInstance: {fileID: 1596257121}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1596257123 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3819735708689723460, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
   m_PrefabInstance: {fileID: 1596257121}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1604842216 stripped
@@ -6002,18 +5998,18 @@ PrefabInstance:
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 958662874}
+      objectReference: {fileID: 2052965583}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnAbilitySelect
+      value: TriggerTargetingUI
       objectReference: {fileID: 0}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SelfConscious.BattleManager, Assembly-CSharp
+      value: SelfConscious.UIAbilityButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -6234,18 +6230,18 @@ PrefabInstance:
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 958662874}
+      objectReference: {fileID: 2077173233}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnAbilitySelect
+      value: TriggerTargetingUI
       objectReference: {fileID: 0}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SelfConscious.BattleManager, Assembly-CSharp
+      value: SelfConscious.UIAbilityButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7046279195908437282, guid: a7c9d2383eb269746b6df386aa0c23ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
