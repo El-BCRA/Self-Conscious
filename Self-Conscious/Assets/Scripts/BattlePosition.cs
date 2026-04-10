@@ -16,9 +16,14 @@ namespace SelfConscious
         [SerializeField] private BattlePositionKind kind;
         [SerializeField] private SpriteRenderer activeIndicator;
 
-        void Start()
+        private void Awake()
         {
             SetInactive();
+        }
+
+        void Start()
+        {
+
         }
 
         public BattlePositionKind GetBPKind()

@@ -99,11 +99,6 @@ namespace SelfConscious
 
             battleState = BattleState.START;
 
-            foreach (CanvasGroup cg in contextualUI)
-            {
-                DeactivateCanvasGroup(cg);
-            }
-
             StartCoroutine(InitializeBattle());
         }
 
@@ -319,6 +314,11 @@ namespace SelfConscious
             abilityButtons.Add(abilityUI);
         }
 
+        public void AddToContextualUI(CanvasGroup cg)
+        {
+            contextualUI.Add(cg);
+        }
+
         public void RefreshAbilitiesUI()
         {
             for (int i = 0; i < abilityButtons.Count; i++)
@@ -377,6 +377,15 @@ namespace SelfConscious
         {
             cachedAbility = null;
         }
+
+        public void CacheTargets(List<Unit> targets)
+        {
+            cachedTargets.Clear();
+            foreach (Unit u in targets)
+            {
+                cachedTargets.Add(u);
+            }
+        }
         #endregion
 
         #region COROUTINES
@@ -397,10 +406,14 @@ namespace SelfConscious
             // turn or player turn based on that
             activeBP = playerBPDefense;
             activeBP.SetActive();
-            Debug.Log("Active selection highlight should be on");
-            ChangeBattleState(BattleState.PLAYERTURN);
+            yield return new WaitForSeconds(.25f);
 
-            yield return null;
+            foreach (CanvasGroup cg in contextualUI)
+            {
+                DeactivateCanvasGroup(cg);
+            }
+
+            ChangeBattleState(BattleState.PLAYERTURN);
         }
 
         // Turn on player interactables

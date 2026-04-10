@@ -7,9 +7,9 @@ namespace SelfConscious
     {
         [Header("Local UI")]
         [SerializeField] protected TMP_Text nameText;
-        [SerializeField] private Sprite UIPortrait;
-        [SerializeField] private CanvasGroup targetingSelection;
-        [SerializeField] private UIButton targetingButton;
+        [SerializeField] protected Sprite UIPortrait;
+        [SerializeField] protected CanvasGroup targetingSelection;
+        [SerializeField] protected UIButton targetingButton;
 
         [Header("Unit Data Fields")]
         [SerializeField] protected string unitName;
