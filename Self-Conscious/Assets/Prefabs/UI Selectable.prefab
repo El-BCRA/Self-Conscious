@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 5032518187235976033}
   - component: {fileID: 4701044515630418368}
   - component: {fileID: 1593163858124298271}
-  - component: {fileID: 6298098698266695376}
+  - component: {fileID: 3075999211959134274}
   m_Layer: 0
   m_Name: UI Selectable
   m_TagString: Untagged
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6298098698266695376
+--- !u!114 &3075999211959134274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,5 +316,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a50b88ee77e8ae49bf6fdfc7473883c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIButton
-  button: {fileID: 1593163858124298271}
   selectionHighlight: {fileID: 933775012383559144}

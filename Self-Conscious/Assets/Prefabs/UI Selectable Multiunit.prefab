@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8634921720205389117
+--- !u!1001 &6371708683642506971
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,9 +8,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 1
+    - target: {fileID: 1251572500424507539, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_text
+      value: GOOD GUYS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1251572500424507539, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ce3320be9fa4034c9baf16e6f3e39d1, type: 2}
+    - target: {fileID: 1251572500424507539, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1251572500424507539, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8257289988228764286, guid: 0ce3320be9fa4034c9baf16e6f3e39d1, type: 2}
+    - target: {fileID: 1251572500424507539, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -23,18 +39,18 @@ PrefabInstance:
     - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1742897301453728667}
+      objectReference: {fileID: 1221895873911417114}
     - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TriggerTargetingUI
+      value: OnTargetLock
       objectReference: {fileID: 0}
     - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SelfConscious.UIAbilityButton, Assembly-CSharp
+      value: SelfConscious.UITargetingButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1593163858124298271, guid: 5f834118047415246a105690e924bb86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -122,52 +138,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8926178893198985841, guid: 5f834118047415246a105690e924bb86, type: 3}
       propertyPath: m_Name
-      value: UI Selectable Ability
+      value: UI Selectable Multiunit
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 6298098698266695376, guid: 5f834118047415246a105690e924bb86, type: 3}
     - {fileID: 3075999211959134274, guid: 5f834118047415246a105690e924bb86, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8926178893198985841, guid: 5f834118047415246a105690e924bb86, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1742897301453728667}
+      addedObject: {fileID: 1221895873911417114}
   m_SourcePrefab: {fileID: 100100000, guid: 5f834118047415246a105690e924bb86, type: 3}
---- !u!1 &879697156155549516 stripped
+--- !u!1 &2561689610832807082 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8926178893198985841, guid: 5f834118047415246a105690e924bb86, type: 3}
-  m_PrefabInstance: {fileID: 8634921720205389117}
+  m_PrefabInstance: {fileID: 6371708683642506971}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1742897301453728667
+--- !u!114 &1221895873911417114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879697156155549516}
+  m_GameObject: {fileID: 2561689610832807082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f83930d7508df1149aa98c5bce9411b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 01ff021ec59a42d4c9879b55eb5cc09f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIAbilityButton
-  selectionHighlight: {fileID: 8872101037732241621}
-  ability: {fileID: 0}
-  abilityNameText: {fileID: 7389031503198875054}
-  abilityDescriptionText: {fileID: 0}
---- !u!114 &7389031503198875054 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1251572500424507539, guid: 5f834118047415246a105690e924bb86, type: 3}
-  m_PrefabInstance: {fileID: 8634921720205389117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!1 &8872101037732241621 stripped
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UITargetingButton
+  selectionHighlight: {fileID: 6096101640917123891}
+  targets: []
+--- !u!1 &6096101640917123891 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 933775012383559144, guid: 5f834118047415246a105690e924bb86, type: 3}
-  m_PrefabInstance: {fileID: 8634921720205389117}
+  m_PrefabInstance: {fileID: 6371708683642506971}
   m_PrefabAsset: {fileID: 0}

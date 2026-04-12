@@ -53,10 +53,13 @@ namespace SelfConscious
         [SerializeField] private GameObject defaultASHighlight;
         [SerializeField] private List<UIAbilityButton> abilityButtons;
         [SerializeField] private CanvasGroup targetingAllAlliesSelection;
+        [SerializeField] private UITargetingButton allAlliesTB;
         [SerializeField] private GameObject highlightTAAS;
         [SerializeField] private CanvasGroup targetingAllEnemiesSelection;
+        [SerializeField] private UITargetingButton allEnemiesTB;
         [SerializeField] private GameObject highlightTAES;
         [SerializeField] private CanvasGroup targetingAllUnitsSelection;
+        [SerializeField] private UITargetingButton allUnitsTB;
         [SerializeField] private GameObject highlightTAUS;
         [SerializeField] private List<CanvasGroup> playerUnitSelections;
         [SerializeField] private List<CanvasGroup> enemyUnitSelections;
@@ -399,8 +402,17 @@ namespace SelfConscious
             playerBPAttackBack.SetUnit(playerParty[2]);
             playerBPSupport.SetUnit(playerParty[3]);
 
-            // TODO: Populate the targetingSelections CanvasGroup with all the targeting highlights
-            // for the enemies currently on the battlefield
+            foreach (Unit unit in playerParty)
+            {
+                allAlliesTB.AddToTargets(unit);
+                allUnitsTB.AddToTargets(unit);
+            }
+
+            foreach (Unit unit in enemyParty)
+            {
+                allEnemiesTB.AddToTargets(unit);
+                allUnitsTB.AddToTargets(unit);
+            }
 
             // TODO: Determine turn order (if this is a speed-based system), switch to enemy
             // turn or player turn based on that
@@ -501,8 +513,10 @@ namespace SelfConscious
             yield return null;
         }
 
+        // Noninteractive, apply ability affects to targets, play animations/SFX
         IEnumerator AbilityActivate(AbilityData ability, Unit source, List<Unit> targets)
         {
+            Debug.Log(source.name + " ended their turn by using the ability " + ability.abilityName);
             StartCoroutine(PlayerEndTurn());
             yield return null;
         }
