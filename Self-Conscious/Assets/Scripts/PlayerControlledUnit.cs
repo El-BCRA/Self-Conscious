@@ -6,6 +6,7 @@ namespace SelfConscious
     {
         [SerializeField] private int maxWP;
         [SerializeField] private int currentWP;
+        [SerializeField] private AbilityClass abilityClass;
 
         [Header("Abilities")]
         [SerializeField] private AbilityData[] attackAbilities;
@@ -38,6 +39,11 @@ namespace SelfConscious
         public AbilityData[] GetSupportAbilities()
         {
             return supportAbilities;
+        }
+
+        public AbilityClass GetUnitClass()
+        {
+            return abilityClass;
         }
 
         public int GetMaxWP()

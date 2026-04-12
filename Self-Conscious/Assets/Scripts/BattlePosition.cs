@@ -50,7 +50,7 @@ namespace SelfConscious
 
         public bool Occupied() { return currentUnit != null; }
 
-        public void swapUnit(BattlePosition otherBP)
+        public void SwapUnit(BattlePosition otherBP)
         {
             if (Occupied() && otherBP.Occupied())
             {

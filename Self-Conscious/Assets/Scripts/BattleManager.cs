@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 namespace SelfConscious
 {
@@ -38,6 +39,7 @@ namespace SelfConscious
         [SerializeField] private BattlePosition playerBPAttackBack;
         [SerializeField] private BattlePosition playerBPDefense;
         [SerializeField] private BattlePosition playerBPSupport;
+        [SerializeField] private List<BattlePosition> battlePositions;
         [SerializeField] private BattlePosition activeBP;
 
         [Header("Enemy Battle Positions")]
@@ -63,15 +65,18 @@ namespace SelfConscious
         [SerializeField] private GameObject highlightTAUS;
         [SerializeField] private List<CanvasGroup> playerUnitSelections;
         [SerializeField] private List<CanvasGroup> enemyUnitSelections;
+        [SerializeField] private List<UIRepositionButton> repositionSelections;
         private BattleUIFallback fallbackLayer;
         private GameObject lastSelected;
         private InputAction cancelAction;
 
-        [Header("Ability Select & Targeting")]
+        [Header("Player Action Caches")]
         [SerializeField] private AbilityData cachedAbility;
         [SerializeField] private List<Unit> cachedTargets;
+        [SerializeField] private AbilityClass cachedSwap;
 
         [Header("Units")]
+        [SerializeField] private List<PlayerControlledUnit> totalParty = new List<PlayerControlledUnit>();
         [SerializeField] private List<PlayerControlledUnit> playerParty = new List<PlayerControlledUnit>();
         [SerializeField] private List<Unit> enemyParty = new List<Unit>();
 
@@ -202,7 +207,12 @@ namespace SelfConscious
             {
                 return;
             }
-            // StartCoroutine(PlayerAttack());
+            StartCoroutine(PlayerReposition());
+        }
+
+        public void OnRepositionConfirm()
+        {
+            StartCoroutine(RepositionActivate());
         }
 
         public void OnFleeButton()
@@ -389,6 +399,11 @@ namespace SelfConscious
                 cachedTargets.Add(u);
             }
         }
+
+        public void CacheSwap(AbilityClass abilityClass)
+        {
+            cachedSwap = abilityClass;
+        }
         #endregion
 
         #region COROUTINES
@@ -437,6 +452,7 @@ namespace SelfConscious
             yield return null;
         }
 
+        #region ABILITY FLOW
         // Bring up ability selection screen
         IEnumerator PlayerAttack()
         {
@@ -520,6 +536,68 @@ namespace SelfConscious
             StartCoroutine(PlayerEndTurn());
             yield return null;
         }
+        #endregion
+
+        #region REPOSITION FLOW
+        // 
+        IEnumerator PlayerReposition()
+        {
+            lastSelected = EventSystem.current.currentSelectedGameObject;
+            DeactivateCanvasGroup(battleSelections);
+            foreach (UIRepositionButton rs in repositionSelections)
+            {
+                if (rs.GetAbilityClass() != activeBP.GetUnit().GetUnitClass())
+                {
+                    Debug.Log("Attempted to activate the canvas group for " + rs.GetAbilityClass());
+                    ActivateCanvasGroup(rs.GetCanvasGroup(), rs.gameObject);
+                }
+            }
+            fallbackLayer = BattleUIFallback.FIGHT;
+            yield return null;
+        }
+
+        IEnumerator RepositionActivate()
+        {
+            // Deactivate all UI
+            selectionUIVisible = false;
+            foreach (UIRepositionButton rs in repositionSelections)
+            {
+                DeactivateCanvasGroup(rs.GetCanvasGroup());
+            }
+
+            // Perform swap between two active party members
+            int terminate = 0;
+            foreach(BattlePosition bp in battlePositions)
+            {
+                if (bp.GetUnit().GetUnitClass() == cachedSwap)
+                {
+                    activeBP.SwapUnit(bp);
+                    terminate = -1;
+                    break;
+                }
+            }
+
+            // Perform swap between active and reserve party member
+            if (terminate == 0) 
+            {
+                PlayerControlledUnit swapIn = new PlayerControlledUnit();
+                foreach (PlayerControlledUnit pcu in totalParty)
+                {
+                    if (pcu.GetUnitClass() == cachedSwap)
+                    {
+                        swapIn = pcu;
+                        break;
+                    }
+                }
+                playerParty.Remove(activeBP.GetUnit());
+                activeBP.SetUnit(swapIn);
+                playerParty.Add(swapIn);
+            }
+
+            StartCoroutine(PlayerEndTurn());
+            yield return null;
+        }
+        #endregion
 
         // Called once the last of the player's units has carried out their turn
         IEnumerator PlayerEndTurn()

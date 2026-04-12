@@ -52,6 +52,11 @@ namespace SelfConscious
         {
             currentHP = val;
         }
+
+        public void Reposition()
+        {
+
+        }
         #endregion
     }
 }

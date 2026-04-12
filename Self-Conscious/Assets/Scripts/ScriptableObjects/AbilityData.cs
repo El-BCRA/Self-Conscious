@@ -2,6 +2,19 @@ using UnityEngine;
 
 namespace SelfConscious
 {
+    public enum AbilityClass
+    {
+        PROTAGONIST,
+        GIANT,
+        NERD,
+        PRINCESS,
+        PERFORMER,
+        SCAREDYCAT,
+        MASTERMIND,
+        BULLY,
+        ITEM
+    }
+
     public enum TargetingType
     {
         NONE,
