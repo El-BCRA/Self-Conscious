@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace SelfConscious
 {
@@ -11,6 +12,12 @@ namespace SelfConscious
         {
             BattleManager.Instance.CacheSwap(abilityClass);
             BattleManager.Instance.OnRepositionConfirm();
+        }
+
+        public override void OnSelect(BaseEventData eventData)
+        {
+            base.OnSelect(eventData);
+            StartCoroutine(TextJitter());
         }
 
         public AbilityClass GetAbilityClass()

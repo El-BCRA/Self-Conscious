@@ -106,6 +106,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 933775012383559144, guid: 5f834118047415246a105690e924bb86, type: 3}
   m_PrefabInstance: {fileID: 3113421521652871602}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4209567051055870241 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1251572500424507539, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 3113421521652871602}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &5824614511652109251 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8926178893198985841, guid: 5f834118047415246a105690e924bb86, type: 3}
@@ -124,5 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIMenuButton
   selectionHighlight: {fileID: 2864420264810052698}
+  jitterText: {fileID: 4209567051055870241}
   selectionDetailsText: 
   choiceDescriptionText: {fileID: 0}

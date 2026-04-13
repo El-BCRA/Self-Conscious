@@ -296,6 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIAbilityButton
   selectionHighlight: {fileID: 8872101037732241621}
+  jitterText: {fileID: 7389031503198875054}
   ability: {fileID: 0}
   abilityNameText: {fileID: 7389031503198875054}
   abilityDescriptionText: {fileID: 0}

@@ -167,7 +167,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UITargetingButton
   selectionHighlight: {fileID: 6096101640917123891}
+  jitterText: {fileID: 5274455990324678216}
   targets: []
+--- !u!114 &5274455990324678216 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1251572500424507539, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 6371708683642506971}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &6096101640917123891 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 933775012383559144, guid: 5f834118047415246a105690e924bb86, type: 3}

@@ -13,6 +13,7 @@ namespace SelfConscious
         public override void OnSelect(BaseEventData eventData)
         {
             base.OnSelect(eventData);
+            StartCoroutine(TextJitter());
             choiceDescriptionText.text = selectionDetailsText;
         }
     }
