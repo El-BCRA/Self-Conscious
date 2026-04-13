@@ -14,6 +14,7 @@ namespace SelfConscious
     {
         [SerializeField] private PlayerControlledUnit currentUnit;
         [SerializeField] private BattlePositionKind kind;
+        [SerializeField] private UIUnitInfo unitInfo;
         [SerializeField] private SpriteRenderer activeIndicator;
 
         private void Awake()
@@ -41,11 +42,18 @@ namespace SelfConscious
             activeIndicator.enabled = false;
         }
 
+        public void UpdateUI()
+        {
+            unitInfo.UpdateUI();
+        }
+
         public PlayerControlledUnit GetUnit() { return currentUnit; }
 
         public void SetUnit(PlayerControlledUnit unit)
         {
             currentUnit = unit;
+            unit.transform.position = transform.position;
+            UpdateUI();
         }
 
         public bool Occupied() { return currentUnit != null; }
@@ -55,7 +63,7 @@ namespace SelfConscious
             if (Occupied() && otherBP.Occupied())
             {
                 PlayerControlledUnit temp = currentUnit;
-                currentUnit = otherBP.GetUnit();
+                SetUnit(otherBP.GetUnit());
                 otherBP.SetUnit(temp);
             } else if (Occupied())
             {
@@ -63,7 +71,7 @@ namespace SelfConscious
                 currentUnit = null;
             } else if (otherBP.Occupied())
             {
-                currentUnit = otherBP.GetUnit();
+                SetUnit(otherBP.GetUnit());
                 otherBP.SetUnit(null);
             } else
             {

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: GiantDefense1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 0
-  abilityEffect: 0
-  abilityName: 
-  abilityDescription: 
+  targetingType: 3
+  abilityEffect: 2
+  resourceCost: 2
+  abilityName: '"Body Block"'
+  abilityDescription: 'Take on an ally''s damage as your own. (Cost: 4HP)'
+  cost: 4
+  modAmount: 4
+  drainMultiplier: 0

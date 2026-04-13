@@ -4,8 +4,6 @@ namespace SelfConscious
 {
     public class PlayerControlledUnit : Unit
     {
-        [SerializeField] private int maxWP;
-        [SerializeField] private int currentWP;
         [SerializeField] private AbilityClass abilityClass;
 
         [Header("Abilities")]
@@ -44,21 +42,6 @@ namespace SelfConscious
         public AbilityClass GetUnitClass()
         {
             return abilityClass;
-        }
-
-        public int GetMaxWP()
-        {
-            return maxWP;
-        }
-
-        public int GetCurrentWP()
-        {
-            return currentWP;
-        }
-
-        public void SetCurrentWP(int val)
-        {
-            currentWP = val;
         }
     }
 }

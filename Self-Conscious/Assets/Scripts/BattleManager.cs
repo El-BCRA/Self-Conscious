@@ -414,8 +414,8 @@ namespace SelfConscious
             // TODO: Rather than existing in the scene already, should spawn new Units
             playerBPDefense.SetUnit(playerParty[0]);
             playerBPAttackFront.SetUnit(playerParty[1]);
-            playerBPAttackBack.SetUnit(playerParty[2]);
-            playerBPSupport.SetUnit(playerParty[3]);
+            playerBPSupport.SetUnit(playerParty[2]);
+            playerBPAttackBack.SetUnit(playerParty[3]);
 
             foreach (Unit unit in playerParty)
             {
@@ -447,6 +447,7 @@ namespace SelfConscious
         IEnumerator PlayerTurn()
         {
             ActivateCanvasGroup(battleSelections, defaultBSHighlight);
+            activeBP.SetActive();
             selectionUIVisible = true;
             fallbackLayer = BattleUIFallback.MAIN;
             yield return null;
@@ -533,6 +534,17 @@ namespace SelfConscious
         IEnumerator AbilityActivate(AbilityData ability, Unit source, List<Unit> targets)
         {
             Debug.Log(source.name + " ended their turn by using the ability " + ability.abilityName);
+
+            source.UseAbilty(ability);
+            foreach(Unit target in targets)
+            {
+                target.ApplyAbility(ability, source);
+            }
+            foreach(BattlePosition bp in battlePositions)
+            {
+                bp.UpdateUI();
+            }
+
             StartCoroutine(PlayerEndTurn());
             yield return null;
         }

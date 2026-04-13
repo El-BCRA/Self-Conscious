@@ -40,9 +40,9 @@ namespace SelfConscious
 
     public enum ResourceCost
     {
-        HEALTH,
+        NONE,
         WILLPOWER,
-        NONE
+        HEALTH
     }
 
     [CreateAssetMenu(fileName = "AbilityData", menuName = "Scriptable Objects/AbilityData")]
@@ -56,5 +56,6 @@ namespace SelfConscious
 
         public int cost;
         public int modAmount;
+        public int drainMultiplier;
     }
 }

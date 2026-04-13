@@ -9,6 +9,7 @@ namespace SelfConscious
         [SerializeField] private AbilityData ability;
         [SerializeField] private TMP_Text abilityNameText;
         [SerializeField] private TMP_Text abilityDescriptionText;
+        [SerializeField] private TMP_Text abilityCost;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -20,6 +21,26 @@ namespace SelfConscious
         {
             abilityNameText.text = ability.abilityName;
             abilityDescriptionText.text = ability.abilityDescription;
+            switch(ability.resourceCost)
+            {
+                case ResourceCost.HEALTH:
+                    {
+
+                        abilityCost.text = ability.cost + " HP";
+                        break;
+                    }
+                case ResourceCost.WILLPOWER:
+                    {
+
+                        abilityCost.text = ability.cost + " WP";
+                        break;
+                    }
+                case ResourceCost.NONE:
+                    {
+                        abilityCost.text = "";
+                        break;
+                    }
+            }
         }
 
         public void SetAbility(AbilityData newAbility)
