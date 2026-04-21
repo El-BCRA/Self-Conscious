@@ -17,11 +17,11 @@ namespace SelfConscious
 
     public enum TargetingType
     {
-        NONE,
         ENEMYSINGLE,
         ENEMYALL,
         ALLYSINGLE,
         ALLYALL,
+        NONE,
         ALLUNITS,
         SELF
     }
@@ -51,7 +51,7 @@ namespace SelfConscious
         public TargetingType targetingType;
         public AbilityType abilityEffect;
         public ResourceCost resourceCost;
-        public string abilityName;
+        public string abilityName = "Ability";
         public string abilityDescription;
 
         public int cost;
