@@ -21,9 +21,9 @@ namespace SelfConscious
         ENEMYALL,
         ALLYSINGLE,
         ALLYALL,
-        NONE,
         ALLUNITS,
-        SELF
+        SELF,
+        NONE,
     }
 
     public enum AbilityType
@@ -52,6 +52,8 @@ namespace SelfConscious
         public AbilityType abilityEffect;
         public ResourceCost resourceCost;
         public string abilityName = "Ability";
+
+        [TextArea(2,5)]
         public string abilityDescription;
 
         public int cost;

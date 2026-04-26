@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: ProtagSupport3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 2
-  abilityEffect: 0
-  resourceCost: 0
-  abilityName: 
-  abilityDescription: 
-  cost: 0
-  modAmount: 0
+  targetingType: 3
+  abilityEffect: 5
+  resourceCost: 1
+  abilityName: I Brought Snacks!
+  abilityDescription: Restore 2 willpower to all allies.
+  cost: 7
+  modAmount: 2
   drainMultiplier: 0

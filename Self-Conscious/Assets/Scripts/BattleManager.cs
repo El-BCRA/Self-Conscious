@@ -269,6 +269,24 @@ namespace SelfConscious
                         lastSelected = null;
                         break;
                     }
+                case (BattleUIFallback.REPOSITION):
+                    {
+                        foreach (UIRepositionButton rs in repositionSelections)
+                        {
+                            DeactivateCanvasGroup(rs.GetCanvasGroup());
+                        }
+                        if (lastSelected is null)
+                        {
+                            ActivateCanvasGroup(battleSelections, defaultBSHighlight);
+                        }
+                        else
+                        {
+                            ActivateCanvasGroup(battleSelections, lastSelected);
+                        }
+                        fallbackLayer = BattleUIFallback.MAIN;
+                        lastSelected = null;
+                        break;
+                    }
             }
         }
 
@@ -421,12 +439,14 @@ namespace SelfConscious
             {
                 allAlliesTB.AddToTargets(unit);
                 allUnitsTB.AddToTargets(unit);
+                playerUnitSelections.Add(unit.GetTargetingSelection());
             }
 
             foreach (Unit unit in enemyParty)
             {
                 allEnemiesTB.AddToTargets(unit);
                 allUnitsTB.AddToTargets(unit);
+                enemyUnitSelections.Add(unit.GetTargetingSelection());
             }
 
             // TODO: Determine turn order (if this is a speed-based system), switch to enemy
@@ -560,11 +580,10 @@ namespace SelfConscious
             {
                 if (rs.GetAbilityClass() != activeBP.GetUnit().GetUnitClass())
                 {
-                    Debug.Log("Attempted to activate the canvas group for " + rs.GetAbilityClass());
                     ActivateCanvasGroup(rs.GetCanvasGroup(), rs.gameObject);
                 }
             }
-            fallbackLayer = BattleUIFallback.FIGHT;
+            fallbackLayer = BattleUIFallback.REPOSITION;
             yield return null;
         }
 
@@ -572,10 +591,14 @@ namespace SelfConscious
         {
             // Deactivate all UI
             selectionUIVisible = false;
+            fallbackLayer = BattleUIFallback.MAIN;
             foreach (UIRepositionButton rs in repositionSelections)
             {
                 DeactivateCanvasGroup(rs.GetCanvasGroup());
             }
+
+            // Set current unit sprite as idle
+            activeBP.GetUnit().SetIdle();
 
             // Perform swap between two active party members
             int terminate = 0;

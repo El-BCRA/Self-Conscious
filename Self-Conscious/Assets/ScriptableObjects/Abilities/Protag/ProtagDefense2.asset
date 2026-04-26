@@ -15,7 +15,9 @@ MonoBehaviour:
   targetingType: 2
   abilityEffect: 6
   resourceCost: 1
-  abilityName: Really Big Shield
-  abilityDescription: Add 4 shield to an ally unit.
-  cost: 2
-  modAmount: 4
+  abilityName: Plot Armor
+  abilityDescription: Gain a temporary shield until the start of your next turn,
+    blocking up to 4 damage.
+  cost: 4
+  modAmount: 0
+  drainMultiplier: 0

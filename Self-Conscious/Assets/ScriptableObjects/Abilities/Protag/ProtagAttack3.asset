@@ -15,8 +15,8 @@ MonoBehaviour:
   targetingType: 1
   abilityEffect: 0
   resourceCost: 1
-  abilityName: Super Big Attack
-  abilityDescription: Deal 9 damage to an opponent.
+  abilityName: Wide Attack
+  abilityDescription: Deal 1 damage to all opponents
   cost: 4
-  modAmount: 9
+  modAmount: 1
   drainMultiplier: 0

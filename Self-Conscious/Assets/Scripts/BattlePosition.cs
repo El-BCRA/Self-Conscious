@@ -35,11 +35,15 @@ namespace SelfConscious
         public void SetActive()
         {
             activeIndicator.enabled = true;
+            currentUnit.SetActive();
+            unitInfo.SetActive();
         }
 
         public void SetInactive()
         {
             activeIndicator.enabled = false;
+            currentUnit.SetIdle();
+            unitInfo.SetInactive();
         }
 
         public void UpdateUI()

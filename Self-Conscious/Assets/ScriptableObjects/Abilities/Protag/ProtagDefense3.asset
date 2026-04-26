@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: ProtagDefense3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 2
-  abilityEffect: 6
+  abilityEffect: 7
   resourceCost: 1
-  abilityName: Super Big Shield
-  abilityDescription: Add 6 shield to an ally unit.
-  cost: 3
-  modAmount: 6
+  abilityName: No You
+  abilityDescription: Allow an ally to reflect the next instance of damage directed
+    to them.
+  cost: 6
+  modAmount: 0
+  drainMultiplier: 0

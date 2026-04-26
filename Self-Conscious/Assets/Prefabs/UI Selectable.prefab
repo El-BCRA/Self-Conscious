@@ -317,3 +317,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIButton
   selectionHighlight: {fileID: 933775012383559144}
+  jitterText: {fileID: 0}
+  jitterAngle: 5
+  jitterDelay: 0.2

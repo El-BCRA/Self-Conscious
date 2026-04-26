@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: ProtagDefense1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 2
-  abilityEffect: 6
+  abilityEffect: 7
   resourceCost: 1
-  abilityName: Big Shield
-  abilityDescription: Add 2 shield to an ally unit.
-  cost: 1
-  modAmount: 2
+  abilityName: Brace
+  abilityDescription: Until the start of your next turn, reduce all instances of
+    damage dealt to you by 1.
+  cost: 3
+  modAmount: 0
+  drainMultiplier: 0

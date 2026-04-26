@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: ProtagDefense0
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 2
-  abilityEffect: 6
-  resourceCost: 2
-  abilityName: Shield
+  abilityEffect: 2
+  resourceCost: 1
+  abilityName: Defend
   abilityDescription: Add 1 shield to an ally unit.
   cost: 0
   modAmount: 1
+  drainMultiplier: 0

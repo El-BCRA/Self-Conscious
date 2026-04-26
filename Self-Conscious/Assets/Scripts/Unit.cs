@@ -32,7 +32,7 @@ namespace SelfConscious
 
         public GameObject GetSelectionHighlight()
         {
-            return targetingButton.GetSelectionHighlight();
+            return targetingButton.gameObject;
         }
 
         public string GetName()

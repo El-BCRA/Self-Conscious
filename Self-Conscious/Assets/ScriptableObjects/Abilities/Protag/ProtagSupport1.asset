@@ -15,8 +15,8 @@ MonoBehaviour:
   targetingType: 2
   abilityEffect: 0
   resourceCost: 0
-  abilityName: 
-  abilityDescription: 
-  cost: 0
-  modAmount: 0
+  abilityName: Bigger Heal
+  abilityDescription: Restore 5 health to any party member.
+  cost: 3
+  modAmount: 5
   drainMultiplier: 0

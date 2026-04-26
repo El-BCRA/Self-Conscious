@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.BattlePosition
   currentUnit: {fileID: 0}
   kind: 0
+  unitInfo: {fileID: 0}
   activeIndicator: {fileID: 6469764229225377634}
 --- !u!1 &4369527793647012376
 GameObject:
@@ -75,8 +76,8 @@ Transform:
   m_GameObject: {fileID: 4369527793647012376}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.5, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 166832935777732045}
@@ -130,7 +131,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 83b59a8cd048bc1488e6526664637e75, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9ac6b850e36c99449e7962d89b54cc8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,7 +151,7 @@ Animator:
   m_GameObject: {fileID: 4369527793647012376}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0aba94ec498660940a4fa1ed2caa7e2d, type: 2}
+  m_Controller: {fileID: 9100000, guid: a6c830aa3cae15c43880aeb436be639f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
