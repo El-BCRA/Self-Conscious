@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4507345181741697885, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 5032518187235976033, guid: 5f834118047415246a105690e924bb86, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -166,8 +170,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ff021ec59a42d4c9879b55eb5cc09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UITargetingButton
-  selectionHighlight: {fileID: 6096101640917123891}
   jitterText: {fileID: 5274455990324678216}
+  jitterAngle: 5
+  jitterDelay: 0.2
+  selectionHighlight: {fileID: 6096101640917123891}
+  startingScale: 1
+  scaleLeeway: 0.05
+  scaleMultiplier: 2.5
+  audioSource: {fileID: 7783768867778584023}
+  scribble: {fileID: 9143418788235607793}
   targets: []
 --- !u!114 &5274455990324678216 stripped
 MonoBehaviour:
@@ -185,3 +196,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 933775012383559144, guid: 5f834118047415246a105690e924bb86, type: 3}
   m_PrefabInstance: {fileID: 6371708683642506971}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &7783768867778584023 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3776650653278360332, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 6371708683642506971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9143418788235607793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2778485366798348330, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 6371708683642506971}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66a3a43ba3fbf04987249d096e110b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.PencilScribble

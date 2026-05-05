@@ -1,11 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 namespace SelfConscious
 {
     public class UITargetingButton : UIButton
     {
         [SerializeField] private List<Unit> targets;
+
+        public override void OnSelect(BaseEventData eventData)
+        {
+            base.OnSelect(eventData);
+            StartCoroutine(SelectionPulse());
+        }
 
         public void OnTargetLock()
         {

@@ -14,7 +14,11 @@ namespace SelfConscious
         {
             base.OnSelect(eventData);
             StartCoroutine(TextJitter());
-            choiceDescriptionText.text = selectionDetailsText;
+            StartCoroutine(SelectionPulse());
+            if (choiceDescriptionText != null)
+            {
+                choiceDescriptionText.text = selectionDetailsText;
+            }
         }
     }
 }

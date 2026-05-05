@@ -181,6 +181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Label
       objectReference: {fileID: 0}
+    - target: {fileID: 4507345181741697885, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 5032518187235976033, guid: 5f834118047415246a105690e924bb86, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -295,8 +299,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83930d7508df1149aa98c5bce9411b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIAbilityButton
-  selectionHighlight: {fileID: 8872101037732241621}
   jitterText: {fileID: 7389031503198875054}
+  jitterAngle: 5
+  jitterDelay: 0.2
+  selectionHighlight: {fileID: 8872101037732241621}
+  startingScale: 1
+  scaleLeeway: 0.05
+  scaleMultiplier: 2.5
+  audioSource: {fileID: 4880842395178171953}
+  scribble: {fileID: 5862083860179148055}
   ability: {fileID: 0}
   abilityNameText: {fileID: 7389031503198875054}
   abilityDescriptionText: {fileID: 0}
@@ -306,6 +317,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5032518187235976033, guid: 5f834118047415246a105690e924bb86, type: 3}
   m_PrefabInstance: {fileID: 8634921720205389117}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &4880842395178171953 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3776650653278360332, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 8634921720205389117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5862083860179148055 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2778485366798348330, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 8634921720205389117}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66a3a43ba3fbf04987249d096e110b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.PencilScribble
 --- !u!114 &7389031503198875054 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1251572500424507539, guid: 5f834118047415246a105690e924bb86, type: 3}

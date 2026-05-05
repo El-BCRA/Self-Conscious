@@ -52,6 +52,7 @@ namespace SelfConscious
         {
             base.OnSelect(eventData);
             StartCoroutine(TextJitter());
+            StartCoroutine(SelectionPulse());
             ReplaceUIText();
         }
 

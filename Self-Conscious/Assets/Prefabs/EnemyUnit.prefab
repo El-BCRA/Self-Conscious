@@ -146,6 +146,8 @@ MonoBehaviour:
   unitLevel: 0
   maxHP: 0
   currentHP: 0
+  maxWP: 0
+  currentWP: 0
   HPText: {fileID: 2714332054793071329}
 --- !u!1 &3904213398795093237
 GameObject:
@@ -753,7 +755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8101706922185208168, guid: fc8a2bc7dc7bebd4fb35637fe480b843, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

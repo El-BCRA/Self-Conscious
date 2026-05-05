@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4507345181741697885, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 5032518187235976033, guid: 5f834118047415246a105690e924bb86, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -160,10 +164,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ff021ec59a42d4c9879b55eb5cc09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UITargetingButton
+  jitterText: {fileID: 0}
+  jitterAngle: 5
+  jitterDelay: 0.2
   selectionHighlight: {fileID: 4762321755516073949}
+  startingScale: 1
+  scaleLeeway: 0.05
+  scaleMultiplier: 2.5
+  audioSource: {fileID: 8830185342012434745}
+  scribble: {fileID: 7524790067978996255}
   targets: []
 --- !u!1 &4762321755516073949 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 933775012383559144, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 5684181592015403573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7524790067978996255 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2778485366798348330, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 5684181592015403573}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66a3a43ba3fbf04987249d096e110b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.PencilScribble
+--- !u!82 &8830185342012434745 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3776650653278360332, guid: 5f834118047415246a105690e924bb86, type: 3}
   m_PrefabInstance: {fileID: 5684181592015403573}
   m_PrefabAsset: {fileID: 0}

@@ -25,12 +25,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5578186158930683030}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 4059868582363901094}
+  m_Father: {fileID: 1975664372537281528}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -173,6 +173,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4507345181741697885, guid: 5f834118047415246a105690e924bb86, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 5032518187235976033, guid: 5f834118047415246a105690e924bb86, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -270,14 +274,19 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 2848214278687287940, guid: 5f834118047415246a105690e924bb86, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7415858552747574335, guid: 5f834118047415246a105690e924bb86, type: 3}
-      insertIndex: -1
+    - targetCorrespondingSourceObject: {fileID: 5032518187235976033, guid: 5f834118047415246a105690e924bb86, type: 3}
+      insertIndex: 0
       addedObject: {fileID: 4145754323125752217}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8926178893198985841, guid: 5f834118047415246a105690e924bb86, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8886175707682740958}
   m_SourcePrefab: {fileID: 100100000, guid: 5f834118047415246a105690e924bb86, type: 3}
+--- !u!224 &1975664372537281528 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5032518187235976033, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 6826859893905844377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2692528665138914024 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8926178893198985841, guid: 5f834118047415246a105690e924bb86, type: 3}
@@ -295,17 +304,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be10cabe298d85479a005d834b9fcbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIRepositionButton
-  selectionHighlight: {fileID: 5929146732617950577}
   jitterText: {fileID: 5362947074217475262}
+  jitterAngle: 5
+  jitterDelay: 0.2
+  selectionHighlight: {fileID: 5929146732617950577}
+  startingScale: 1
+  scaleLeeway: 0.05
+  scaleMultiplier: 2.5
+  audioSource: {fileID: 7697983431996160917}
+  scribble: {fileID: 8661206445095426227}
+  repostionLabel: {fileID: 5362947074217475262}
   canvasGroup: {fileID: 0}
   abilityClass: 0
---- !u!224 &4059868582363901094 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7415858552747574335, guid: 5f834118047415246a105690e924bb86, type: 3}
-  m_PrefabInstance: {fileID: 6826859893905844377}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5929146732617950577 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 933775012383559144, guid: 5f834118047415246a105690e924bb86, type: 3}
   m_PrefabInstance: {fileID: 6826859893905844377}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &7697983431996160917 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3776650653278360332, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 6826859893905844377}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8661206445095426227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2778485366798348330, guid: 5f834118047415246a105690e924bb86, type: 3}
+  m_PrefabInstance: {fileID: 6826859893905844377}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66a3a43ba3fbf04987249d096e110b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.PencilScribble

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7415858552747574335}
   - component: {fileID: 3613663662737340693}
   - component: {fileID: 4507345181741697885}
+  - component: {fileID: 6986961714531485363}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -75,6 +76,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 500
+--- !u!95 &6986961714531485363
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933775012383559144}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d3063bea993307341bfc395abe491a2c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2848214278687287940
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +235,155 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &5748712382122203871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8248772344450968711}
+  - component: {fileID: 3776650653278360332}
+  - component: {fileID: 2778485366798348330}
+  m_Layer: 0
+  m_Name: PencilScribble
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8248772344450968711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748712382122203871}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.000061035156, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5032518187235976033}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &3776650653278360332
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748712382122203871}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 4dc5e6299a895874bbb38571d3689796, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2778485366798348330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748712382122203871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66a3a43ba3fbf04987249d096e110b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.PencilScribble
+  pencilScribbles:
+  - {fileID: 8300000, guid: 9c1ea392826641340ac9458a2b6c665e, type: 3}
+  - {fileID: 8300000, guid: a33e0a05c39a7984ea2df96f8dafb413, type: 3}
+  - {fileID: 8300000, guid: 1de678669c0e77c4f89940cd3cd005c9, type: 3}
+  - {fileID: 8300000, guid: d685bba20ef33fe419926a1274933744, type: 3}
+  - {fileID: 8300000, guid: e393d98d1dd52ae489a91ccd20c3d0b1, type: 3}
+  - {fileID: 8300000, guid: 39f4c214567b0ce44a0d5adf7afbc875, type: 3}
 --- !u!1 &8926178893198985841
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,6 +417,7 @@ RectTransform:
   m_Children:
   - {fileID: 8603983598721277672}
   - {fileID: 7415858552747574335}
+  - {fileID: 8248772344450968711}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -316,7 +489,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a50b88ee77e8ae49bf6fdfc7473883c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.UIButton
-  selectionHighlight: {fileID: 933775012383559144}
   jitterText: {fileID: 0}
   jitterAngle: 5
   jitterDelay: 0.2
+  selectionHighlight: {fileID: 933775012383559144}
+  startingScale: 0
+  scaleLeeway: 0.25
+  scaleMultiplier: 2.5
+  audioSource: {fileID: 3776650653278360332}
+  scribble: {fileID: 2778485366798348330}
