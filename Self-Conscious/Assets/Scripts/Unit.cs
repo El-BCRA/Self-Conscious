@@ -50,16 +50,9 @@ namespace SelfConscious
             return currentHP;
         }
 
-        public void SetCurrentHP(int val)
+        public virtual void SetCurrentHP(int val)
         {
-            currentHP = val;
-            if (currentHP >  maxHP)
-            {
-                currentHP = maxHP;
-            } else if (currentHP < 0)
-            {
-                currentHP = 0;
-            }
+            // Implement on children
         }
 
         public int GetMaxWP()

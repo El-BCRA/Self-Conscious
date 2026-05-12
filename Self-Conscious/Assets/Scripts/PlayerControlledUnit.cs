@@ -14,6 +14,9 @@ namespace SelfConscious
         [Header("Sprites")]
         [SerializeField] private SpriteRenderer idleSprite;
         [SerializeField] private SpriteRenderer activeSprite;
+        [SerializeField] private SpriteRenderer downedSprite;
+
+        private bool downed = false;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -29,16 +32,50 @@ namespace SelfConscious
 
         }
 
+        public override void SetCurrentHP(int val)
+        {
+            currentHP = val;
+            if (currentHP > maxHP)
+            {
+                currentHP = maxHP;
+
+                if (downed) { 
+                    downed = false;
+                    SetIdle();
+                }
+            }
+            else if (currentHP <= 0)
+            {
+                SetDowned();
+                currentHP = 0;
+            }
+        }
+
         public void SetActive()
         {
             activeSprite.color = new Color(1f, 1f, 1f, 1f);
             idleSprite.color = new Color(1f, 1f, 1f, 0f);
+            downedSprite.color = new Color(1f, 1f, 1f, 0f);
         }
 
         public void SetIdle()
         {
             activeSprite.color = new Color(1f, 1f, 1f, 0f);
             idleSprite.color = new Color(1f, 1f, 1f, 1f);
+            downedSprite.color = new Color(1f, 1f, 1f, 0f);
+        }
+
+        public void SetDowned()
+        {
+            downed = true;
+            downedSprite.color = new Color(1f, 1f, 1f, 1f);
+            activeSprite.color = new Color(1f, 1f, 1f, 0f);
+            idleSprite.color = new Color(1f, 1f, 1f, 0f);
+        }
+
+        public bool GetDowned()
+        {
+            return downed;
         }
 
         public AbilityData[] GetAttackAbilities()

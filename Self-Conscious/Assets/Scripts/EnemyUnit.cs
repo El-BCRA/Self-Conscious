@@ -20,5 +20,18 @@ namespace SelfConscious
         {
             HPText.text = "HP: " + currentHP + "/" + maxHP;
         }
+
+        public override void SetCurrentHP(int val)
+        {
+            currentHP = val;
+            if (currentHP > maxHP)
+            {
+                currentHP = maxHP;
+            }
+            else if (currentHP <= 0)
+            {
+                currentHP = 0;
+            }
+        }
     }
 }
