@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using System.Collections;
 
 namespace SelfConscious
 {
@@ -8,6 +9,9 @@ namespace SelfConscious
         [Header("Local UI")]
         [SerializeField] private TMP_Text healthText;
         [SerializeField] private RectTransform healthBar;
+
+        [Header("Abilities")]
+        [SerializeField] private AbilityData[] abilities;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()

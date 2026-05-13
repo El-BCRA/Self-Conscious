@@ -1,10 +1,13 @@
 using UnityEngine;
+using System.Collections;
 
 namespace SelfConscious
 {
     public class PlayerControlledUnit : Unit
     {
+        [Header("Battle Data")]
         [SerializeField] private AbilityClass abilityClass;
+        [SerializeField] private BattlePosition battlePosition;
 
         [Header("Abilities")]
         [SerializeField] private AbilityData[] attackAbilities;
@@ -80,6 +83,16 @@ namespace SelfConscious
             downedSprite.color = new Color(1f, 1f, 1f, 1f);
             activeSprite.color = new Color(1f, 1f, 1f, 0f);
             idleSprite.color = new Color(1f, 1f, 1f, 0f);
+        }
+
+        public BattlePosition GetBattlePosition()
+        {
+            return battlePosition;
+        }
+
+        public void SetBattlePosition(BattlePosition position)
+        {
+            battlePosition = position;
         }
 
         public bool GetDowned()

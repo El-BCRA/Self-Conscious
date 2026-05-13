@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using System.Collections;
 
 namespace SelfConscious
 {
@@ -8,6 +9,7 @@ namespace SelfConscious
         [Header("Local UI")]
         [SerializeField] protected TMP_Text nameText;
         [SerializeField] protected Sprite UIPortrait;
+        [SerializeField] protected GameObject characterSprites;
         [SerializeField] protected CanvasGroup targetingSelection;
         [SerializeField] protected UIButton targetingButton;
 
@@ -18,6 +20,10 @@ namespace SelfConscious
         [SerializeField] protected int currentHP;
         [SerializeField] protected int maxWP;
         [SerializeField] protected int currentWP;
+
+        [Header("Battle Data Fields")]
+        [SerializeField] protected float hitJitter = 0.3f;
+        [SerializeField] protected float hitOffset = 0.5f;
 
         #region GETTERS & SETTERS
         public Sprite GetPortrait()
@@ -91,6 +97,11 @@ namespace SelfConscious
                 currentWP = 0;
             }
         }
+        
+        public float GetHitAnimationTime()
+        {
+            return hitJitter * 2;
+        }
         #endregion
 
         public void UseAbilty(AbilityData ability)
@@ -121,6 +132,7 @@ namespace SelfConscious
                 case AbilityType.HEALTHMOD:
                     {
                         SetCurrentHP(currentHP - ability.modAmount);
+                        StartCoroutine(Impact());
                         break;
                     }
                 case AbilityType.HEALTHDRAIN:
@@ -137,6 +149,7 @@ namespace SelfConscious
                 case AbilityType.WILLMOD:
                     {
                         SetCurrentWP(currentWP - ability.modAmount);
+                        StartCoroutine(Impact());
                         break;
                     }
                 case AbilityType.WILLDRAIN:
@@ -168,6 +181,17 @@ namespace SelfConscious
                 currentHP = 0;
                 // TODO: Other shit which means "the unit is dead"
             }
+        }
+
+        public virtual IEnumerator Impact()
+        {
+            characterSprites.transform.position = characterSprites.transform.position - new Vector3(hitOffset, 0, 0);
+            yield return new WaitForSeconds(hitJitter/2);
+            characterSprites.transform.position = characterSprites.transform.position + new Vector3(hitOffset, 0, 0);
+            yield return new WaitForSeconds(hitJitter/2);
+            characterSprites.transform.position = characterSprites.transform.position - new Vector3(hitOffset, 0, 0);
+            yield return new WaitForSeconds(hitJitter);
+            characterSprites.transform.position = characterSprites.transform.position + new Vector3(hitOffset, 0, 0);
         }
     }
 }

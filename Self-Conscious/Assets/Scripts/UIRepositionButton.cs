@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 namespace SelfConscious
 {
@@ -9,16 +10,19 @@ namespace SelfConscious
         [Header("Reposition Details")]
         [SerializeField] private TMP_Text repostionLabel;
         [SerializeField] private CanvasGroup canvasGroup;
-        [SerializeField] private AbilityClass abilityClass;
+        [SerializeField] private PlayerControlledUnit unit;
+        [SerializeField] private SpriteRenderer battlePosition;
+        [SerializeField] private List<Sprite> battlePositionIcons;
 
         public void Start()
         {
+            battlePosition.sprite = null;
             repostionLabel.gameObject.SetActive(false);
         }
 
         public void OnTargetLock()
         {
-            BattleManager.Instance.CacheSwap(abilityClass);
+            BattleManager.Instance.CacheSwap(unit.GetUnitClass());
             BattleManager.Instance.OnRepositionConfirm();
         }
 
@@ -36,9 +40,42 @@ namespace SelfConscious
             repostionLabel.gameObject.SetActive(false);
         }
 
+        public void UpdateBattleStationUI()
+        {
+            if (unit == null || unit.GetBattlePosition() == null)
+            {
+                battlePosition.sprite = null;
+            } else
+            {
+                switch (unit.GetBattlePosition().GetBPKind())
+                {
+                    case BattlePositionKind.ATTACKFRONT:
+                        {
+                            battlePosition.sprite = battlePositionIcons[0];
+                            break;
+                        }
+                    case BattlePositionKind.ATTACKBACK:
+                        {
+                            battlePosition.sprite = battlePositionIcons[1];
+                            break;
+                        }
+                    case BattlePositionKind.DEFENSE:
+                        {
+                            battlePosition.sprite = battlePositionIcons[2];
+                            break;
+                        }
+                    case BattlePositionKind.SUPPORT:
+                        {
+                            battlePosition.sprite = battlePositionIcons[3];
+                            break;
+                        }
+                }
+            }
+        }
+
         public AbilityClass GetAbilityClass()
         {
-            return abilityClass;
+            return unit.GetUnitClass();
         }
 
         public CanvasGroup GetCanvasGroup()

@@ -466,6 +466,11 @@ namespace SelfConscious
                 enemyUnitSelections.Add(unit.GetTargetingSelection());
             }
 
+            foreach (UIRepositionButton rs in repositionSelections)
+            {
+                rs.UpdateBattleStationUI();
+            }
+
             // TODO: Determine turn order (if this is a speed-based system), switch to enemy
             // turn or player turn based on that
             activeBP = playerBPDefense;
@@ -578,10 +583,15 @@ namespace SelfConscious
                 target.ApplyAbility(ability, source);
                 target.HideName();
             }
-            foreach(BattlePosition bp in battlePositions)
+            foreach (BattlePosition bp in battlePositions)
             {
                 bp.UpdateUI();
             }
+            foreach(UIRepositionButton rs in repositionSelections)
+            {
+                rs.UpdateBattleStationUI();
+            }
+            yield return new WaitForSeconds(activeBP.GetUnit().GetHitAnimationTime());
 
             StartCoroutine(PlayerEndTurn());
             yield return null;
@@ -613,6 +623,7 @@ namespace SelfConscious
             foreach (UIRepositionButton rs in repositionSelections)
             {
                 DeactivateCanvasGroup(rs.GetCanvasGroup());
+                rs.UpdateBattleStationUI();
             }
 
             // Set current unit sprite as idle
@@ -648,8 +659,13 @@ namespace SelfConscious
                 playerParty.Add(swapIn);
             }
 
-            // Once last hide name for the newly swapped in unit
+            // Final UI update check
+            foreach (UIRepositionButton rs in repositionSelections)
+            {
+                rs.UpdateBattleStationUI();
+            }
             activeBP.GetUnit().HideName();
+
             StartCoroutine(PlayerEndTurn());
             yield return null;
         }
