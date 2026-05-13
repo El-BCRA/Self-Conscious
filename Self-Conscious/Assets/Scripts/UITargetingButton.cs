@@ -11,7 +11,22 @@ namespace SelfConscious
         public override void OnSelect(BaseEventData eventData)
         {
             base.OnSelect(eventData);
+            ShowName();
             StartCoroutine(SelectionPulse());
+        }
+
+        public override void OnDeselect(BaseEventData eventData)
+        {
+            base.OnDeselect(eventData);
+            targets[0].HideName();
+        }
+
+        public void ShowName()
+        {
+            if (targets.Count == 1)
+            {
+                targets[0].ShowName();
+            }
         }
 
         public void OnTargetLock()

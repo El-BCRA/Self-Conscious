@@ -41,7 +41,7 @@ namespace SelfConscious
             selected = true;
         }
 
-        public void OnDeselect(BaseEventData eventData)
+        public virtual void OnDeselect(BaseEventData eventData)
         {
             PlayPencilScribble();
             selectionHighlight.SetActive(false);

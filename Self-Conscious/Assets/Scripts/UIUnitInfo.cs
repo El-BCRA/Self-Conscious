@@ -13,15 +13,16 @@ namespace SelfConscious
         [SerializeField] private BattlePosition referencedBattlePosition;
         [SerializeField] private TMP_Text unitNameText;
         [SerializeField] private Image battlePortrait;
+        [SerializeField] private Image battlePosition;
+        [SerializeField] private List<Sprite> battlePositionIcons;
 
         [Header("Health & Willpower")]
         [SerializeField] private TMP_Text healthText;
         [SerializeField] private TMP_Text willpowerText;
         [SerializeField] private RectTransform healthBar;
         [SerializeField] private RectTransform willpowerBar;
-        [SerializeField] private float barFullWidth = 0.78f;
 
-        [Header("SelectionAnimation")]
+        [Header("Selection Animation")]
         [SerializeField] private float startScale = 1.1f;
         [SerializeField] private float selectScale = 1.2f;
         [SerializeField] private float jitterAngle = 2.5f;
@@ -75,6 +76,30 @@ namespace SelfConscious
             unitNameText.text = referencedUnit.GetName();
             healthText.text = "" + referencedUnit.GetCurrentHP() + "/" + referencedUnit.GetMaxHP();
             willpowerText.text = "" + referencedUnit.GetCurrentWP() + "/" + referencedUnit.GetMaxWP();
+
+            switch(referencedBattlePosition.GetBPKind())
+            {
+                case BattlePositionKind.ATTACKFRONT:
+                    {
+                        battlePosition.sprite = battlePositionIcons[0];
+                        break;
+                    }
+                case BattlePositionKind.ATTACKBACK:
+                    {
+                        battlePosition.sprite = battlePositionIcons[1];
+                        break;
+                    }
+                case BattlePositionKind.DEFENSE:
+                    {
+                        battlePosition.sprite = battlePositionIcons[2];
+                        break;
+                    }
+                case BattlePositionKind.SUPPORT:
+                    {
+                        battlePosition.sprite = battlePositionIcons[3];
+                        break;
+                    }
+            }
 
             UpdateUIBars();
         }

@@ -23,6 +23,7 @@ namespace SelfConscious
         {
             BattleManager.Instance.AddToContextualUI(targetingSelection);
             nameText.text = unitName;
+            HideName();
             SetIdle();
         }
 
@@ -35,14 +36,16 @@ namespace SelfConscious
         public override void SetCurrentHP(int val)
         {
             currentHP = val;
+
+            if (val != 0 && downed)
+            {
+                downed = false;
+                SetIdle();
+            }
+
             if (currentHP > maxHP)
             {
                 currentHP = maxHP;
-
-                if (downed) { 
-                    downed = false;
-                    SetIdle();
-                }
             }
             else if (currentHP <= 0)
             {
@@ -53,16 +56,22 @@ namespace SelfConscious
 
         public void SetActive()
         {
-            activeSprite.color = new Color(1f, 1f, 1f, 1f);
-            idleSprite.color = new Color(1f, 1f, 1f, 0f);
-            downedSprite.color = new Color(1f, 1f, 1f, 0f);
+            if (!downed)
+            {
+                activeSprite.color = new Color(1f, 1f, 1f, 1f);
+                idleSprite.color = new Color(1f, 1f, 1f, 0f);
+                downedSprite.color = new Color(1f, 1f, 1f, 0f);
+            }
         }
 
         public void SetIdle()
         {
-            activeSprite.color = new Color(1f, 1f, 1f, 0f);
-            idleSprite.color = new Color(1f, 1f, 1f, 1f);
-            downedSprite.color = new Color(1f, 1f, 1f, 0f);
+            if (!downed)
+            {
+                activeSprite.color = new Color(1f, 1f, 1f, 0f);
+                idleSprite.color = new Color(1f, 1f, 1f, 1f);
+                downedSprite.color = new Color(1f, 1f, 1f, 0f);
+            }
         }
 
         public void SetDowned()

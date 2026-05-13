@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ProtagSupport0
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 2
-  abilityEffect: 0
-  resourceCost: 2
+  abilityEffect: 2
+  resourceCost: 0
   abilityName: Heal
   abilityDescription: Restore 2 health to any active party member.
   cost: 0

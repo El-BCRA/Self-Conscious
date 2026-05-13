@@ -35,6 +35,21 @@ namespace SelfConscious
             return targetingButton.gameObject;
         }
 
+        public GameObject GetNameText()
+        {
+            return nameText.gameObject;
+        }
+
+        public virtual void ShowName()
+        {
+            nameText.gameObject.SetActive(true);
+        }
+
+        public virtual void HideName()
+        {
+            nameText.gameObject.SetActive(false);
+        }
+
         public string GetName()
         {
             return unitName;

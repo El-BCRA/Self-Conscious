@@ -78,7 +78,7 @@ namespace SelfConscious
         [Header("Units")]
         [SerializeField] private List<PlayerControlledUnit> totalParty = new List<PlayerControlledUnit>();
         [SerializeField] private List<PlayerControlledUnit> playerParty = new List<PlayerControlledUnit>();
-        [SerializeField] private List<Unit> enemyParty = new List<Unit>();
+        [SerializeField] private List<EnemyUnit> enemyParty = new List<EnemyUnit>();
 
         [Header("Flags")]
         private bool selectionUIVisible = false;
@@ -258,6 +258,7 @@ namespace SelfConscious
                         }
                         fallbackLayer = BattleUIFallback.MAIN;
                         lastSelected = null;
+                        activeBP.GetUnit().ShowName();
                         break;
                     }
                 case (BattleUIFallback.FIGHTTARGET):
@@ -267,6 +268,7 @@ namespace SelfConscious
                         ActivateCanvasGroup(attackSelections, lastSelected);
                         fallbackLayer = BattleUIFallback.FIGHT;
                         lastSelected = null;
+                        activeBP.GetUnit().ShowName();
                         break;
                     }
                 case (BattleUIFallback.REPOSITION):
@@ -379,6 +381,21 @@ namespace SelfConscious
                 }
                 abilityButtons[i].ReplaceUIText();
                 abilityButtons[i].ResetSelectionHighlight();
+            }
+        }
+        #endregion
+
+        #region UNITS
+        public void EnemyDefeat(EnemyUnit enemy)
+        {
+            enemyParty.Remove(enemy);
+            if (enemyParty.Count <= 0)
+            {
+                StopAllCoroutines();
+                StartCoroutine(EndBattle());
+            } else
+            {
+
             }
         }
         #endregion
@@ -559,6 +576,7 @@ namespace SelfConscious
             foreach(Unit target in targets)
             {
                 target.ApplyAbility(ability, source);
+                target.HideName();
             }
             foreach(BattlePosition bp in battlePositions)
             {
@@ -599,6 +617,7 @@ namespace SelfConscious
 
             // Set current unit sprite as idle
             activeBP.GetUnit().SetIdle();
+            activeBP.GetUnit().HideName();
 
             // Perform swap between two active party members
             int terminate = 0;
@@ -629,14 +648,18 @@ namespace SelfConscious
                 playerParty.Add(swapIn);
             }
 
+            // Once last hide name for the newly swapped in unit
+            activeBP.GetUnit().HideName();
             StartCoroutine(PlayerEndTurn());
             yield return null;
         }
         #endregion
 
+        #region ENEMY FLOW
         // Called once the last of the player's units has carried out their turn
         IEnumerator PlayerEndTurn()
         {
+            activeBP.GetUnit().HideName();
             NextBattlePosition();
             if (activeBP == playerBPDefense)
             {
@@ -654,6 +677,12 @@ namespace SelfConscious
             Debug.Log("The enemies are taking their turns.");
             yield return new WaitForSeconds(2f);
             ChangeBattleState(BattleState.PLAYERTURN);
+        }
+        #endregion
+
+        IEnumerator EndBattle()
+        {
+            yield return null;
         }
         #endregion
     }

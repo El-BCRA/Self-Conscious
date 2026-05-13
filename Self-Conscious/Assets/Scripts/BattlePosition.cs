@@ -36,6 +36,7 @@ namespace SelfConscious
         {
             activeIndicator.enabled = true;
             currentUnit.SetActive();
+            currentUnit.ShowName();
             unitInfo.SetActive();
         }
 
