@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,30 +11,39 @@ namespace SelfConscious
         [SerializeField] private Image blackScreen;
         public static GameManager Instance;
 
+        private InputAction resetAction;
+        private InputAction quitAction;
+
         private void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
+                DontDestroyOnLoad(this);
             }
             else if (Instance != this)
             {
                 Destroy(this);
             }
-
-            DontDestroyOnLoad(this);
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-
+            resetAction = InputSystem.actions.FindAction("Reset");
+            quitAction = InputSystem.actions.FindAction("Quit");
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            if (resetAction.WasPressedThisFrame())
+            {
+                SceneManager.LoadScene("TitleScreen");
+            } if (quitAction.WasPressedThisFrame())
+            {
+                Application.Quit();
+            }
         }
 
 
