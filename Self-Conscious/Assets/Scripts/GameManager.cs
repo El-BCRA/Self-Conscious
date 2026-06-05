@@ -16,6 +16,7 @@ namespace SelfConscious
 
         private void Awake()
         {
+            Cursor.visible = false;
             if (Instance == null)
             {
                 Instance = this;
