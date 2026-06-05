@@ -391,6 +391,7 @@ namespace SelfConscious
         public void EnemyDefeat(EnemyUnit enemy)
         {
             enemyUnitSelections.Remove(enemy.GetTargetingSelection());
+            allEnemiesTB.RemoveFromTargets(enemy);
             enemyParty.Remove(enemy);
             if (enemyParty.Count <= 0)
             {
