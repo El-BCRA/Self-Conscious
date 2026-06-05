@@ -153,6 +153,7 @@ MonoBehaviour:
   hitOffset: -0.1
   healthText: {fileID: 2714332054793071329}
   healthBar: {fileID: 4025288197576251031}
+  abilities: []
 --- !u!1 &3904213398795093237
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 0
   abilityEffect: 0
-  abilityName: 
-  abilityDescription: 
+  resourceCost: 0
+  abilityName: Body Slam
+  abilityDescription: Deal 4 DMG to an enemy
+  cost: 0
+  modAmount: 4
+  drainMultiplier: 0

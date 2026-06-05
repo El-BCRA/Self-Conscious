@@ -15,8 +15,9 @@ MonoBehaviour:
   targetingType: 1
   abilityEffect: 0
   resourceCost: 0
-  abilityName: 'hurt them '
-  abilityDescription: 
-  cost: 0
-  modAmount: 0
+  abilityName: World Peace
+  abilityDescription: Decrease all instances of DMG dealt AND received by 1 until
+    the start of the next DEFENSE turn
+  cost: 6
+  modAmount: 1
   drainMultiplier: 0

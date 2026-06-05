@@ -53,7 +53,10 @@ namespace SelfConscious
 
         public virtual void HideName()
         {
-            nameText.gameObject.SetActive(false);
+            if (nameText != null)
+            {
+                nameText.gameObject.SetActive(false);
+            }
         }
 
         public string GetName()

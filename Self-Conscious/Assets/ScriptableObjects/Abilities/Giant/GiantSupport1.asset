@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: GiantSupport1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 0
+  targetingType: 2
   abilityEffect: 0
-  abilityName: 
-  abilityDescription: 
+  resourceCost: 1
+  abilityName: Gentle Giant
+  abilityDescription: Heal an ally for 25% of your MAX HP
+  cost: 6
+  modAmount: -10
+  drainMultiplier: 0

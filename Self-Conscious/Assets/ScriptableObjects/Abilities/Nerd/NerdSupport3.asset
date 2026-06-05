@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: NerdSupport3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 0
-  abilityEffect: 0
-  abilityName: 
-  abilityDescription: 
+  abilityEffect: 3
+  resourceCost: 0
+  abilityName: Hacking the Mainframe
+  abilityDescription: Donate all remaining WP to an ally
+  cost: 0
+  modAmount: 7
+  drainMultiplier: 0

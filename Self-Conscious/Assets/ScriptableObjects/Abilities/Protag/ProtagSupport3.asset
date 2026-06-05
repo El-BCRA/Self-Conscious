@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ProtagSupport3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 3
-  abilityEffect: 5
+  abilityEffect: 2
   resourceCost: 1
-  abilityName: I Brought Snacks!
-  abilityDescription: Restore 2 willpower to all allies.
-  cost: 7
-  modAmount: 2
+  abilityName: Quick & Dirty
+  abilityDescription: All allies restore 4HP and 4WP
+  cost: 10
+  modAmount: 4
   drainMultiplier: 0

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: ProtagDefense1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 2
+  targetingType: 1
   abilityEffect: 7
   resourceCost: 1
-  abilityName: Brace
-  abilityDescription: Until the start of your next turn, reduce all instances of
-    damage dealt to you by 1.
-  cost: 3
+  abilityName: Main Character Energy
+  abilityDescription: Make all multitarget DMG dealt by enemies target only you for
+    1 turn
+  cost: 4
   modAmount: 0
   drainMultiplier: 0

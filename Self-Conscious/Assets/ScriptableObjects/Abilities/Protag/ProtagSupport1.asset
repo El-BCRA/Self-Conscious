@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ProtagSupport1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 2
-  abilityEffect: 2
+  abilityEffect: 7
   resourceCost: 1
-  abilityName: Bigger Heal
-  abilityDescription: Restore 5 health to any party member.
-  cost: 3
-  modAmount: 5
+  abilityName: Tag Out
+  abilityDescription: SWAP with an ally, granting them 4HP and 4WP
+  cost: 4
+  modAmount: 4
   drainMultiplier: 0

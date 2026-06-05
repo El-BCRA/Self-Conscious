@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: ProtagAttack3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 1
+  targetingType: 0
   abilityEffect: 0
   resourceCost: 1
-  abilityName: Wide Attack
-  abilityDescription: Deal 1 damage to all opponents
-  cost: 4
-  modAmount: 1
+  abilityName: Flurry Kick
+  abilityDescription: Deal 2 DMG to an enemy [on the ground] 3 times
+  cost: 8
+  modAmount: 6
   drainMultiplier: 0

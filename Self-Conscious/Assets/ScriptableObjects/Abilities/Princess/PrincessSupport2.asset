@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: PrincessSupport2
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 1
-  abilityEffect: 0
-  resourceCost: 0
-  abilityName: hurt them
-  abilityDescription: 
-  cost: 0
-  modAmount: 0
+  targetingType: 2
+  abilityEffect: 2
+  resourceCost: 1
+  abilityName: A Kiss For Good Luck
+  abilityDescription: Heal an ally for 10HP
+  cost: 7
+  modAmount: 10
   drainMultiplier: 0

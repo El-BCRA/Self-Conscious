@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 0
   abilityEffect: 0
-  resourceCost: 2
-  abilityName: Attack
-  abilityDescription: Deal 1 damage to an opponent.
+  resourceCost: 0
+  abilityName: Kick
+  abilityDescription: 'Deal 3 DMG to an enemy [on the ground]'
   cost: 0
-  modAmount: 1
+  modAmount: 3
   drainMultiplier: 0

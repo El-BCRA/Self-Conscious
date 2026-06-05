@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: GiantSupport0
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 0
+  targetingType: 5
   abilityEffect: 0
-  abilityName: 
-  abilityDescription: 
+  resourceCost: 0
+  abilityName: Sticks and Stones
+  abilityDescription: Restore 25% of your MISSING HP
+  cost: 0
+  modAmount: -5
+  drainMultiplier: 0

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: GiantDefense1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 3
-  abilityEffect: 2
-  resourceCost: 2
-  abilityName: '"Body Block"'
-  abilityDescription: 'Take on an ally''s damage as your own. (Cost: 4HP)'
-  cost: 4
-  modAmount: 4
+  abilityEffect: 7
+  resourceCost: 1
+  abilityName: Walls Up
+  abilityDescription: Grant all allies 1 SHIELD stack, blocking 1 DMG
+  cost: 5
+  modAmount: 1
   drainMultiplier: 0

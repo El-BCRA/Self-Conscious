@@ -69,6 +69,7 @@ namespace SelfConscious
         private BattleUIFallback fallbackLayer;
         private GameObject lastSelected;
         private InputAction cancelAction;
+        [SerializeField] private GameObject endSequenceCanvas;
 
         [Header("Player Action Caches")]
         [SerializeField] private AbilityData cachedAbility;
@@ -88,6 +89,7 @@ namespace SelfConscious
 
         private void Awake()
         {
+            endSequenceCanvas.SetActive(false);
             if (Instance == null)
             {
                 Instance = this;
@@ -388,6 +390,7 @@ namespace SelfConscious
         #region UNITS
         public void EnemyDefeat(EnemyUnit enemy)
         {
+            enemyUnitSelections.Remove(enemy.GetTargetingSelection());
             enemyParty.Remove(enemy);
             if (enemyParty.Count <= 0)
             {
@@ -452,6 +455,8 @@ namespace SelfConscious
             playerBPSupport.SetUnit(playerParty[2]);
             playerBPAttackBack.SetUnit(playerParty[3]);
 
+            yield return new WaitForSeconds(0.25f);
+
             foreach (Unit unit in playerParty)
             {
                 allAlliesTB.AddToTargets(unit);
@@ -465,6 +470,8 @@ namespace SelfConscious
                 allUnitsTB.AddToTargets(unit);
                 enemyUnitSelections.Add(unit.GetTargetingSelection());
             }
+
+            yield return new WaitForSeconds(0.25f);
 
             foreach (UIRepositionButton rs in repositionSelections)
             {
@@ -698,6 +705,7 @@ namespace SelfConscious
 
         IEnumerator EndBattle()
         {
+            endSequenceCanvas.SetActive(true);
             yield return null;
         }
         #endregion

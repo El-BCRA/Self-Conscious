@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: ProtagDefense2
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
   targetingType: 2
-  abilityEffect: 6
+  abilityEffect: 7
   resourceCost: 1
   abilityName: Plot Armor
-  abilityDescription: Gain a temporary shield until the start of your next turn,
-    blocking up to 4 damage.
-  cost: 4
+  abilityDescription: Make an ally IMMUNE to 1 instance of DMG
+  cost: 6
   modAmount: 0
   drainMultiplier: 0

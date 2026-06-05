@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: ProtagSupport2
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 5
-  abilityEffect: 7
+  targetingType: 2
+  abilityEffect: 0
   resourceCost: 1
-  abilityName: I'm With Them
-  abilityDescription: Add +1 to every instance of damage dealt until you exit the
-    support slot.
-  cost: 5
+  abilityName: First Aid Kit
+  abilityDescription: Restore 50% of an ally's MISSING HP
+  cost: 8
   modAmount: 0
   drainMultiplier: 0

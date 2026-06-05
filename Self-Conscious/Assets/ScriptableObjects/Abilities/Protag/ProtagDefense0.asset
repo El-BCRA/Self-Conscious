@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: ProtagDefense0
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 2
-  abilityEffect: 2
-  resourceCost: 1
-  abilityName: Defend
-  abilityDescription: Add 1 shield to an ally unit.
+  targetingType: 5
+  abilityEffect: 7
+  resourceCost: 0
+  abilityName: Zipped Up
+  abilityDescription: Gain 2 SHIELD stacks, each blocking 1 DMG
   cost: 0
-  modAmount: 1
+  modAmount: 0
   drainMultiplier: 0
