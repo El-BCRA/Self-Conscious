@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace SelfConscious
 {
@@ -63,13 +64,19 @@ namespace SelfConscious
         MISSING
     }
 
-    [CreateAssetMenu(fileName = "AbilityData", menuName = "Scriptable Objects/AbilityData")]
+    [CreateAssetMenu(fileName = "AbilityEffectData", menuName = "Scriptable Objects/AbilityEffectData")]
+    public class AbilityEffectData : ScriptableObject
+    {
+        public TargetingType areaOfEffect;
+        public AbilityType abilityEffect;
+        [Tooltip("Should remain null unless this ability applies a condition.")]
+        public ConditionData condition;
+    }
+
     public class AbilityData : ScriptableObject
     {
-        public TargetingType targetingType;
-        public AbilityType abilityEffect;
         public string abilityName = "Ability";
-
+        public TargetingType targetingType;
         [TextArea(2,5)]
         public string abilityDescription;
         public ResourceCost resourceCost;
@@ -77,8 +84,6 @@ namespace SelfConscious
         [Tooltip("Cost of the ability. In case of percentage-based costs, this is the percent-value.")]
         public int cost;
         public PercentScaleBase percentScaleBase;
-        
-        [Tooltip("Should remain null unless this ability applies a condition.")]
-        public ConditionData condition;
+        public List<AbilityEffectData> effectList;
     }
 }
