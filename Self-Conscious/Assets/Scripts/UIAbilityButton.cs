@@ -23,16 +23,27 @@ namespace SelfConscious
             abilityDescriptionText.text = ability.abilityDescription;
             switch(ability.resourceCost)
             {
-                case ResourceCost.HEALTH:
+                case ResourceCost.HEALTHFLAT:
                     {
 
                         abilityCost.text = ability.cost + " HP";
                         break;
                     }
-                case ResourceCost.WILLPOWER:
+                case ResourceCost.HEALTPERCENT:
                     {
-
+                        // TODO: REVIEW: Implement percentage-based HP cost display (e.g. "20% HP")
+                        abilityCost.text = ability.cost + "% HP";
+                        break;
+                    }
+                case ResourceCost.WILLPOWERFLAT:
+                    {
                         abilityCost.text = ability.cost + " WP";
+                        break;
+                    }
+                case ResourceCost.WILLPOWERPERCENT:
+                    {
+                        // TODO: REVIEW: Implement percentage-based WP cost display (e.g. "15% WP")
+                        abilityCost.text = ability.cost + "% WP";
                         break;
                     }
                 case ResourceCost.NONE:

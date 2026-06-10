@@ -111,14 +111,24 @@ namespace SelfConscious
         {
             switch (ability.resourceCost)
             {
-                case ResourceCost.HEALTH:
+                case ResourceCost.HEALTHFLAT:
                     {
                         SetCurrentHP(currentHP - ability.cost);
                         break;
                     }
-                case ResourceCost.WILLPOWER:
+                case ResourceCost.HEALTPERCENT:
+                    {
+                        // TODO: Implement percentage-based HP cost
+                        break;
+                    }
+                case ResourceCost.WILLPOWERFLAT:
                     {
                         SetCurrentWP(currentWP - ability.cost);
+                        break;
+                    }
+                case ResourceCost.WILLPOWERPERCENT:
+                    {
+                        // TODO: Implement percentage-based WP cost
                         break;
                     }
                 case ResourceCost.NONE:
@@ -132,57 +142,89 @@ namespace SelfConscious
         {
             switch (ability.abilityEffect)
             {
-                case AbilityType.HEALTHMOD:
+                case AbilityType.HPLOSE:
                     {
-                        SetCurrentHP(currentHP - ability.modAmount);
-                        StartCoroutine(Impact());
+                        SetCurrentHP(currentHP - ability.cost);
                         break;
                     }
-                case AbilityType.HEALTHDRAIN:
+                case AbilityType.EXTENDEDHPLOSE:
                     {
-                        SetCurrentHP(currentHP - ability.modAmount);
-                        source.SetCurrentHP(source.GetCurrentHP() + (ability.cost * ability.drainMultiplier));
+                        // TODO: Implement extended HP loss (e.g. damage over time)
                         break;
                     }
-                case AbilityType.HEALTHDONATE:
+                case AbilityType.MAXHPLOSE:
                     {
-                        SetCurrentHP(currentHP + ability.modAmount);
+                        // TODO: Implement MAXHPLOSE (e.g. reduce max HP and current HP accordingly)
                         break;
                     }
-                case AbilityType.WILLMOD:
+                case AbilityType.HPGAIN:
                     {
-                        SetCurrentWP(currentWP - ability.modAmount);
-                        StartCoroutine(Impact());
+                        SetCurrentHP(currentHP + ability.cost);
                         break;
                     }
-                case AbilityType.WILLDRAIN:
+                case AbilityType.EXTENDEDHPGAIN:
                     {
-                        SetCurrentHP(currentHP - ability.modAmount);
-                        source.SetCurrentWP(source.GetCurrentWP() + (ability.cost * ability.drainMultiplier));
+                        // TODO: Implement extended HP gain (e.g. heal over time)
                         break;
                     }
-                case AbilityType.WILLDONATE:
+                case AbilityType.MAXHPGAIN:
                     {
-                        SetCurrentWP(currentWP + ability.modAmount);
+                        // TODO: Implement MAXHPGAIN (e.g. increase max HP and current HP accordingly)
                         break;
                     }
-                case AbilityType.STATMOD:
+                case AbilityType.WPLOSE:
                     {
-                        // TODO: COME BACK TO THIS AT SOME POINT
+                        SetCurrentWP(currentWP - ability.cost);
                         break;
                     }
-                case AbilityType.CONDITION:
+                case AbilityType.EXTENDEDWHPLOSE:
                     {
-                        // TODO: COME BACK TO THIS AT SOME POINT TOO
+                        // TODO: Implement extended WP loss (e.g. willpower drain over time)
                         break;
                     }
-            }
-
-            // Check for death
-            if (currentHP < 0)
-            {
-                currentHP = 0;
-                // TODO: Other shit which means "the unit is dead"
+                case AbilityType.MAXWPLOSE:
+                    {
+                        // TODO: Implement MAXWPLOSE (e.g. reduce max WP and current WP accordingly)
+                        break;                    
+                    }
+                case AbilityType.WPGAIN:
+                    {
+                        SetCurrentWP(currentWP + ability.cost);
+                        break;
+                    }
+                case AbilityType.EXTENDEDWPGAIN:
+                    {
+                        // TODO: Implement extended WP gain (e.g. willpower regeneration over time)
+                        break;
+                    }
+                case AbilityType.MAXWPGAIN:
+                    {
+                        // TODO: Implement MAXWPGAIN (e.g. increase max WP and current WP accordingly)
+                        break;
+                    }
+                case AbilityType.RESOURCESWAP:
+                    {
+                        int tempHP = currentHP;
+                        int tempWP = currentWP;
+                        SetCurrentHP(tempWP);
+                        SetCurrentWP(tempHP);
+                        break;
+                    }
+                case AbilityType.ADDSHIELD:
+                    {
+                        // TODO: Implement ADDSHIELD (e.g. add a damage reduction shield)
+                        break;
+                    }
+                case AbilityType.BATTLESWAP:
+                    {
+                        // TODO: Implement BATTLESWAP (e.g. swap positions with another unit as a combat action)
+                        break;                    
+                    }
+                case AbilityType.APPLYCONDITION:
+                    {
+                        // TODO: Implement APPLYCONDITION (e.g. apply a status effect)
+                        break;
+                    }
             }
         }
 

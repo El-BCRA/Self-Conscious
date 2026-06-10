@@ -28,21 +28,39 @@ namespace SelfConscious
 
     public enum AbilityType
     {
-        HEALTHMOD,
-        HEALTHDRAIN,
-        HEALTHDONATE,
-        WILLMOD,
-        WILLDRAIN,
-        WILLDONATE,
-        STATMOD,
-        CONDITION
+        HPLOSE,
+        EXTENDEDHPLOSE,
+        MAXHPLOSE,
+        HPGAIN,
+        EXTENDEDHPGAIN,
+        MAXHPGAIN,
+        WPLOSE,
+        EXTENDEDWHPLOSE,
+        MAXWPLOSE,
+        WPGAIN,
+        EXTENDEDWPGAIN,
+        MAXWPGAIN,
+        RESOURCESWAP,
+        ADDSHIELD,
+        BATTLESWAP,
+        APPLYCONDITION
     }
 
     public enum ResourceCost
     {
+        WILLPOWERFLAT,
+        WILLPOWERPERCENT,
+        HEALTHFLAT,
+        HEALTPERCENT,
+        NONE
+    }
+
+    public enum PercentScaleBase
+    {
         NONE,
-        WILLPOWER,
-        HEALTH
+        MAX,
+        CURRENT,
+        MISSING
     }
 
     [CreateAssetMenu(fileName = "AbilityData", menuName = "Scriptable Objects/AbilityData")]
@@ -50,14 +68,17 @@ namespace SelfConscious
     {
         public TargetingType targetingType;
         public AbilityType abilityEffect;
-        public ResourceCost resourceCost;
         public string abilityName = "Ability";
 
         [TextArea(2,5)]
         public string abilityDescription;
+        public ResourceCost resourceCost;
 
+        [Tooltip("Cost of the ability. In case of percentage-based costs, this is the percent-value.")]
         public int cost;
-        public int modAmount;
-        public int drainMultiplier;
+        public PercentScaleBase percentScaleBase;
+        
+        [Tooltip("Should remain null unless this ability applies a condition.")]
+        public ConditionData condition;
     }
 }
