@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: GiantSupport3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 5
-  abilityEffect: 7
-  resourceCost: 1
   abilityName: Deep Breaths
+  targetingType: 5
   abilityDescription: Adopt a defensive stance, converting 25% of all DMG received
     from now until the start of the next player turn as WP
+  resourceCost: 0
   cost: 6
-  modAmount: 0
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 550df130040c67941867670f56802bba, type: 2}

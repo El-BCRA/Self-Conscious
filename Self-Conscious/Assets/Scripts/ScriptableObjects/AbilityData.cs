@@ -27,26 +27,6 @@ namespace SelfConscious
         NONE,
     }
 
-    public enum AbilityType
-    {
-        HPLOSE,
-        EXTENDEDHPLOSE,
-        MAXHPLOSE,
-        HPGAIN,
-        EXTENDEDHPGAIN,
-        MAXHPGAIN,
-        WPLOSE,
-        EXTENDEDWHPLOSE,
-        MAXWPLOSE,
-        WPGAIN,
-        EXTENDEDWPGAIN,
-        MAXWPGAIN,
-        RESOURCESWAP,
-        ADDSHIELD,
-        BATTLESWAP,
-        APPLYCONDITION
-    }
-
     public enum ResourceCost
     {
         WILLPOWERFLAT,
@@ -59,20 +39,15 @@ namespace SelfConscious
     public enum PercentScaleBase
     {
         NONE,
-        MAX,
-        CURRENT,
-        MISSING
+        MAXSOURCE,
+        MAXTARGET,
+        CURRENTSOURCE,
+        CURRENTTARGET,
+        MISSINGSOURCE,
+        MISSINGTARGET
     }
 
-    [CreateAssetMenu(fileName = "AbilityEffectData", menuName = "Scriptable Objects/AbilityEffectData")]
-    public class AbilityEffectData : ScriptableObject
-    {
-        public TargetingType areaOfEffect;
-        public AbilityType abilityEffect;
-        [Tooltip("Should remain null unless this ability applies a condition.")]
-        public ConditionData condition;
-    }
-
+    [CreateAssetMenu(fileName = "AbilityData", menuName = "Scriptable Objects/AbilityData")]
     public class AbilityData : ScriptableObject
     {
         public string abilityName = "Ability";

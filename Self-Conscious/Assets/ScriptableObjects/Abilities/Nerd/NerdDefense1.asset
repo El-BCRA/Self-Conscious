@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: NerdDefense1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 2
-  abilityEffect: 7
-  resourceCost: 1
   abilityName: Ricochet
+  targetingType: 2
   abilityDescription: Apply REDIRECT to an ally, causing the next instance of DMG
     received to randomly target another ally
+  resourceCost: 0
   cost: 4
-  modAmount: 0
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 3705822e8a3436d45b67c095a0ceb3ab, type: 2}

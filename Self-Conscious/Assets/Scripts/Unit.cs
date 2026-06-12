@@ -144,67 +144,67 @@ namespace SelfConscious
             {
                 switch (effect.abilityEffect)
                 {
-                    case AbilityType.HPLOSE:
+                    case EffectType.HPLOSE:
                     {
                         SetCurrentHP(currentHP - ability.cost);
                         break;
                     }
-                    case AbilityType.EXTENDEDHPLOSE:
+                    case EffectType.EXTENDEDHPLOSE:
                     {
                         // TODO: Implement extended HP loss (e.g. damage over time)
                         break;
                     }
-                    case AbilityType.MAXHPLOSE:
+                    case EffectType.MAXHPLOSE:
                     {
                         // TODO: Implement MAXHPLOSE (e.g. reduce max HP and current HP accordingly)
                         break;
                     }
-                    case AbilityType.HPGAIN:
+                    case EffectType.HPGAIN:
                     {
                         SetCurrentHP(currentHP + ability.cost);
                         break;
                     }
-                    case AbilityType.EXTENDEDHPGAIN:
+                    case EffectType.EXTENDEDHPGAIN:
                     {
                         // TODO: Implement extended HP gain (e.g. heal over time)
                         break;
                     }
-                    case AbilityType.MAXHPGAIN:
+                    case EffectType.MAXHPGAIN:
                     {
                         // TODO: Implement MAXHPGAIN (e.g. increase max HP and current HP accordingly)
                         break;
                     }
-                    case AbilityType.WPLOSE:
+                    case EffectType.WPLOSE:
                     {
                         SetCurrentWP(currentWP - ability.cost);
                         break;
                     }
-                    case AbilityType.EXTENDEDWHPLOSE:
+                    case EffectType.EXTENDEDWHPLOSE:
                     {
                         // TODO: Implement extended WP loss (e.g. willpower drain over time)
                         break;
                     }
-                    case AbilityType.MAXWPLOSE:
+                    case EffectType.MAXWPLOSE:
                     {
                         // TODO: Implement MAXWPLOSE (e.g. reduce max WP and current WP accordingly)
                         break;                    
                     }
-                    case AbilityType.WPGAIN:
+                    case EffectType.WPGAIN:
                     {
                         SetCurrentWP(currentWP + ability.cost);
                         break;
                     }
-                    case AbilityType.EXTENDEDWPGAIN:
+                    case EffectType.EXTENDEDWPGAIN:
                     {
                         // TODO: Implement extended WP gain (e.g. willpower regeneration over time)
                         break;
                     }
-                    case AbilityType.MAXWPGAIN:
+                    case EffectType.MAXWPGAIN:
                     {
                         // TODO: Implement MAXWPGAIN (e.g. increase max WP and current WP accordingly)
                         break;
                     }
-                    case AbilityType.RESOURCESWAP:
+                    case EffectType.RESOURCESWAP:
                     {
                         int tempHP = currentHP;
                         int tempWP = currentWP;
@@ -212,17 +212,17 @@ namespace SelfConscious
                         SetCurrentWP(tempHP);
                         break;
                     }
-                    case AbilityType.ADDSHIELD:
+                    case EffectType.ADDSHIELD:
                     {
                         // TODO: Implement ADDSHIELD (e.g. add a damage reduction shield)
                         break;
                     }
-                    case AbilityType.BATTLESWAP:
+                    case EffectType.BATTLESWAP:
                     {
                         // TODO: Implement BATTLESWAP (e.g. swap positions with another unit as a combat action)
                         break;                    
                     }
-                    case AbilityType.APPLYCONDITION:
+                    case EffectType.APPLYCONDITION:
                     {
                         // TODO: Implement APPLYCONDITION (e.g. apply a status effect)
                         break;

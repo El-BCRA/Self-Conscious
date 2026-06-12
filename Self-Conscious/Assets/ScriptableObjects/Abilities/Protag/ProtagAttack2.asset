@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: ProtagAttack2
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 0
-  abilityEffect: 7
-  resourceCost: 1
   abilityName: Opportunity Strikes
+  targetingType: 0
   abilityDescription: Deal 2 DMG to an enemy at the start of their turn for 3 turns
+  resourceCost: 0
   cost: 7
-  modAmount: 2
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 455a47da4f5dedf49b6b09074b6bf68f, type: 2}
+  - {fileID: 11400000, guid: 455a47da4f5dedf49b6b09074b6bf68f, type: 2}
+  - {fileID: 11400000, guid: 455a47da4f5dedf49b6b09074b6bf68f, type: 2}

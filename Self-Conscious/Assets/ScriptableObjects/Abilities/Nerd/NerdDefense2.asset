@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: NerdDefense2
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 1
-  abilityEffect: 7
-  resourceCost: 1
   abilityName: Manual Override
+  targetingType: 1
   abilityDescription: Decrease all DMG dealt by all enemies by 1 for 1 turn
+  resourceCost: 0
   cost: 5
-  modAmount: 1
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 2f8dd685089a5d342aa19900d1c26cd3, type: 2}

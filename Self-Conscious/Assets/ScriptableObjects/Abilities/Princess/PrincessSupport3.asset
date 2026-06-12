@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: PrincessSupport3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 3
-  abilityEffect: 2
-  resourceCost: 1
   abilityName: Rally Cry
+  targetingType: 3
   abilityDescription: Heal all allies for 5HP
+  resourceCost: 0
   cost: 12
-  modAmount: 5
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 41dccf9e24ef8384b976d475660008a6, type: 2}

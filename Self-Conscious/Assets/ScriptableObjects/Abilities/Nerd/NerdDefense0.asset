@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: NerdDefense0
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 0
-  abilityEffect: 7
-  resourceCost: 0
   abilityName: Attack Analysis
+  targetingType: 0
   abilityDescription: Decrease all DMG dealt by an enemy by 1 for 1 turn
+  resourceCost: 4
   cost: 0
-  modAmount: 1
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: f9412bdb6210f614582d0d32fd6bdd7a, type: 2}
