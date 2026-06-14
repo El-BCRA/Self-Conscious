@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: GiantAttack3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: Cut It Out!
   targetingType: 1
+  abilityEffect: 7
+  resourceCost: 1
+  abilityName: Cut It Out!
   abilityDescription: STUN all enemies for 1 turn
-  resourceCost: 0
   cost: 11
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: 1b9f7872d3c141d4cbe5108df9da6ea6, type: 2}
+  modAmount: 0
+  drainMultiplier: 0

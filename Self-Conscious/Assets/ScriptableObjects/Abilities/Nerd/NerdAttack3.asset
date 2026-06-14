@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: NerdAttack3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: Collateral Damage
   targetingType: 4
+  abilityEffect: 0
+  resourceCost: 1
+  abilityName: Collateral Damage
   abilityDescription: Deal 6 DMG to all enemies, and 2 DMG to all allies
-  resourceCost: 0
   cost: 9
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: cbc6b0b6511f1d846a4f8cc614908e70, type: 2}
-  - {fileID: 11400000, guid: 2bcd988b86b7f1a4285ae5a1eb88a65e, type: 2}
+  modAmount: 6
+  drainMultiplier: 0

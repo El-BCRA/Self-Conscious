@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: PrincessAttack1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: That Won't Do
   targetingType: 0
-  abilityDescription: Deal 4 DMG to an enemy
-  resourceCost: 0
+  abilityEffect: 0
+  resourceCost: 1
+  abilityName: That Won't Do
+  abilityDescription: Deal 3 DMG to an enemy and knock it down
   cost: 5
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: 12fcfcc214dd9ab4385622c258617c83, type: 2}
+  modAmount: 3
+  drainMultiplier: 0

@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: PrincessDefense1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: Extra Layers
   targetingType: 2
+  abilityEffect: 7
+  resourceCost: 1
+  abilityName: Extra Layers
   abilityDescription: Grant an ally 3 SHIELD stacks, blocking 1 DMG each
-  resourceCost: 0
   cost: 4
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: 59bcd7b055792524aad82f654e5222d7, type: 2}
-  - {fileID: 11400000, guid: 59bcd7b055792524aad82f654e5222d7, type: 2}
-  - {fileID: 11400000, guid: 59bcd7b055792524aad82f654e5222d7, type: 2}
+  modAmount: 1
+  drainMultiplier: 0

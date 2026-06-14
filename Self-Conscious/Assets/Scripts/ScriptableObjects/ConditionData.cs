@@ -20,7 +20,7 @@ namespace SelfConscious
         SPREAD,
         CONDENSE,
         OVERDRIVE,
-        BRACED
+        BRACED,
     }
 
     public enum ConditionFamily

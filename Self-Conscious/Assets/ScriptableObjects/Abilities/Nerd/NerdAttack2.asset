@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: NerdAttack2
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: Knowledge Barrage
   targetingType: 1
+  abilityEffect: 0
+  resourceCost: 2
+  abilityName: Knowledge Barrage
   abilityDescription: Deal 2 DMG to all enemies twice
-  resourceCost: 0
   cost: 7
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: 53e5dbcdbe0caef499bcb1cabd71ce2a, type: 2}
-  - {fileID: 11400000, guid: 53e5dbcdbe0caef499bcb1cabd71ce2a, type: 2}
+  modAmount: 2
+  drainMultiplier: 0

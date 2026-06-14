@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: ProtagDefense2
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: Plot Armor
   targetingType: 2
+  abilityEffect: 7
+  resourceCost: 1
+  abilityName: Plot Armor
   abilityDescription: Make an ally IMMUNE to 1 instance of DMG
-  resourceCost: 0
   cost: 6
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: 2f21328f7fb4e1941a502c0af48c0168, type: 2}
+  modAmount: 0
+  drainMultiplier: 0

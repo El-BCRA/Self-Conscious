@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: ProtagSupport1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: Tag Out
   targetingType: 2
+  abilityEffect: 7
+  resourceCost: 1
+  abilityName: Tag Out
   abilityDescription: SWAP with an ally, granting them 4HP and 4WP
-  resourceCost: 0
   cost: 4
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: 9b505ba8b34568944883e285aae1fb5b, type: 2}
-  - {fileID: 11400000, guid: b91b59e93157f1d4a8ef0bde34b55d46, type: 2}
-  - {fileID: 11400000, guid: adef292de10619346863698c907f50f2, type: 2}
+  modAmount: 4
+  drainMultiplier: 0

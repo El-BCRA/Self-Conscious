@@ -27,6 +27,26 @@ namespace SelfConscious
         NONE,
     }
 
+    public enum AbilityType
+    {
+        HPLOSE,
+        EXTENDEDHPLOSE,
+        MAXHPLOSE,
+        HPGAIN,
+        EXTENDEDHPGAIN,
+        MAXHPGAIN,
+        WPLOSE,
+        EXTENDEDWHPLOSE,
+        MAXWPLOSE,
+        WPGAIN,
+        EXTENDEDWPGAIN,
+        MAXWPGAIN,
+        RESOURCESWAP,
+        ADDSHIELD,
+        BATTLESWAP,
+        APPLYCONDITION
+    }
+
     public enum ResourceCost
     {
         WILLPOWERFLAT,
@@ -39,12 +59,9 @@ namespace SelfConscious
     public enum PercentScaleBase
     {
         NONE,
-        MAXSOURCE,
-        MAXTARGET,
-        CURRENTSOURCE,
-        CURRENTTARGET,
-        MISSINGSOURCE,
-        MISSINGTARGET
+        MAX,
+        CURRENT,
+        MISSING
     }
 
     [CreateAssetMenu(fileName = "AbilityEffectData", menuName = "Scriptable Objects/AbilityEffectData")]

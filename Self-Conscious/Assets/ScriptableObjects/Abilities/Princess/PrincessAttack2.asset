@@ -12,16 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: PrincessAttack2
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: Slap Silly
   targetingType: 0
+  abilityEffect: 0
+  resourceCost: 1
+  abilityName: Slap Silly
   abilityDescription: Deal 1 DMG to an enemy 6 times
-  resourceCost: 0
   cost: 8
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: ccd99b79e6a2c284098a4dfaf0497982, type: 2}
-  - {fileID: 11400000, guid: ccd99b79e6a2c284098a4dfaf0497982, type: 2}
-  - {fileID: 11400000, guid: ccd99b79e6a2c284098a4dfaf0497982, type: 2}
-  - {fileID: 11400000, guid: ccd99b79e6a2c284098a4dfaf0497982, type: 2}
-  - {fileID: 11400000, guid: ccd99b79e6a2c284098a4dfaf0497982, type: 2}
-  - {fileID: 11400000, guid: ccd99b79e6a2c284098a4dfaf0497982, type: 2}
+  modAmount: 6
+  drainMultiplier: 0

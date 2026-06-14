@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: PrincessAttack3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: Self-Defense
   targetingType: 0
+  abilityEffect: 0
+  resourceCost: 1
+  abilityName: Self-Defense
   abilityDescription: Deal 4 DMG to an enemy twice
-  resourceCost: 0
   cost: 9
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: a88ddd75fc9bd084d9573b19f7eb5966, type: 2}
-  - {fileID: 11400000, guid: a88ddd75fc9bd084d9573b19f7eb5966, type: 2}
+  modAmount: 8
+  drainMultiplier: 0

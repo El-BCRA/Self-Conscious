@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: GiantDefense3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
+  targetingType: 3
+  abilityEffect: 7
+  resourceCost: 1
   abilityName: Get Behind Me
-  targetingType: 5
-  abilityDescription: Gain LIGHTNINGROD, causing all single-target DMG to target
-    you until the start of the next DEFENSE turn
-  resourceCost: 0
+  abilityDescription: Apply REDIRECT to all allies, causing all single-target DMG
+    to target you until the start of the next DEFENSE turn
   cost: 9
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: 7cf0b04d7ad77ba41a8a9e084837ce99, type: 2}
+  modAmount: 0
+  drainMultiplier: 0

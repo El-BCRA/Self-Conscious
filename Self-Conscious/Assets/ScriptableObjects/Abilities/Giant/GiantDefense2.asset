@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: GiantDefense2
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: Turtling
   targetingType: 5
+  abilityEffect: 7
+  resourceCost: 1
+  abilityName: Turtling
   abilityDescription: Decrease all instances of DMG received by 3 until the start
     of the next DEFENSE turn
-  resourceCost: 0
   cost: 8
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: ead34216021a12f438ff86043f51bf0d, type: 2}
+  modAmount: 3
+  drainMultiplier: 0

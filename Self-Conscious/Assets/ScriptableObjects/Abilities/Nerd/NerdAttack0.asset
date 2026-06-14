@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: NerdAttack0
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: Textbook
   targetingType: 1
+  abilityEffect: 0
+  resourceCost: 0
+  abilityName: Textbook
   abilityDescription: Deal 1 DMG to all enemies
-  resourceCost: 4
   cost: 0
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: 0f41e42a0f1f2f34daa0a08c60052627, type: 2}
+  modAmount: 1
+  drainMultiplier: 0

@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: NerdSupport3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
+  targetingType: 0
+  abilityEffect: 3
+  resourceCost: 0
   abilityName: Hacking the Mainframe
-  targetingType: 3
-  abilityDescription: Halve the cost of all abilities used by all allies until the
-    start of the next SUPPORT turn
-  resourceCost: 1
-  cost: 50
-  percentScaleBase: 1
-  effectList:
-  - {fileID: 11400000, guid: 9bfb1255a778108458ad96a274b4242e, type: 2}
+  abilityDescription: Donate all remaining WP to an ally
+  cost: 0
+  modAmount: 7
+  drainMultiplier: 0

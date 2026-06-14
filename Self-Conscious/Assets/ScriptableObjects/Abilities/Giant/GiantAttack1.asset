@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: GiantAttack1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: If I Have To...
   targetingType: 0
+  abilityEffect: 7
+  resourceCost: 1
+  abilityName: If I Have To...
   abilityDescription: STUN an enemy for 1 turn
-  resourceCost: 0
   cost: 4
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: 47b15afa32ef72f4780799be9fd05a54, type: 2}
+  modAmount: 0
+  drainMultiplier: 0

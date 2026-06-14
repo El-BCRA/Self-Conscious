@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: PrincessDefense3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
+  targetingType: 1
+  abilityEffect: 0
+  resourceCost: 0
   abilityName: World Peace
-  targetingType: 4
   abilityDescription: Decrease all instances of DMG dealt AND received by 1 until
     the start of the next DEFENSE turn
-  resourceCost: 0
   cost: 6
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: 0271148a2eee98446bec838d6d0e2ee9, type: 2}
-  - {fileID: 11400000, guid: 5343180c4c25ca74aacffffcc5efbbda, type: 2}
+  modAmount: 1
+  drainMultiplier: 0

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: NerdSupport1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  abilityName: Quick Maths
   targetingType: 5
+  abilityEffect: 0
+  resourceCost: 1
+  abilityName: Quick Maths
   abilityDescription: Restore 33% of your MAX HP
-  resourceCost: 0
   cost: 4
-  percentScaleBase: 0
-  effectList:
-  - {fileID: 11400000, guid: 59a4be73967257844a78d040850e6eca, type: 2}
+  modAmount: 7
+  drainMultiplier: 0
