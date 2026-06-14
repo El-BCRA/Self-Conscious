@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: ProtagDefense3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 1
-  abilityEffect: 7
-  resourceCost: 1
   abilityName: The Power of Friendship
-  abilityDescription: Split all single-target DMG dealt by enemies evenly amongst
-    all allies for 1 turn
+  targetingType: 1
+  abilityDescription: Cause all DMG dealt by enemies to be split evenly amongst all
+    allies for 1 turn
+  resourceCost: 0
   cost: 7
-  modAmount: 0
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: bcab50620132fa043b1e061ca8265407, type: 2}

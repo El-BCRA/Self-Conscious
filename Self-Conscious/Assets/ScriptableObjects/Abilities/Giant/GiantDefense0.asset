@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: GiantDefense0
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 5
-  abilityEffect: 7
-  resourceCost: 0
   abilityName: Brace
+  targetingType: 5
   abilityDescription: Gain 1 SHIELD stack, blocking 4 DMG
+  resourceCost: 4
   cost: 0
-  modAmount: 4
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 9d6f59321afa2d44a9cebaa1244e8d4d, type: 2}

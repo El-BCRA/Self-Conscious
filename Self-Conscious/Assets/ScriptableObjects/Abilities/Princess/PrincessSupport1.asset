@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: PrincessSupport1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 3
-  abilityEffect: 5
-  resourceCost: 1
   abilityName: Speech! Speech!
+  targetingType: 3
   abilityDescription: Restore 4WP to all allies
+  resourceCost: 0
   cost: 6
-  modAmount: 4
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 20040ec7b9c105b45bbf950e0752cde6, type: 2}

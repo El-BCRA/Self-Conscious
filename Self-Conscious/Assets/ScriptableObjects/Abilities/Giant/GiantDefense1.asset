@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: GiantDefense1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 3
-  abilityEffect: 7
-  resourceCost: 1
   abilityName: Walls Up
+  targetingType: 3
   abilityDescription: Grant all allies 1 SHIELD stack, blocking 1 DMG
+  resourceCost: 0
   cost: 5
-  modAmount: 1
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 5ad587263ecb8754297bb98d9e16bce4, type: 2}
