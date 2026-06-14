@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: GiantSupport2
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 2
-  abilityEffect: 7
-  resourceCost: 1
   abilityName: Emotional Support
+  targetingType: 2
   abilityDescription: Increase all instances of DMG for a selected ally by 1 until
     the start of the next SUPPORT turn
+  resourceCost: 0
   cost: 5
-  modAmount: 1
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 5ea9beb14e811f84592b9a9655ffd19c, type: 2}

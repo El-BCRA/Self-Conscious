@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: NerdAttack1
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 0
-  abilityEffect: 7
-  resourceCost: 1
   abilityName: Opening Gambit
+  targetingType: 0
   abilityDescription: Reduce an enemy's MAX HP by 2
+  resourceCost: 0
   cost: 4
-  modAmount: 2
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: d9137f79b435fa7439f5bbf0a2c4b1b1, type: 2}

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: ProtagSupport3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 3
-  abilityEffect: 2
-  resourceCost: 1
   abilityName: Quick & Dirty
+  targetingType: 3
   abilityDescription: All allies restore 4HP and 4WP
+  resourceCost: 0
   cost: 10
-  modAmount: 4
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 3dc4eb9ce6b3cd846a672b6bcad43c77, type: 2}
+  - {fileID: 11400000, guid: 268a90b6555db72448fd7dcb205fcb19, type: 2}

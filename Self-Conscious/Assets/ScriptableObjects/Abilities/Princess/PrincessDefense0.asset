@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: PrincessDefense0
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 2
-  abilityEffect: 7
-  resourceCost: 0
   abilityName: Not Just For Looks
+  targetingType: 2
   abilityDescription: Grant an ally 1 SHIELD stack, blocking 2 DMG
+  resourceCost: 4
   cost: 0
-  modAmount: 2
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 9238087013f400d4f923c78acc20b879, type: 2}

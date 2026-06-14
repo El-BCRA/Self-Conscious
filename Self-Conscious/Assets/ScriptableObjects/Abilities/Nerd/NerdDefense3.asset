@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: NerdDefense3
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 0
-  abilityEffect: 7
-  resourceCost: 1
   abilityName: Feast or Famine
+  targetingType: 0
   abilityDescription: Decrease the next instance of DMG dealt by an enemy by 4
+  resourceCost: 0
   cost: 7
-  modAmount: 0
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: b6f0190c2fed3fa419cdbf74313dc6f7, type: 2}

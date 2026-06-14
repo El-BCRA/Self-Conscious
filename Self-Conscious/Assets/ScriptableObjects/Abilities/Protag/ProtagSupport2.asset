@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: ProtagSupport2
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 2
-  abilityEffect: 0
-  resourceCost: 1
   abilityName: First Aid Kit
+  targetingType: 2
   abilityDescription: Restore 50% of an ally's MISSING HP
+  resourceCost: 0
   cost: 8
-  modAmount: 0
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 0ecf37f3878d17448ae8e831f8e19785, type: 2}

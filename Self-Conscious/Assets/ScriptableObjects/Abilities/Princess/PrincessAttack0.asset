@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
   m_Name: PrincessAttack0
   m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
-  targetingType: 0
-  abilityEffect: 0
-  resourceCost: 0
   abilityName: Smile and Wave
+  targetingType: 0
   abilityDescription: Deal 1 DMG to an enemy 3 times
+  resourceCost: 4
   cost: 0
-  modAmount: 3
-  drainMultiplier: 0
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: 2f816cb163222af4898a391e5fccd650, type: 2}
+  - {fileID: 11400000, guid: 2f816cb163222af4898a391e5fccd650, type: 2}
+  - {fileID: 11400000, guid: 2f816cb163222af4898a391e5fccd650, type: 2}
