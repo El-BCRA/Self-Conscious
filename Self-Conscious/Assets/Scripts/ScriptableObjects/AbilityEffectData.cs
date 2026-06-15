@@ -30,7 +30,7 @@ namespace SelfConscious
         public PercentScaleBase percentScaleBase;
         [Tooltip("For any effects which scale with some numerical value. If the PercentScaleBase " +
             "is any value besides NONE, this value should be treated as a percentage")]
-        public int value;
+        public float value;
 
         [Tooltip("Should remain null unless this ability applies a condition.")]
         public ConditionData condition;

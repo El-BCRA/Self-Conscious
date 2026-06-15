@@ -29,10 +29,10 @@ namespace SelfConscious
                         abilityCost.text = ability.cost + " HP";
                         break;
                     }
-                case ResourceCost.HEALTPERCENT:
+                case ResourceCost.HEALTHPERCENT:
                     {
                         // TODO: REVIEW: Implement percentage-based HP cost display (e.g. "20% HP")
-                        abilityCost.text = ability.cost + "% HP";
+                        abilityCost.text = (ability.cost * 100) + "% HP";
                         break;
                     }
                 case ResourceCost.WILLPOWERFLAT:
@@ -43,7 +43,7 @@ namespace SelfConscious
                 case ResourceCost.WILLPOWERPERCENT:
                     {
                         // TODO: REVIEW: Implement percentage-based WP cost display (e.g. "15% WP")
-                        abilityCost.text = ability.cost + "% WP";
+                        abilityCost.text = (ability.cost * 100) + "% WP";
                         break;
                     }
                 case ResourceCost.NONE:

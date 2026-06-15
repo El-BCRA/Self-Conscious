@@ -17,7 +17,7 @@ MonoBehaviour:
   abilityDescription: Halve the cost of all abilities used by all allies until the
     start of the next SUPPORT turn
   resourceCost: 1
-  cost: 50
+  cost: 0.5
   percentScaleBase: 1
   effectList:
   - {fileID: 11400000, guid: 9bfb1255a778108458ad96a274b4242e, type: 2}

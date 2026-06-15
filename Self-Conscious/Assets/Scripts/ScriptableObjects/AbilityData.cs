@@ -32,7 +32,7 @@ namespace SelfConscious
         WILLPOWERFLAT,
         WILLPOWERPERCENT,
         HEALTHFLAT,
-        HEALTPERCENT,
+        HEALTHPERCENT,
         NONE
     }
 
@@ -56,7 +56,7 @@ namespace SelfConscious
         public ResourceCost resourceCost;
 
         [Tooltip("Cost of the ability. In case of percentage-based costs, this is the percent-value.")]
-        public int cost;
+        public float cost;
         public PercentScaleBase percentScaleBase;
         public List<AbilityEffectData> effectList;
     }

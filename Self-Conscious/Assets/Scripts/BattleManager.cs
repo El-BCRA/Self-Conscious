@@ -390,9 +390,18 @@ namespace SelfConscious
         #region UNITS
         public void EnemyDefeat(EnemyUnit enemy)
         {
+            // Remove the ability to target this enemy
             enemyUnitSelections.Remove(enemy.GetTargetingSelection());
+
+            // Defeated enemies need to be manually removed from the 
+            // List<Unit> targets for all targeting buttons
             allEnemiesTB.RemoveFromTargets(enemy);
+            allUnitsTB.RemoveFromTargets(enemy);
+
+            // Remove the enemy from the battle's list of actively tracked enemies
             enemyParty.Remove(enemy);
+
+            // End the battle if no enemies remain
             if (enemyParty.Count <= 0)
             {
                 StopAllCoroutines();

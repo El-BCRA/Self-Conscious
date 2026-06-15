@@ -120,22 +120,22 @@ namespace SelfConscious
             {
                 case ResourceCost.HEALTHFLAT:
                     {
-                        SetCurrentHP(currentHP - ability.cost);
+                        SetCurrentHP(currentHP - (int)ability.cost);
                         break;
                     }
-                case ResourceCost.HEALTPERCENT:
+                case ResourceCost.HEALTHPERCENT:
                     {
                         int cost = 0;
                         switch (ability.percentScaleBase)
                         {
                             case PercentScaleBase.NONE:
                                 {
-                                    cost = ability.cost;
+                                    cost = (int) ability.cost;
                                     break;
                                 }
                             case PercentScaleBase.MAXSOURCE:
                                 {
-                                    cost = ability.cost * maxHP;
+                                    cost = (int)(ability.cost * maxHP);
                                     break;
                                 }
                             case PercentScaleBase.MAXTARGET:
@@ -143,12 +143,12 @@ namespace SelfConscious
                                     // SHOULD NOT BE USED, THIS IS A FAILSAFE
                                     Debug.Log("An ability, " + ability + ", is using MAXTARGET as its ability cost PercentScaleBase. " +
                                         "This does not behave as expected and should be changed.");
-                                    cost = ability.cost * maxHP;
+                                    cost = (int)(ability.cost * maxHP);
                                     break;
                                 }
                             case PercentScaleBase.CURRENTSOURCE:
                                 {
-                                    cost = ability.cost * currentHP;
+                                    cost = (int)(ability.cost * currentHP);
                                     break;
                                 }
                             case PercentScaleBase.CURRENTTARGET:
@@ -156,12 +156,12 @@ namespace SelfConscious
                                     // SHOULD NOT BE USED, THIS IS A FAILSAFE
                                     Debug.Log("An ability, " + ability + ", is using CURRENTTARGET as its ability cost PercentScaleBase. " +
                                         "This does not behave as expected and should be changed.");
-                                    cost = ability.cost * currentHP;
+                                    cost = (int)(ability.cost * currentHP);
                                     break;
                                 }
                             case PercentScaleBase.MISSINGSOURCE:
                                 {
-                                    cost = ability.cost * (maxHP - currentHP);
+                                    cost = (int)(ability.cost * (maxHP - currentHP));
                                     break;
                                 }
                             case PercentScaleBase.MISSINGTARGET:
@@ -169,15 +169,16 @@ namespace SelfConscious
                                     // SHOULD NOT BE USED, THIS IS A FAILSAFE
                                     Debug.Log("An ability, " + ability + ", is using MISSINGTARGET as its ability cost PercentScaleBase. " +
                                         "This does not behave as expected and should be changed.");
-                                    cost = ability.cost * (maxHP - currentHP);
+                                    cost = (int)(ability.cost * (maxHP - currentHP));
                                     break;
                                 }
                         }
+                        SetCurrentHP(currentHP - cost);
                         break;
                     }
                 case ResourceCost.WILLPOWERFLAT:
                     {
-                        SetCurrentWP(currentWP - ability.cost);
+                        SetCurrentWP(currentWP - (int)ability.cost);
                         break;
                     }
                 case ResourceCost.WILLPOWERPERCENT:
@@ -187,12 +188,12 @@ namespace SelfConscious
                         {
                             case PercentScaleBase.NONE:
                                 {
-                                    cost = ability.cost;
+                                    cost = (int)ability.cost;
                                     break;
                                 }
                             case PercentScaleBase.MAXSOURCE:
                                 {
-                                    cost = ability.cost * maxWP;
+                                    cost = (int)(ability.cost * maxWP);
                                     break;
                                 }
                             case PercentScaleBase.MAXTARGET:
@@ -200,12 +201,12 @@ namespace SelfConscious
                                     // SHOULD NOT BE USED, THIS IS A FAILSAFE
                                     Debug.Log("An ability, " + ability + ", is using MAXTARGET as its ability cost PercentScaleBase. " +
                                         "This does not behave as expected and should be changed.");
-                                    cost = ability.cost * maxWP;
+                                    cost = (int)(ability.cost * maxWP);
                                     break;
                                 }
                             case PercentScaleBase.CURRENTSOURCE:
                                 {
-                                    cost = ability.cost * currentWP;
+                                    cost = (int)(ability.cost * currentWP);
                                     break;
                                 }
                             case PercentScaleBase.CURRENTTARGET:
@@ -213,12 +214,12 @@ namespace SelfConscious
                                     // SHOULD NOT BE USED, THIS IS A FAILSAFE
                                     Debug.Log("An ability, " + ability + ", is using CURRENTTARGET as its ability cost PercentScaleBase. " +
                                         "This does not behave as expected and should be changed.");
-                                    cost = ability.cost * currentWP;
+                                    cost = (int)(ability.cost * currentWP);
                                     break;
                                 }
                             case PercentScaleBase.MISSINGSOURCE:
                                 {
-                                    cost = ability.cost * (maxWP - currentWP);
+                                    cost = (int)(ability.cost * (maxWP - currentWP));
                                     break;
                                 }
                             case PercentScaleBase.MISSINGTARGET:
@@ -226,10 +227,11 @@ namespace SelfConscious
                                     // SHOULD NOT BE USED, THIS IS A FAILSAFE
                                     Debug.Log("An ability, " + ability + ", is using MISSINGTARGET as its ability cost PercentScaleBase. " +
                                         "This does not behave as expected and should be changed.");
-                                    cost = ability.cost * (maxWP - currentWP);
+                                    cost = (int)(ability.cost * (maxWP - currentWP));
                                     break;
                                 }
                         }
+                        SetCurrentWP(currentWP - cost);
                         break;
                     }
                 case ResourceCost.NONE:
@@ -255,37 +257,37 @@ namespace SelfConscious
                             {
                                 case PercentScaleBase.NONE:
                                     {
-                                        dmg = effect.value - dmgModifier;
+                                        dmg = (int)effect.value - dmgModifier;
                                         break;
                                     }
                                 case PercentScaleBase.MAXSOURCE:
                                     {
-                                        dmg = (effect.value * source.maxHP) - dmgModifier;
+                                        dmg = (int)((effect.value * source.maxHP) - dmgModifier);
                                         break;
                                     }
                                 case PercentScaleBase.MAXTARGET:
                                     {
-                                        dmg = (effect.value * maxHP) - dmgModifier;
+                                        dmg = (int)((effect.value * maxHP) - dmgModifier);
                                         break;
                                     }
                                 case PercentScaleBase.CURRENTSOURCE:
                                     {
-                                        dmg = (effect.value * source.currentHP) - dmgModifier;
+                                        dmg = (int)((effect.value * source.currentHP) - dmgModifier);
                                         break;
                                     }
                                 case PercentScaleBase.CURRENTTARGET:
                                     {
-                                        dmg = (effect.value * currentHP) - dmgModifier;
+                                        dmg = (int)((effect.value * currentHP) - dmgModifier);
                                         break;
                                     }
                                 case PercentScaleBase.MISSINGSOURCE:
                                     {
-                                        dmg = (effect.value * (source.maxHP - source.currentHP)) - dmgModifier;
+                                        dmg = (int)((effect.value * (source.maxHP - source.currentHP)) - dmgModifier);
                                         break;
                                     }
                                 case PercentScaleBase.MISSINGTARGET:
                                     {
-                                        dmg = (effect.value * (maxHP - currentHP)) - dmgModifier;
+                                        dmg = (int)((effect.value * (maxHP - currentHP)) - dmgModifier);
                                         break;
                                     }
                             }
@@ -312,37 +314,37 @@ namespace SelfConscious
                             {
                                 case PercentScaleBase.NONE:
                                     {
-                                        healAmount = effect.value;
+                                        healAmount = (int)effect.value;
                                         break;
                                     }
                                 case PercentScaleBase.MAXSOURCE:
                                     {
-                                        healAmount = source.maxHP * effect.value;
+                                        healAmount = (int)(source.maxHP * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.MAXTARGET:
                                     {
-                                        healAmount = maxHP * effect.value;
+                                        healAmount = (int)(maxHP * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.CURRENTSOURCE:
                                     {
-                                        healAmount = source.currentHP * effect.value;
+                                        healAmount = (int)(source.currentHP * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.CURRENTTARGET:
                                     {
-                                        healAmount = currentHP * effect.value;
+                                        healAmount = (int)(currentHP * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.MISSINGSOURCE:
                                     {
-                                        healAmount = (source.maxHP - source.currentHP) * effect.value;
+                                        healAmount = (int)((source.maxHP - source.currentHP) * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.MISSINGTARGET:
                                     {
-                                        healAmount = (maxHP - currentHP) * effect.value;
+                                        healAmount = (int)((maxHP - currentHP) * effect.value);
                                         break;
                                     }
                             }
@@ -366,37 +368,37 @@ namespace SelfConscious
                             {
                                 case PercentScaleBase.NONE:
                                     {
-                                        drainAmount = effect.value;
+                                        drainAmount = (int)effect.value;
                                         break;
                                     }
                                 case PercentScaleBase.MAXSOURCE:
                                     {
-                                        drainAmount = source.maxWP * effect.value;
+                                        drainAmount = (int)(source.maxWP * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.MAXTARGET:
                                     {
-                                        drainAmount = maxWP * effect.value;
+                                        drainAmount = (int)(maxWP * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.CURRENTSOURCE:
                                     {
-                                        drainAmount = source.currentWP * effect.value;
+                                        drainAmount = (int)(source.currentWP * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.CURRENTTARGET:
                                     {
-                                        drainAmount = currentWP * effect.value;
+                                        drainAmount = (int)(currentWP * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.MISSINGSOURCE:
                                     {
-                                        drainAmount = (source.maxWP - source.currentWP) * effect.value;
+                                        drainAmount = (int)((source.maxWP - source.currentWP) * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.MISSINGTARGET:
                                     {
-                                        drainAmount = (maxWP - currentWP) * effect.value;
+                                        drainAmount = (int)((maxWP - currentWP) * effect.value);
                                         break;
                                     }
                             }
@@ -420,37 +422,37 @@ namespace SelfConscious
                             {
                                 case PercentScaleBase.NONE:
                                     {
-                                        replenishAmount = effect.value;
+                                        replenishAmount = (int)effect.value;
                                         break;
                                     }
                                 case PercentScaleBase.MAXSOURCE:
                                     {
-                                        replenishAmount = source.maxWP * effect.value;
+                                        replenishAmount = (int)(source.maxWP * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.MAXTARGET:
                                     {
-                                        replenishAmount = maxWP * effect.value;
+                                        replenishAmount = (int)(maxWP * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.CURRENTSOURCE:
                                     {
-                                        replenishAmount = source.currentWP * effect.value;
+                                        replenishAmount = (int)(source.currentWP * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.CURRENTTARGET:
                                     {
-                                        replenishAmount = currentWP * effect.value;
+                                        replenishAmount = (int)(currentWP * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.MISSINGSOURCE:
                                     {
-                                        replenishAmount = (source.maxWP - source.currentWP) * effect.value;
+                                        replenishAmount = (int)((source.maxWP - source.currentWP) * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.MISSINGTARGET:
                                     {
-                                        replenishAmount = (maxWP - currentWP) * effect.value;
+                                        replenishAmount = (int)((maxWP - currentWP) * effect.value);
                                         break;
                                     }
                             }

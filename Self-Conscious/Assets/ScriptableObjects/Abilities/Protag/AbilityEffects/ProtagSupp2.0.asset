@@ -15,5 +15,5 @@ MonoBehaviour:
   areaOfEffect: 2
   abilityEffect: 3
   percentScaleBase: 6
-  value: 50
+  value: 0.5
   condition: {fileID: 0}
