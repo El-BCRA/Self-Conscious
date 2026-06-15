@@ -1,7 +1,8 @@
-using TMPro;
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 namespace SelfConscious
 {
@@ -124,7 +125,54 @@ namespace SelfConscious
                     }
                 case ResourceCost.HEALTPERCENT:
                     {
-                        // TODO: Implement percentage-based HP cost
+                        int cost = 0;
+                        switch (ability.percentScaleBase)
+                        {
+                            case PercentScaleBase.NONE:
+                                {
+                                    cost = ability.cost;
+                                    break;
+                                }
+                            case PercentScaleBase.MAXSOURCE:
+                                {
+                                    cost = ability.cost * maxHP;
+                                    break;
+                                }
+                            case PercentScaleBase.MAXTARGET:
+                                {
+                                    // SHOULD NOT BE USED, THIS IS A FAILSAFE
+                                    Debug.Log("An ability, " + ability + ", is using MAXTARGET as its ability cost PercentScaleBase. " +
+                                        "This does not behave as expected and should be changed.");
+                                    cost = ability.cost * maxHP;
+                                    break;
+                                }
+                            case PercentScaleBase.CURRENTSOURCE:
+                                {
+                                    cost = ability.cost * currentHP;
+                                    break;
+                                }
+                            case PercentScaleBase.CURRENTTARGET:
+                                {
+                                    // SHOULD NOT BE USED, THIS IS A FAILSAFE
+                                    Debug.Log("An ability, " + ability + ", is using CURRENTTARGET as its ability cost PercentScaleBase. " +
+                                        "This does not behave as expected and should be changed.");
+                                    cost = ability.cost * currentHP;
+                                    break;
+                                }
+                            case PercentScaleBase.MISSINGSOURCE:
+                                {
+                                    cost = ability.cost * (maxHP - currentHP);
+                                    break;
+                                }
+                            case PercentScaleBase.MISSINGTARGET:
+                                {
+                                    // SHOULD NOT BE USED, THIS IS A FAILSAFE
+                                    Debug.Log("An ability, " + ability + ", is using MISSINGTARGET as its ability cost PercentScaleBase. " +
+                                        "This does not behave as expected and should be changed.");
+                                    cost = ability.cost * (maxHP - currentHP);
+                                    break;
+                                }
+                        }
                         break;
                     }
                 case ResourceCost.WILLPOWERFLAT:
@@ -134,7 +182,54 @@ namespace SelfConscious
                     }
                 case ResourceCost.WILLPOWERPERCENT:
                     {
-                        // TODO: Implement percentage-based WP cost
+                        int cost = 0;
+                        switch (ability.percentScaleBase)
+                        {
+                            case PercentScaleBase.NONE:
+                                {
+                                    cost = ability.cost;
+                                    break;
+                                }
+                            case PercentScaleBase.MAXSOURCE:
+                                {
+                                    cost = ability.cost * maxWP;
+                                    break;
+                                }
+                            case PercentScaleBase.MAXTARGET:
+                                {
+                                    // SHOULD NOT BE USED, THIS IS A FAILSAFE
+                                    Debug.Log("An ability, " + ability + ", is using MAXTARGET as its ability cost PercentScaleBase. " +
+                                        "This does not behave as expected and should be changed.");
+                                    cost = ability.cost * maxWP;
+                                    break;
+                                }
+                            case PercentScaleBase.CURRENTSOURCE:
+                                {
+                                    cost = ability.cost * currentWP;
+                                    break;
+                                }
+                            case PercentScaleBase.CURRENTTARGET:
+                                {
+                                    // SHOULD NOT BE USED, THIS IS A FAILSAFE
+                                    Debug.Log("An ability, " + ability + ", is using CURRENTTARGET as its ability cost PercentScaleBase. " +
+                                        "This does not behave as expected and should be changed.");
+                                    cost = ability.cost * currentWP;
+                                    break;
+                                }
+                            case PercentScaleBase.MISSINGSOURCE:
+                                {
+                                    cost = ability.cost * (maxWP - currentWP);
+                                    break;
+                                }
+                            case PercentScaleBase.MISSINGTARGET:
+                                {
+                                    // SHOULD NOT BE USED, THIS IS A FAILSAFE
+                                    Debug.Log("An ability, " + ability + ", is using MISSINGTARGET as its ability cost PercentScaleBase. " +
+                                        "This does not behave as expected and should be changed.");
+                                    cost = ability.cost * (maxWP - currentWP);
+                                    break;
+                                }
+                        }
                         break;
                     }
                 case ResourceCost.NONE:
@@ -152,94 +247,250 @@ namespace SelfConscious
                 switch (effect.abilityEffect)
                 {
                     case EffectType.HPLOSE:
-                    {
-                        int dmgModifier = 0;
-                        ApplyShieldStacks(dmgModifier);
-                        if (effect.value - dmgModifier > 0)
                         {
-                            SetCurrentHP(currentHP - (effect.value - dmgModifier));
+                            int dmgModifier = 0;
+                            int dmg = 0;
+                            ApplyShieldStacks(dmgModifier);
+                            switch (effect.percentScaleBase)
+                            {
+                                case PercentScaleBase.NONE:
+                                    {
+                                        dmg = effect.value - dmgModifier;
+                                        break;
+                                    }
+                                case PercentScaleBase.MAXSOURCE:
+                                    {
+                                        dmg = (effect.value * source.maxHP) - dmgModifier;
+                                        break;
+                                    }
+                                case PercentScaleBase.MAXTARGET:
+                                    {
+                                        dmg = (effect.value * maxHP) - dmgModifier;
+                                        break;
+                                    }
+                                case PercentScaleBase.CURRENTSOURCE:
+                                    {
+                                        dmg = (effect.value * source.currentHP) - dmgModifier;
+                                        break;
+                                    }
+                                case PercentScaleBase.CURRENTTARGET:
+                                    {
+                                        dmg = (effect.value * currentHP) - dmgModifier;
+                                        break;
+                                    }
+                                case PercentScaleBase.MISSINGSOURCE:
+                                    {
+                                        dmg = (effect.value * (source.maxHP - source.currentHP)) - dmgModifier;
+                                        break;
+                                    }
+                                case PercentScaleBase.MISSINGTARGET:
+                                    {
+                                        dmg = (effect.value * (maxHP - currentHP)) - dmgModifier;
+                                        break;
+                                    }
+                            }
+                            if (dmg > 0)
+                            {
+                                SetCurrentHP(currentHP - dmg);
+                            }
+                            break;
                         }
-                        break;
-                    }
                     case EffectType.EXTENDEDHPLOSE:
-                    {
-                        // TODO: Implement extended HP loss (e.g. damage over time)
-                        break;
-                    }
+                        {
+                            // TODO: Implement extended HP loss (e.g. damage over time)
+                            break;
+                        }
                     case EffectType.MAXHPLOSE:
-                    {
-                        // TODO: Implement MAXHPLOSE (e.g. reduce max HP and current HP accordingly)
-                        break;
-                    }
+                        {
+                            // TODO: Implement MAXHPLOSE (e.g. reduce max HP and current HP accordingly)
+                            break;
+                        }
                     case EffectType.HPGAIN:
-                    {
-                        SetCurrentHP(currentHP + ability.cost);
-                        break;
-                    }
+                        {
+                            int healAmount = 0;
+                            switch (effect.percentScaleBase)
+                            {
+                                case PercentScaleBase.NONE:
+                                    {
+                                        healAmount = effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.MAXSOURCE:
+                                    {
+                                        healAmount = source.maxHP * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.MAXTARGET:
+                                    {
+                                        healAmount = maxHP * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.CURRENTSOURCE:
+                                    {
+                                        healAmount = source.currentHP * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.CURRENTTARGET:
+                                    {
+                                        healAmount = currentHP * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.MISSINGSOURCE:
+                                    {
+                                        healAmount = (source.maxHP - source.currentHP) * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.MISSINGTARGET:
+                                    {
+                                        healAmount = (maxHP - currentHP) * effect.value;
+                                        break;
+                                    }
+                            }
+                            SetCurrentHP(currentHP + healAmount);
+                            break;
+                        }
                     case EffectType.EXTENDEDHPGAIN:
-                    {
-                        // TODO: Implement extended HP gain (e.g. heal over time)
-                        break;
-                    }
+                        {
+                            // TODO: Implement extended HP gain (e.g. heal over time)
+                            break;
+                        }
                     case EffectType.MAXHPGAIN:
-                    {
-                        // TODO: Implement MAXHPGAIN (e.g. increase max HP and current HP accordingly)
-                        break;
-                    }
+                        {
+                            // TODO: Implement MAXHPGAIN (e.g. increase max HP and current HP accordingly)
+                            break;
+                        }
                     case EffectType.WPLOSE:
-                    {
-                        SetCurrentWP(currentWP - ability.cost);
-                        break;
-                    }
+                        {
+                            int drainAmount = 0;
+                            switch (effect.percentScaleBase)
+                            {
+                                case PercentScaleBase.NONE:
+                                    {
+                                        drainAmount = effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.MAXSOURCE:
+                                    {
+                                        drainAmount = source.maxWP * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.MAXTARGET:
+                                    {
+                                        drainAmount = maxWP * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.CURRENTSOURCE:
+                                    {
+                                        drainAmount = source.currentWP * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.CURRENTTARGET:
+                                    {
+                                        drainAmount = currentWP * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.MISSINGSOURCE:
+                                    {
+                                        drainAmount = (source.maxWP - source.currentWP) * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.MISSINGTARGET:
+                                    {
+                                        drainAmount = (maxWP - currentWP) * effect.value;
+                                        break;
+                                    }
+                            }
+                            SetCurrentWP(currentWP - drainAmount);
+                            break;
+                        }
                     case EffectType.EXTENDEDWHPLOSE:
-                    {
-                        // TODO: Implement extended WP loss (e.g. willpower drain over time)
-                        break;
-                    }
+                        {
+                            // TODO: Implement extended WP loss (e.g. willpower drain over time)
+                            break;
+                        }
                     case EffectType.MAXWPLOSE:
-                    {
-                        // TODO: Implement MAXWPLOSE (e.g. reduce max WP and current WP accordingly)
-                        break;                    
-                    }
+                        {
+                            // TODO: Implement MAXWPLOSE (e.g. reduce max WP and current WP accordingly)
+                            break;                    
+                        }
                     case EffectType.WPGAIN:
-                    {
-                        SetCurrentWP(currentWP + ability.cost);
-                        break;
-                    }
+                        {
+                            int replenishAmount = 0;
+                            switch (effect.percentScaleBase)
+                            {
+                                case PercentScaleBase.NONE:
+                                    {
+                                        replenishAmount = effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.MAXSOURCE:
+                                    {
+                                        replenishAmount = source.maxWP * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.MAXTARGET:
+                                    {
+                                        replenishAmount = maxWP * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.CURRENTSOURCE:
+                                    {
+                                        replenishAmount = source.currentWP * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.CURRENTTARGET:
+                                    {
+                                        replenishAmount = currentWP * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.MISSINGSOURCE:
+                                    {
+                                        replenishAmount = (source.maxWP - source.currentWP) * effect.value;
+                                        break;
+                                    }
+                                case PercentScaleBase.MISSINGTARGET:
+                                    {
+                                        replenishAmount = (maxWP - currentWP) * effect.value;
+                                        break;
+                                    }
+                            }
+                            SetCurrentWP(currentWP + replenishAmount);
+                            break;
+                        }
                     case EffectType.EXTENDEDWPGAIN:
-                    {
-                        // TODO: Implement extended WP gain (e.g. willpower regeneration over time)
-                        break;
-                    }
+                        {
+                            // TODO: Implement extended WP gain (e.g. willpower regeneration over time)
+                            break;
+                        }
                     case EffectType.MAXWPGAIN:
-                    {
-                        // TODO: Implement MAXWPGAIN (e.g. increase max WP and current WP accordingly)
-                        break;
-                    }
+                        {
+                            // TODO: Implement MAXWPGAIN (e.g. increase max WP and current WP accordingly)
+                            break;
+                        }
                     case EffectType.RESOURCESWAP:
-                    {
-                        int tempHP = currentHP;
-                        int tempWP = currentWP;
-                        SetCurrentHP(tempWP);
-                        SetCurrentWP(tempHP);
-                        break;
-                    }
+                        {
+                            int tempHP = currentHP;
+                            int tempWP = currentWP;
+                            SetCurrentHP(tempWP);
+                            SetCurrentWP(tempHP);
+                            break;
+                        }
                     case EffectType.ADDSHIELD:
-                    {
-                        shieldStacks.Add((uint)effect.value);
-                        UpdateShieldIcons();
-                        break;
-                    }
+                        {
+                            shieldStacks.Add((uint)effect.value);
+                            UpdateShieldIcons();
+                            break;
+                        }
                     case EffectType.BATTLESWAP:
-                    {
-                        // TODO: Implement BATTLESWAP (e.g. swap positions with another unit as a combat action)
-                        break;                    
-                    }
+                        {
+                            // TODO: Implement BATTLESWAP (e.g. swap positions with another unit as a combat action)
+                            break;                    
+                        }
                     case EffectType.APPLYCONDITION:
-                    {
-                        // TODO: Implement APPLYCONDITION (e.g. apply a status effect)
-                        break;
-                    }
+                        {
+                            // TODO: Implement APPLYCONDITION (e.g. apply a status effect)
+                            break;
+                        }
                 }   
             }
             StartCoroutine(Impact());
