@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace SelfConscious
 {
@@ -15,13 +16,13 @@ namespace SelfConscious
 
         [Header("Unit Data Fields")]
         [SerializeField] protected string unitName;
-        [SerializeField] protected int unitLevel;
         [SerializeField] protected int maxHP;
         [SerializeField] protected int currentHP;
         [SerializeField] protected int maxWP;
         [SerializeField] protected int currentWP;
 
         [Header("Battle Data Fields")]
+        protected List<uint> shieldStacks = new List<uint>();
         [SerializeField] protected float hitJitter = 0.3f;
         [SerializeField] protected float hitOffset = 0.5f;
 
@@ -100,6 +101,11 @@ namespace SelfConscious
                 currentWP = 0;
             }
         }
+
+        public List<uint> GetShieldStacks()
+        {
+            return shieldStacks;
+        }
         
         public float GetHitAnimationTime()
         {
@@ -138,6 +144,7 @@ namespace SelfConscious
             }
         }
 
+        #region  ABILITY FLOW
         public void ApplyAbility(AbilityData ability, Unit source)
         {
             foreach (AbilityEffectData effect in ability.effectList)
@@ -146,7 +153,12 @@ namespace SelfConscious
                 {
                     case EffectType.HPLOSE:
                     {
-                        SetCurrentHP(currentHP - ability.cost);
+                        int dmgModifier = 0;
+                        ApplyShieldStacks(dmgModifier);
+                        if (effect.value - dmgModifier > 0)
+                        {
+                            SetCurrentHP(currentHP - (effect.value - dmgModifier));
+                        }
                         break;
                     }
                     case EffectType.EXTENDEDHPLOSE:
@@ -214,7 +226,8 @@ namespace SelfConscious
                     }
                     case EffectType.ADDSHIELD:
                     {
-                        // TODO: Implement ADDSHIELD (e.g. add a damage reduction shield)
+                        shieldStacks.Add((uint)effect.value);
+                        UpdateShieldIcons();
                         break;
                     }
                     case EffectType.BATTLESWAP:
@@ -229,8 +242,29 @@ namespace SelfConscious
                     }
                 }   
             }
+            StartCoroutine(Impact());
+        }
+        #endregion
+
+        #region SHIELD LOGIC
+        public int ApplyShieldStacks(int dmgModifier)
+        {
+            if (shieldStacks.Count > 0)
+            {
+                dmgModifier -= (int)shieldStacks[0];
+                shieldStacks.RemoveAt(0);
+            }
+            UpdateShieldIcons();
+            return dmgModifier;
         }
 
+        public virtual void UpdateShieldIcons()
+        {
+            // Implemented on children since the way shield icons are displayed 
+            // may differ between player-controlled units and enemies
+        }
+        #endregion
+        
         public virtual IEnumerator Impact()
         {
             characterSprites.transform.position = characterSprites.transform.position - new Vector3(hitOffset, 0, 0);

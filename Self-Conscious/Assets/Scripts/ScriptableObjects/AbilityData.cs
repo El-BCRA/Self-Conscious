@@ -47,15 +47,6 @@ namespace SelfConscious
         MISSINGTARGET
     }
 
-    [CreateAssetMenu(fileName = "AbilityEffectData", menuName = "Scriptable Objects/AbilityEffectData")]
-    public class AbilityEffectData : ScriptableObject
-    {
-        public TargetingType areaOfEffect;
-        public AbilityType abilityEffect;
-        [Tooltip("Should remain null unless this ability applies a condition.")]
-        public ConditionData condition;
-    }
-
     public class AbilityData : ScriptableObject
     {
         public string abilityName = "Ability";

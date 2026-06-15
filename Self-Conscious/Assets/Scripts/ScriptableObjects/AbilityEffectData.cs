@@ -1,4 +1,3 @@
-using SelfConscious;
 using UnityEngine;
 
 namespace SelfConscious

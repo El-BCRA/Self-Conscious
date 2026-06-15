@@ -119,5 +119,10 @@ namespace SelfConscious
         {
             return abilityClass;
         }
+
+        public override void UpdateShieldIcons()
+        {
+            battlePosition.UpdateUI();
+        }
     }
 }

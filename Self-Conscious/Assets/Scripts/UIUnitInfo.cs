@@ -21,6 +21,9 @@ namespace SelfConscious
         [SerializeField] private TMP_Text willpowerText;
         [SerializeField] private RectTransform healthBar;
         [SerializeField] private RectTransform willpowerBar;
+        [SerializeField] private TMP_Text shieldText;
+        [SerializeField] private TMP_Text shieldPlusText;
+        [SerializeField] protected List<GameObject> shieldIcons = new List<GameObject>();
 
         [Header("Selection Animation")]
         [SerializeField] private float startScale = 1.1f;
@@ -36,6 +39,8 @@ namespace SelfConscious
         void Start()
         {
             battlePositionText.text = referencedBattlePosition.GetBPKind().ToString();
+            shieldPlusText.text = "";
+            shieldText.text = "";
             referencedUnit = referencedBattlePosition.GetUnit();
             battlePortrait.sprite = referencedUnit.GetPortrait();
             selected = false;
@@ -102,6 +107,31 @@ namespace SelfConscious
             }
 
             UpdateUIBars();
+            UpdateShieldIcons();
+        }
+
+        public void UpdateShieldIcons()
+        {
+            if (referencedUnit.GetShieldStacks().Count > 0)
+            {
+                shieldPlusText.text = "+";
+                shieldText.text = referencedUnit.GetShieldStacks()[0].ToString();
+            } else
+            {
+                shieldText.text = "";
+                shieldPlusText.text = "";
+            }
+
+            for (int i = 0; i < shieldIcons.Count; i++)
+            {
+                if (i < referencedUnit.GetShieldStacks().Count)
+                {
+                    shieldIcons[i].SetActive(true);
+                } else
+                {
+                    shieldIcons[i].SetActive(false);
+                }
+            }
         }
 
         public IEnumerator Jitter()

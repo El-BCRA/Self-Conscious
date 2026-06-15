@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace SelfConscious
 {
@@ -9,6 +9,9 @@ namespace SelfConscious
         [Header("Local UI")]
         [SerializeField] private TMP_Text healthText;
         [SerializeField] private RectTransform healthBar;
+        [SerializeField] protected List<GameObject> shieldIcons = new List<GameObject>();
+        [SerializeField] protected TMP_Text shieldText;
+        [SerializeField] protected TMP_Text shieldPlusText;
 
         [Header("Abilities")]
         [SerializeField] private AbilityData[] abilities;
@@ -18,8 +21,11 @@ namespace SelfConscious
         {
             BattleManager.Instance.AddToContextualUI(targetingSelection);
             nameText.text = unitName;
+            shieldText.text = "";
+            shieldPlusText.text = "";
             nameText.gameObject.SetActive(false);
             healthText.text = GetMaxHP().ToString();
+            UpdateShieldIcons();
         }
 
         // Update is called once per frame
@@ -32,6 +38,30 @@ namespace SelfConscious
         {
             float ratio = (float)GetCurrentHP() / GetMaxHP();
             healthBar.localScale = new Vector3(ratio, 1, 1);
+        }
+
+        public override void UpdateShieldIcons()
+        {
+            if (shieldStacks.Count > 0)
+            {
+                shieldText.text = shieldStacks[0].ToString();
+                shieldPlusText.text = "+";
+            }
+            else
+            {
+                shieldText.text = "";
+                shieldPlusText.text = "";
+            }
+            for (int i = 0; i < shieldIcons.Count; i++)
+            {
+                if (i < shieldStacks.Count)
+                {
+                    shieldIcons[i].SetActive(true);
+                } else
+                {
+                    shieldIcons[i].SetActive(false);
+                }
+            }
         }
 
         public override void SetCurrentHP(int val)
