@@ -236,7 +236,6 @@ MonoBehaviour:
   targetingSelection: {fileID: 7220361697296389802}
   targetingButton: {fileID: 3398769440525258449}
   unitName: 
-  unitLevel: 0
   maxHP: 0
   currentHP: 0
   maxWP: 0

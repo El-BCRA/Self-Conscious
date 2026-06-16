@@ -27,6 +27,20 @@ namespace SelfConscious
         [SerializeField] protected float hitJitter = 0.3f;
         [SerializeField] protected float hitOffset = 0.5f;
 
+        [Header("Resource Mod Over Time")]
+        protected ResourceModOverTime damageOverTime;
+        protected ResourceModOverTime healOverTime;
+        protected ResourceModOverTime drainOverTime;
+        protected ResourceModOverTime replenishOverTime;
+
+        void Awake()
+        {
+            damageOverTime = new ResourceModOverTime(0, 0, PercentScaleBase.NONE, ResourceOverTime.DAMAGE);
+            healOverTime = new ResourceModOverTime(0, 0, PercentScaleBase.NONE, ResourceOverTime.HEAL);
+            drainOverTime = new ResourceModOverTime(0, 0, PercentScaleBase.NONE, ResourceOverTime.DRAIN);
+            replenishOverTime = new ResourceModOverTime(0, 0, PercentScaleBase.NONE, ResourceOverTime.REPLENISH);
+        }
+        
         #region GETTERS & SETTERS
         public Sprite GetPortrait()
         {
@@ -108,13 +122,31 @@ namespace SelfConscious
             return shieldStacks;
         }
         
+        public ResourceModOverTime GetRMOT(ResourceOverTime resourceType)
+        {
+            switch (resourceType)
+            {
+                case ResourceOverTime.DAMAGE:
+                    return damageOverTime;
+                case ResourceOverTime.HEAL:
+                    return healOverTime;
+                case ResourceOverTime.DRAIN:
+                    return drainOverTime;
+                case ResourceOverTime.REPLENISH:
+                    return replenishOverTime;
+                default:
+                    return new ResourceModOverTime(0, 0, PercentScaleBase.NONE, resourceType);
+            }
+        }
+
         public float GetHitAnimationTime()
         {
             return hitJitter * 2;
         }
         #endregion
 
-        public void UseAbilty(AbilityData ability)
+        #region ABILITY FLOW
+        public void UseAbility(AbilityData ability)
         {
             switch (ability.resourceCost)
             {
@@ -241,7 +273,6 @@ namespace SelfConscious
             }
         }
 
-        #region  ABILITY FLOW
         public void ApplyAbility(AbilityData ability, Unit source)
         {
             foreach (AbilityEffectData effect in ability.effectList)
@@ -299,7 +330,10 @@ namespace SelfConscious
                         }
                     case EffectType.EXTENDEDHPLOSE:
                         {
-                            // TODO: Implement extended HP loss (e.g. damage over time)
+                            damageOverTime.SetModAmount(effect.value);
+                            damageOverTime.SetPercentScaleBase(effect.percentScaleBase);
+                            damageOverTime.SetModLifetime(damageOverTime.GetModLifetime() + 1);
+                            UpdateResourceModUI();
                             break;
                         }
                     case EffectType.MAXHPLOSE:
@@ -353,7 +387,10 @@ namespace SelfConscious
                         }
                     case EffectType.EXTENDEDHPGAIN:
                         {
-                            // TODO: Implement extended HP gain (e.g. heal over time)
+                            healOverTime.SetModAmount(effect.value);
+                            healOverTime.SetPercentScaleBase(effect.percentScaleBase);
+                            healOverTime.SetModLifetime(healOverTime.GetModLifetime() + 1);
+                            UpdateResourceModUI();
                             break;
                         }
                     case EffectType.MAXHPGAIN:
@@ -405,9 +442,12 @@ namespace SelfConscious
                             SetCurrentWP(currentWP - drainAmount);
                             break;
                         }
-                    case EffectType.EXTENDEDWHPLOSE:
+                    case EffectType.EXTENDEDWPLOSE:
                         {
-                            // TODO: Implement extended WP loss (e.g. willpower drain over time)
+                            drainOverTime.SetModAmount(effect.value);
+                            drainOverTime.SetPercentScaleBase(effect.percentScaleBase);
+                            drainOverTime.SetModLifetime(drainOverTime.GetModLifetime() + 1);
+                            UpdateResourceModUI();
                             break;
                         }
                     case EffectType.MAXWPLOSE:
@@ -461,7 +501,10 @@ namespace SelfConscious
                         }
                     case EffectType.EXTENDEDWPGAIN:
                         {
-                            // TODO: Implement extended WP gain (e.g. willpower regeneration over time)
+                            replenishOverTime.SetModAmount(effect.value);
+                            replenishOverTime.SetPercentScaleBase(effect.percentScaleBase);
+                            replenishOverTime.SetModLifetime(replenishOverTime.GetModLifetime() + 1);
+                            UpdateResourceModUI();
                             break;
                         }
                     case EffectType.MAXWPGAIN:
@@ -499,6 +542,13 @@ namespace SelfConscious
         }
         #endregion
 
+        #region BATTLE FLOW
+        public void StartTurn()
+        {
+            StartCoroutine(TurnStart());
+        }
+        #endregion
+
         #region SHIELD LOGIC
         public int ApplyShieldStacks(int dmgModifier)
         {
@@ -518,6 +568,107 @@ namespace SelfConscious
         }
         #endregion
         
+        #region RESOURCE MOD OVER TIME LOGIC 
+        public void TickResourceMods()
+        {
+            Debug.Log("Ticking resource mods for " + unitName);
+            if (damageOverTime.GetModLifetime() > 0)
+            {
+                Debug.Log("Damage over time mod amount: " + damageOverTime.GetModAmount() + ", lifetime: " + damageOverTime.GetModLifetime());
+                // Get base damage amount from the damage over time mod, scaled appropriately
+                int dmg = (int)damageOverTime.GetScaledAmount(this);
+
+                // Apply shield stacks to damage before applying damage over time
+                if (shieldStacks.Count > 0)
+                {
+                    int dmgModifier = 0;
+                    ApplyShieldStacks(dmgModifier);
+                    dmg = (int)damageOverTime.GetModAmount() - dmgModifier;
+                }
+
+                // Update current HP based on damage over time, and reduce mod lifetime by 1
+                if (dmg > 0)
+                {
+                    SetCurrentHP(currentHP - dmg);
+                }
+                damageOverTime.SetModLifetime(damageOverTime.GetModLifetime() - 1);
+
+                // If damage over time mod lifetime has reached 0, reset mod amount and percent scale base to defaults
+                if (damageOverTime.GetModLifetime() == 0)
+                {
+                    damageOverTime.SetModAmount(0);
+                    damageOverTime.SetPercentScaleBase(PercentScaleBase.NONE);
+                }
+            }
+
+            if (healOverTime.GetModLifetime() > 0)
+            {
+                // Get base heal amount from the heal over time mod, scaled appropriately
+                int heal = (int)healOverTime.GetScaledAmount(this);
+
+                // Update current HP based on heal over time, and reduce mod lifetime by 1
+                if (heal > 0)
+                {
+                    SetCurrentHP(currentHP + heal);
+                }
+                healOverTime.SetModLifetime(healOverTime.GetModLifetime() - 1);
+
+                // If heal over time mod lifetime has reached 0, reset mod amount and percent scale base to defaults
+                if (healOverTime.GetModLifetime() == 0)
+                {
+                    healOverTime.SetModAmount(0);
+                    healOverTime.SetPercentScaleBase(PercentScaleBase.NONE);
+                }
+            }
+
+            if (drainOverTime.GetModLifetime() > 0)
+            {
+                // Get base drain amount from the drain over time mod, scaled appropriately
+                int drain = (int)drainOverTime.GetScaledAmount(this);
+                
+                // Update current WP based on drain over time, and reduce mod lifetime by 1
+                if (drain > 0)
+                {
+                    SetCurrentWP(currentWP - drain);
+                }
+                drainOverTime.SetModLifetime(drainOverTime.GetModLifetime() - 1);
+                
+                // If drain over time mod lifetime has reached 0, reset mod amount and percent scale base to defaults
+                if (drainOverTime.GetModLifetime() == 0)
+                {
+                    drainOverTime.SetModAmount(0);
+                    drainOverTime.SetPercentScaleBase(PercentScaleBase.NONE);
+                }
+            }
+
+            if (replenishOverTime.GetModLifetime() > 0)
+            {                
+                // Get base replenish amount from the replenish over time mod, scaled appropriately
+                int replenish = (int)replenishOverTime.GetScaledAmount(this);
+
+                // Update current WP based on replenish over time, and reduce mod lifetime by 1
+                if (replenish > 0)
+                {
+                    SetCurrentWP(currentWP + replenish);
+                }
+                replenishOverTime.SetModLifetime(replenishOverTime.GetModLifetime() - 1);
+
+                // If replenish over time mod lifetime has reached 0, reset mod amount and percent scale base to defaults
+                if (replenishOverTime.GetModLifetime() == 0)
+                {
+                    replenishOverTime.SetModAmount(0);
+                    replenishOverTime.SetPercentScaleBase(PercentScaleBase.NONE);
+                }
+            }
+        }
+        
+        public virtual void UpdateResourceModUI()
+        {
+            // Implemented on children since the way resource mod over time UI is displayed 
+            // may differ between player-controlled units and enemies
+        }
+        #endregion
+        
         public virtual IEnumerator Impact()
         {
             characterSprites.transform.position = characterSprites.transform.position - new Vector3(hitOffset, 0, 0);
@@ -527,6 +678,13 @@ namespace SelfConscious
             characterSprites.transform.position = characterSprites.transform.position - new Vector3(hitOffset, 0, 0);
             yield return new WaitForSeconds(hitJitter);
             characterSprites.transform.position = characterSprites.transform.position + new Vector3(hitOffset, 0, 0);
+        }
+
+        public virtual IEnumerator TurnStart()
+        {
+            TickResourceMods();
+            UpdateResourceModUI();
+            yield return null;
         }
     }
 }

@@ -25,6 +25,16 @@ namespace SelfConscious
         [SerializeField] private TMP_Text shieldPlusText;
         [SerializeField] protected List<GameObject> shieldIcons = new List<GameObject>();
 
+        [Header("Resource Mods Over Time")]
+        [SerializeField] protected GameObject damageOverTimeIcon;
+        [SerializeField] protected GameObject healOverTimeIcon;
+        [SerializeField] protected GameObject drainOverTimeIcon;
+        [SerializeField] protected GameObject replenishOverTimeIcon;
+        [SerializeField] protected TMP_Text damageOverTimeText;
+        [SerializeField] protected TMP_Text healOverTimeText;
+        [SerializeField] protected TMP_Text drainOverTimeText;
+        [SerializeField] protected TMP_Text replenishOverTimeText;
+
         [Header("Selection Animation")]
         [SerializeField] private float startScale = 1.1f;
         [SerializeField] private float selectScale = 1.2f;
@@ -108,6 +118,7 @@ namespace SelfConscious
 
             UpdateUIBars();
             UpdateShieldIcons();
+            UpdateResourceMods();
         }
 
         public void UpdateShieldIcons()
@@ -134,6 +145,49 @@ namespace SelfConscious
             }
         }
 
+        public void UpdateResourceMods()
+        {
+            if (referencedUnit.GetRMOT(ResourceOverTime.DAMAGE).GetModLifetime() > 0)
+            {
+                damageOverTimeIcon.SetActive(true);
+                damageOverTimeText.text = referencedUnit.GetRMOT(ResourceOverTime.DAMAGE).GetModLifetime().ToString();
+            } else
+            {
+                damageOverTimeIcon.SetActive(false);
+                damageOverTimeText.text = "";
+            }
+
+            if (referencedUnit.GetRMOT(ResourceOverTime.HEAL).GetModLifetime() > 0)
+            {
+                healOverTimeIcon.SetActive(true);
+                healOverTimeText.text = referencedUnit.GetRMOT(ResourceOverTime.HEAL).GetModLifetime().ToString();
+            } else
+            {
+                healOverTimeIcon.SetActive(false);
+                healOverTimeText.text = "";
+            }
+
+            if (referencedUnit.GetRMOT(ResourceOverTime.DRAIN).GetModLifetime() > 0)
+            {
+                drainOverTimeIcon.SetActive(true);
+                drainOverTimeText.text = referencedUnit.GetRMOT(ResourceOverTime.DRAIN).GetModLifetime().ToString();
+            } else
+            {
+                drainOverTimeIcon.SetActive(false);
+                drainOverTimeText.text = "";
+            }
+
+            if (referencedUnit.GetRMOT(ResourceOverTime.REPLENISH).GetModLifetime() > 0)
+            {
+                replenishOverTimeIcon.SetActive(true);
+                replenishOverTimeText.text = referencedUnit.GetRMOT(ResourceOverTime.REPLENISH).GetModLifetime().ToString();
+            } else
+            {
+                replenishOverTimeIcon.SetActive(false);
+                replenishOverTimeText.text = "";
+            }
+        }
+        
         public IEnumerator Jitter()
         {
             while (selected)

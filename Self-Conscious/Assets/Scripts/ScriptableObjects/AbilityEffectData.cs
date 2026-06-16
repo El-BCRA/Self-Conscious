@@ -11,7 +11,7 @@ namespace SelfConscious
         EXTENDEDHPGAIN,
         MAXHPGAIN,
         WPLOSE,
-        EXTENDEDWHPLOSE,
+        EXTENDEDWPLOSE,
         MAXWPLOSE,
         WPGAIN,
         EXTENDEDWPGAIN,

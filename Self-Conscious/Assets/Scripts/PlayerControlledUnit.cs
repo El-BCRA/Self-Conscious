@@ -124,5 +124,10 @@ namespace SelfConscious
         {
             battlePosition.UpdateUI();
         }
+
+        public override void UpdateResourceModUI()
+        {
+            battlePosition.UpdateUI();
+        }
     }
 }

@@ -38,6 +38,7 @@ namespace SelfConscious
             currentUnit.SetActive();
             currentUnit.ShowName();
             unitInfo.SetActive();
+            currentUnit.StartTurn();
         }
 
         public void SetInactive()

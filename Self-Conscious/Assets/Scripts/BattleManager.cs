@@ -594,7 +594,7 @@ namespace SelfConscious
         {
             Debug.Log(source.name + " ended their turn by using the ability " + ability.abilityName);
 
-            source.UseAbilty(ability);
+            source.UseAbility(ability);
             foreach(Unit target in targets)
             {
                 target.ApplyAbility(ability, source);
@@ -708,6 +708,16 @@ namespace SelfConscious
         IEnumerator EnemyTurn()
         {
             Debug.Log("The enemies are taking their turns.");
+            foreach (EnemyUnit enemy in enemyParty)
+            {
+                Debug.Log(enemy.name + " is taking their turn.");
+                
+                // All enemy turn actions would be determined and executed here. 
+                // For now, we'll just have them wait for a moment to simulate taking a turn.
+                enemy.TickResourceMods();
+                enemy.UpdateResourceModUI();
+                yield return new WaitForSeconds(enemy.GetHitAnimationTime());
+            }
             yield return new WaitForSeconds(2f);
             ChangeBattleState(BattleState.PLAYERTURN);
         }
