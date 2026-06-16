@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a21429c42e46344e8dfb445bc9e8bbd, type: 3}
+  m_Name: PrisonGuard4
+  m_EditorClassIdentifier: Assembly-CSharp::SelfConscious.AbilityData
+  abilityName: Prison Guard Drain Attack
+  targetingType: 0
+  abilityDescription: Drain 3 WP from and deal 3 DMG to an enemy
+  resourceCost: 4
+  cost: 0.2
+  percentScaleBase: 0
+  effectList:
+  - {fileID: 11400000, guid: c097174df11cb406687d9ea8dfdae63e, type: 2}
+  - {fileID: 11400000, guid: 8a4795f75d1d246138bfc32e59ec6e14, type: 2}

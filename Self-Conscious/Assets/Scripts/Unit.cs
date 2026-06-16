@@ -90,6 +90,21 @@ namespace SelfConscious
             return currentHP;
         }
 
+        public int GetMissingHP()
+        {
+            return maxHP - currentHP;
+        }
+
+        public float GetHPRatio()
+        {
+            return (float)currentHP / maxHP;
+        }
+
+        public float GetMissingHPRatio()
+        {
+            return (float)(maxHP - currentHP) / maxHP;
+        }
+
         public virtual void SetCurrentHP(int val)
         {
             // Implement on children
@@ -103,6 +118,21 @@ namespace SelfConscious
         public int GetCurrentWP()
         {
             return currentWP;
+        }
+
+        public int GetMissingWP()
+        {
+            return maxWP - currentWP;
+        }
+
+        public float GetWPRatio()
+        {
+            return (float)currentWP / maxWP;
+        }
+
+        public float GetMissingWPRatio()
+        {
+            return (float)(maxWP - currentWP) / maxWP;
         }
 
         public void SetCurrentWP(int val)
@@ -193,7 +223,7 @@ namespace SelfConscious
                                 }
                             case PercentScaleBase.MISSINGSOURCE:
                                 {
-                                    cost = (int)(ability.cost * (maxHP - currentHP));
+                                    cost = (int)(ability.cost * GetMissingHP());
                                     break;
                                 }
                             case PercentScaleBase.MISSINGTARGET:
@@ -201,7 +231,7 @@ namespace SelfConscious
                                     // SHOULD NOT BE USED, THIS IS A FAILSAFE
                                     Debug.Log("An ability, " + ability + ", is using MISSINGTARGET as its ability cost PercentScaleBase. " +
                                         "This does not behave as expected and should be changed.");
-                                    cost = (int)(ability.cost * (maxHP - currentHP));
+                                    cost = (int)(ability.cost * GetMissingHP());
                                     break;
                                 }
                         }
@@ -251,7 +281,7 @@ namespace SelfConscious
                                 }
                             case PercentScaleBase.MISSINGSOURCE:
                                 {
-                                    cost = (int)(ability.cost * (maxWP - currentWP));
+                                    cost = (int)(ability.cost * GetMissingWP());
                                     break;
                                 }
                             case PercentScaleBase.MISSINGTARGET:
@@ -259,7 +289,7 @@ namespace SelfConscious
                                     // SHOULD NOT BE USED, THIS IS A FAILSAFE
                                     Debug.Log("An ability, " + ability + ", is using MISSINGTARGET as its ability cost PercentScaleBase. " +
                                         "This does not behave as expected and should be changed.");
-                                    cost = (int)(ability.cost * (maxWP - currentWP));
+                                    cost = (int)(ability.cost * GetMissingWP());
                                     break;
                                 }
                         }
@@ -313,12 +343,12 @@ namespace SelfConscious
                                     }
                                 case PercentScaleBase.MISSINGSOURCE:
                                     {
-                                        dmg = (int)((effect.value * (source.maxHP - source.currentHP)) - dmgModifier);
+                                        dmg = (int)((effect.value * source.GetMissingHP()) - dmgModifier);
                                         break;
                                     }
                                 case PercentScaleBase.MISSINGTARGET:
                                     {
-                                        dmg = (int)((effect.value * (maxHP - currentHP)) - dmgModifier);
+                                        dmg = (int)((effect.value * GetMissingHP()) - dmgModifier);
                                         break;
                                     }
                             }
@@ -373,12 +403,12 @@ namespace SelfConscious
                                     }
                                 case PercentScaleBase.MISSINGSOURCE:
                                     {
-                                        healAmount = (int)((source.maxHP - source.currentHP) * effect.value);
+                                        healAmount = (int)(source.GetMissingHP() * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.MISSINGTARGET:
                                     {
-                                        healAmount = (int)((maxHP - currentHP) * effect.value);
+                                        healAmount = (int)(GetMissingHP() * effect.value);
                                         break;
                                     }
                             }
@@ -430,12 +460,12 @@ namespace SelfConscious
                                     }
                                 case PercentScaleBase.MISSINGSOURCE:
                                     {
-                                        drainAmount = (int)((source.maxWP - source.currentWP) * effect.value);
+                                        drainAmount = (int)(source.GetMissingWP() * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.MISSINGTARGET:
                                     {
-                                        drainAmount = (int)((maxWP - currentWP) * effect.value);
+                                        drainAmount = (int)(GetMissingWP() * effect.value);
                                         break;
                                     }
                             }
@@ -487,12 +517,12 @@ namespace SelfConscious
                                     }
                                 case PercentScaleBase.MISSINGSOURCE:
                                     {
-                                        replenishAmount = (int)((source.maxWP - source.currentWP) * effect.value);
+                                        replenishAmount = (int)(source.GetMissingWP() * effect.value);
                                         break;
                                     }
                                 case PercentScaleBase.MISSINGTARGET:
                                     {
-                                        replenishAmount = (int)((maxWP - currentWP) * effect.value);
+                                        replenishAmount = (int)(source.GetMissingWP() * effect.value);
                                         break;
                                     }
                             }

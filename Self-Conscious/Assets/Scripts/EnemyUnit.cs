@@ -43,6 +43,7 @@ namespace SelfConscious
             
         }
 
+        #region UI
         public void UpdateUIBars()
         {
             float ratio = (float)GetCurrentHP() / GetMaxHP();
@@ -111,7 +112,9 @@ namespace SelfConscious
                 replenishOverTimeText.text = "";
             }
         }
+        #endregion
 
+        #region BATTLE FLOW
         public override void SetCurrentHP(int val)
         {
             healthText.text = val.ToString();
@@ -128,6 +131,83 @@ namespace SelfConscious
                 OnDefeat();
             }
         }
+
+        public AbilityData GetPureRandomAbility()
+        {
+            if (abilities.Length > 0)
+            {
+                return abilities[Random.Range(0, abilities.Length)];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public AbilityData GetWeightedRandomAbility()
+        {
+            if (abilities.Length > 0)
+            {
+                float totalWeight = 0;
+                foreach (AbilityData ability in abilities)
+                {
+                    totalWeight += ability.cost;
+                }
+
+                float randomPoint = Random.Range(0f, totalWeight);
+                float currentPoint = 0;
+                foreach (AbilityData ability in abilities)
+                {
+                    currentPoint += ability.cost;
+                    if (randomPoint <= currentPoint)
+                    {
+                        return ability;
+                    }
+                }
+
+                // Fallback in case of rounding errors
+                return abilities[abilities.Length - 1];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Unit SelectTarget(List<PlayerControlledUnit> possibleTargets)
+        {
+            if (possibleTargets.Count > 0)
+            {
+                // Get the total missing HP ratio of all possible targets
+                float totalPartyHealthRatio = 0;
+                foreach (Unit unit in possibleTargets)                
+                {
+                    totalPartyHealthRatio += unit.GetMissingHPRatio();
+                }
+
+                // Select a random point within that total ratio
+                float randomPoint = Random.Range(0f, totalPartyHealthRatio);
+
+                // Iterate through the possible targets and select the one that corresponds to the random point
+                float currentPoint = 0;
+                foreach (Unit unit in possibleTargets)
+                {
+                    currentPoint += unit.GetMissingHPRatio();
+                    if (randomPoint <= currentPoint)                    
+                    {
+                        return unit;
+                    }
+                }
+
+                // Fallback in case of rounding errors
+                return possibleTargets[possibleTargets.Count - 1];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
 
         public void OnDefeat()
         {

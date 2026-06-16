@@ -747,6 +747,30 @@ PrefabInstance:
       propertyPath: unitLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: abilities.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: 'abilities.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 00d336969ed1440448bb62f1558bcce7, type: 2}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: 'abilities.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 78f7d20feb20d4afeb395d3ac039332d, type: 2}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: 'abilities.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: cf1a5e35755004dfeacd7e53e996b176, type: 2}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: 'abilities.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9aab8ea0d0f024b1889a977c92d6ec51, type: 2}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: 'abilities.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 10cc37932eab14f208ce53b4a4813e7d, type: 2}
     - target: {fileID: 8156120760332104170, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3699,6 +3723,30 @@ PrefabInstance:
       propertyPath: unitLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: abilities.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: 'abilities.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 00d336969ed1440448bb62f1558bcce7, type: 2}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: 'abilities.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 78f7d20feb20d4afeb395d3ac039332d, type: 2}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: 'abilities.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: cf1a5e35755004dfeacd7e53e996b176, type: 2}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: 'abilities.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9aab8ea0d0f024b1889a977c92d6ec51, type: 2}
+    - target: {fileID: 5616894334101235793, guid: a24284b946d4c91459f28d2477d5bd4f, type: 3}
+      propertyPath: 'abilities.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 10cc37932eab14f208ce53b4a4813e7d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -47,6 +47,7 @@ namespace SelfConscious
         MISSINGTARGET
     }
 
+    [CreateAssetMenu(fileName = "AbilityData", menuName = "Scriptable Objects/AbilityData")]
     public class AbilityData : ScriptableObject
     {
         public string abilityName = "Ability";
@@ -55,7 +56,9 @@ namespace SelfConscious
         public string abilityDescription;
         public ResourceCost resourceCost;
 
-        [Tooltip("Cost of the ability. In case of percentage-based costs, this is the percent-value.")]
+        [Tooltip("Cost of the ability. In case of percentage-based costs, this is the " +
+            "percent-value. For enemies, this value is instead an ability weight used " +
+            "in the enemy's ability selection process.")]
         public float cost;
         public PercentScaleBase percentScaleBase;
         public List<AbilityEffectData> effectList;

@@ -585,12 +585,12 @@ namespace SelfConscious
         {
             DeactivateTargetingUI();
             selectionUIVisible = false;
-            StartCoroutine(AbilityActivate(cachedAbility, activeBP.GetUnit(), cachedTargets));
+            StartCoroutine(PlayerAbilityActivate(cachedAbility, activeBP.GetUnit(), cachedTargets));
             yield return null;
         }
 
         // Noninteractive, apply ability affects to targets, play animations/SFX
-        IEnumerator AbilityActivate(AbilityData ability, Unit source, List<Unit> targets)
+        IEnumerator PlayerAbilityActivate(AbilityData ability, Unit source, List<Unit> targets)
         {
             Debug.Log(source.name + " ended their turn by using the ability " + ability.abilityName);
 
@@ -708,6 +708,7 @@ namespace SelfConscious
         IEnumerator EnemyTurn()
         {
             Debug.Log("The enemies are taking their turns.");
+            yield return new WaitForSeconds(1f);
             foreach (EnemyUnit enemy in enemyParty)
             {
                 Debug.Log(enemy.name + " is taking their turn.");
@@ -716,10 +717,77 @@ namespace SelfConscious
                 // For now, we'll just have them wait for a moment to simulate taking a turn.
                 enemy.TickResourceMods();
                 enemy.UpdateResourceModUI();
+
+                AbilityData selectedAbility = enemy.GetWeightedRandomAbility();
+                List<Unit> targets = new List<Unit>();
+                switch (selectedAbility.targetingType)
+                {                    
+                    case TargetingType.ENEMYSINGLE:
+                        {
+                            targets.Add(enemy.SelectTarget(playerParty));
+                        }
+                        break;
+                    case TargetingType.ENEMYALL:
+                        {
+                            targets.AddRange(playerParty);
+                        }
+                        break;
+                    case TargetingType.ALLYSINGLE:
+                        {
+                            targets.Add(enemyParty[Random.Range(0, enemyParty.Count)]);
+                            break;
+                        }
+                    case TargetingType.ALLYALL:
+                        {
+                            targets.AddRange(enemyParty);
+                            break;
+                        }
+                    case TargetingType.ALLUNITS:
+                        {
+                            targets.AddRange(playerParty);
+                            targets.AddRange(enemyParty);
+                            break;
+                        }
+                    case TargetingType.SELF:
+                        {
+                            targets.Add(enemy);
+                            break;
+                        }
+                    case TargetingType.NONE:
+                        {
+                            // This shouldn't ever happen, this is a programming logic error
+                            Debug.Log("Tried to select a target for an ability with a " +
+                                "TargetingType of NONE" + selectedAbility);
+                            break;
+                        }
+                }
+                StartCoroutine(EnemyAbilityActivate(selectedAbility, enemy, targets));
                 yield return new WaitForSeconds(enemy.GetHitAnimationTime());
+                yield return new WaitForSeconds(1f);
             }
             yield return new WaitForSeconds(2f);
             ChangeBattleState(BattleState.PLAYERTURN);
+        }
+
+        IEnumerator EnemyAbilityActivate(AbilityData ability, Unit source, List<Unit> targets)
+        {
+            Debug.Log(source.name + " used the ability " + ability.abilityName);
+            
+            source.UseAbility(ability);
+            foreach (Unit target in targets)
+            {
+                target.ApplyAbility(ability, source);
+                target.HideName();
+            }
+            foreach (BattlePosition bp in battlePositions)
+            {
+                bp.UpdateUI();
+            }
+            foreach (UIRepositionButton rs in repositionSelections)
+            {
+                rs.UpdateBattleStationUI();
+            }
+            yield return null;
         }
         #endregion
 
