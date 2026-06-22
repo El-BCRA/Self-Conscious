@@ -1,10 +1,11 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using System.Collections.Generic;
+using System;
 using System.Collections;
-using UnityEngine.UI;
-using Unity.VisualScripting;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
+using UnityEngine.EventSystems;
+using TMPro;
 
 namespace SelfConscious
 {
@@ -31,29 +32,25 @@ namespace SelfConscious
     public class BattleManager : MonoBehaviour
     {
         #region VARIABLES
+        [Header("Audio")]
+        [SerializeField] private AudioSource longScribble;
+
         [Header("Current Battle State")]
         [SerializeField] private BattleState battleState;
 
         [Header("Party Battle Positions")]
+        [SerializeField] private BattlePosition activeBP;
         [SerializeField] private BattlePosition playerBPAttackFront;
         [SerializeField] private BattlePosition playerBPAttackBack;
         [SerializeField] private BattlePosition playerBPDefense;
         [SerializeField] private BattlePosition playerBPSupport;
         [SerializeField] private List<BattlePosition> battlePositions;
-        [SerializeField] private BattlePosition activeBP;
-
-        [Header("Enemy Battle Positions")]
-        [SerializeField] private List<Transform> enemyBattlePositions = new List<Transform>();
 
         [Header("UI")]
-        [Tooltip("Any CanvasGroups that should only appear in certain contexts. Should include all " +
-            "CanvasGroups which appear under this header.")]
-        [SerializeField] private List<CanvasGroup> contextualUI;
         [SerializeField] private CanvasGroup battleSelections;
         [SerializeField] private GameObject defaultBSHighlight;
         [SerializeField] private CanvasGroup attackSelections;
         [SerializeField] private GameObject defaultASHighlight;
-        [SerializeField] private List<UIAbilityButton> abilityButtons;
         [SerializeField] private CanvasGroup targetingAllAlliesSelection;
         [SerializeField] private UITargetingButton allAlliesTB;
         [SerializeField] private GameObject highlightTAAS;
@@ -65,21 +62,30 @@ namespace SelfConscious
         [SerializeField] private GameObject highlightTAUS;
         [SerializeField] private List<CanvasGroup> playerUnitSelections;
         [SerializeField] private List<CanvasGroup> enemyUnitSelections;
-        [SerializeField] private List<UIRepositionButton> repositionSelections;
+        [SerializeField] private List<UIRepositionButton> repositionButtons;
+        [SerializeField] private List<UIAbilityButton> abilityButtons;
+        [Tooltip("Any CanvasGroups that should only appear in certain contexts. Should include all " +
+            "CanvasGroups which appear under this header.")]
+        [SerializeField] private List<CanvasGroup> contextualUI;
         private BattleUIFallback fallbackLayer;
         private GameObject lastSelected;
         private InputAction cancelAction;
-        [SerializeField] private GameObject endSequenceCanvas;
+
+        [Header("Units")]
+        [SerializeField] private List<PlayerControlledUnit> totalParty = new List<PlayerControlledUnit>();
+        [SerializeField] private List<PlayerControlledUnit> playerParty = new List<PlayerControlledUnit>();
+        [SerializeField] private List<EnemyUnit> enemyParty = new List<EnemyUnit>();
 
         [Header("Player Action Caches")]
         [SerializeField] private AbilityData cachedAbility;
         [SerializeField] private List<Unit> cachedTargets;
         [SerializeField] private AbilityClass cachedSwap;
 
-        [Header("Units")]
-        [SerializeField] private List<PlayerControlledUnit> totalParty = new List<PlayerControlledUnit>();
-        [SerializeField] private List<PlayerControlledUnit> playerParty = new List<PlayerControlledUnit>();
-        [SerializeField] private List<EnemyUnit> enemyParty = new List<EnemyUnit>();
+        [Header("Sequence Canvases")]
+        [SerializeField] private GameObject beginSequenceCanvas1;
+        [SerializeField] private GameObject beginSequenceCanvas2;
+        [SerializeField] private GameObject continueTextCanvas;
+        [SerializeField] private GameObject endSequenceCanvas;
 
         [Header("Flags")]
         private bool selectionUIVisible = false;
@@ -105,11 +111,16 @@ namespace SelfConscious
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            beginSequenceCanvas1.SetActive(false);
+            beginSequenceCanvas2.SetActive(false);
+            endSequenceCanvas.SetActive(false);
+
             cancelAction = InputSystem.actions.FindAction("Cancel");
 
             battleState = BattleState.START;
 
             StartCoroutine(InitializeBattle());
+            TutorialStart();
         }
 
         void Update()
@@ -120,7 +131,7 @@ namespace SelfConscious
             }
         }
 
-        #region BATTLE STATE
+        #region BATTLE STATE FUNCTIONS
         public BattleState GetBattleState()
         {
             return battleState;
@@ -184,7 +195,48 @@ namespace SelfConscious
         }
         #endregion
 
-        #region UI EVENTS
+        #region GETTERS & SETTERS
+        public void CacheAbility(AbilityData data)
+        {
+            cachedAbility = data;
+        }
+
+        public void ClearAbilityCache()
+        {
+            cachedAbility = null;
+        }
+
+        public void CacheTargets(List<Unit> targets)
+        {
+            cachedTargets.Clear();
+            foreach (Unit u in targets)
+            {
+                cachedTargets.Add(u);
+            }
+        }
+
+        public void CacheSwap(AbilityClass abilityClass)
+        {
+            cachedSwap = abilityClass;
+        }
+        #endregion
+
+        #region HELPER FUNCTIONS
+        private void DeactivateCanvasGroup(CanvasGroup cg)
+        {
+            cg.interactable = false;
+            cg.alpha = 0.0f;
+        }
+
+        private void ActivateCanvasGroup(CanvasGroup cg, GameObject button)
+        {
+            cg.interactable = true;
+            cg.alpha = 1.0f;
+            EventSystem.current.SetSelectedGameObject(button);
+        }
+        #endregion
+
+        #region UI EVENTS        
         public void OnAttackButton()
         {
             if (battleState != BattleState.PLAYERTURN || !selectionUIVisible)
@@ -275,7 +327,7 @@ namespace SelfConscious
                     }
                 case (BattleUIFallback.REPOSITION):
                     {
-                        foreach (UIRepositionButton rs in repositionSelections)
+                        foreach (UIRepositionButton rs in repositionButtons)
                         {
                             DeactivateCanvasGroup(rs.GetCanvasGroup());
                         }
@@ -387,7 +439,7 @@ namespace SelfConscious
         }
         #endregion
 
-        #region UNITS
+        #region UNIT FUNCITONS
         public void EnemyDefeat(EnemyUnit enemy)
         {
             // Remove the ability to target this enemy
@@ -413,48 +465,92 @@ namespace SelfConscious
         }
         #endregion
 
-        #region HELPERS
-        private void DeactivateCanvasGroup(CanvasGroup cg)
+        #region TUTORIAL SEQUENCE
+        [Header("Tutorial Continue Text")]
+        public TMP_Text continueText;
+        public float flashTimeMultiplier = 1f;
+        public float continueTextDelay = 2f;
+        private int tutorialTracker;
+        private IDisposable m_Eventlistener;
+        
+        private void OnDisable()
         {
-            cg.interactable = false;
-            cg.alpha = 0.0f;
+            m_Eventlistener.Dispose();
         }
 
-        private void ActivateCanvasGroup(CanvasGroup cg, GameObject button)
+        private void OnDestroy()
         {
-            cg.interactable = true;
-            cg.alpha = 1.0f;
-            EventSystem.current.SetSelectedGameObject(button);
-        }
-        #endregion
-
-        #region GETTERS & SETTERS
-        public void CacheAbility(AbilityData data)
-        {
-            cachedAbility = data;
+            m_Eventlistener.Dispose();
         }
 
-        public void ClearAbilityCache()
+        public void OnButtonPressed()
         {
-            cachedAbility = null;
-        }
-
-        public void CacheTargets(List<Unit> targets)
-        {
-            cachedTargets.Clear();
-            foreach (Unit u in targets)
+            m_Eventlistener.Dispose();
+            longScribble.Play();
+            StopAllCoroutines();
+            switch(tutorialTracker)
             {
-                cachedTargets.Add(u);
+                case 0:
+                    {
+                        beginSequenceCanvas1.SetActive(false);
+                        beginSequenceCanvas2.SetActive(true);
+                        StartCoroutine(ContinueText());
+                        break;
+                    }
+                case 1:
+                    {
+                        beginSequenceCanvas2.SetActive(false);
+                        continueTextCanvas.SetActive(false);
+                        ChangeBattleState(BattleState.PLAYERTURN);
+                        break;
+                    }
+            }
+            tutorialTracker++;
+        }
+
+        public void TutorialStart()
+        {
+            beginSequenceCanvas1.SetActive(true);
+            StartCoroutine(ContinueText());
+        }
+
+        IEnumerator ContinueText()
+        {
+            continueText.color = new Color(0, 0, 0, 0);
+            yield return new WaitForSeconds(continueTextDelay);
+
+            float timer = 0f;
+            float newAlpha = 0;
+            bool paused = false;
+            while (newAlpha < .9f)
+            {
+                newAlpha = Mathf.Sin(timer * flashTimeMultiplier);
+                continueText.color = new Color(0, 0, 0, newAlpha);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            m_Eventlistener = InputSystem.onAnyButtonPress.Call(control => { OnButtonPressed(); });
+
+            while (true)
+            {
+                newAlpha = Mathf.Abs(Mathf.Sin(timer * flashTimeMultiplier));
+                continueText.color = new Color(0, 0, 0, newAlpha);
+                if (!paused && newAlpha >= .95f)
+                {
+                    paused = true;
+                    yield return new WaitForSeconds(continueTextDelay);
+                } else if (paused && newAlpha < .2f)
+                {
+                    paused = false;
+                }
+                timer += Time.deltaTime;
+                yield return null;
             }
         }
-
-        public void CacheSwap(AbilityClass abilityClass)
-        {
-            cachedSwap = abilityClass;
-        }
         #endregion
 
-        #region COROUTINES
+        #region BATTLE FLOW
         IEnumerator InitializeBattle()
         {
             // Spawn in player and enemy units to their appropriate battle positions
@@ -483,7 +579,7 @@ namespace SelfConscious
 
             yield return new WaitForSeconds(0.25f);
 
-            foreach (UIRepositionButton rs in repositionSelections)
+            foreach (UIRepositionButton rs in repositionButtons)
             {
                 rs.UpdateBattleStationUI();
             }
@@ -498,8 +594,6 @@ namespace SelfConscious
             {
                 DeactivateCanvasGroup(cg);
             }
-
-            ChangeBattleState(BattleState.PLAYERTURN);
         }
 
         // Turn on player interactables
@@ -511,6 +605,13 @@ namespace SelfConscious
             fallbackLayer = BattleUIFallback.MAIN;
             yield return null;
         }
+
+        IEnumerator EndBattle()
+        {
+            endSequenceCanvas.SetActive(true);
+            yield return null;
+        }
+        #endregion
 
         #region ABILITY FLOW
         // Bring up ability selection screen
@@ -604,7 +705,7 @@ namespace SelfConscious
             {
                 bp.UpdateUI();
             }
-            foreach(UIRepositionButton rs in repositionSelections)
+            foreach(UIRepositionButton rs in repositionButtons)
             {
                 rs.UpdateBattleStationUI();
             }
@@ -616,12 +717,11 @@ namespace SelfConscious
         #endregion
 
         #region REPOSITION FLOW
-        // 
         IEnumerator PlayerReposition()
         {
             lastSelected = EventSystem.current.currentSelectedGameObject;
             DeactivateCanvasGroup(battleSelections);
-            foreach (UIRepositionButton rs in repositionSelections)
+            foreach (UIRepositionButton rs in repositionButtons)
             {
                 if (rs.GetAbilityClass() != activeBP.GetUnit().GetUnitClass())
                 {
@@ -637,7 +737,7 @@ namespace SelfConscious
             // Deactivate all UI
             selectionUIVisible = false;
             fallbackLayer = BattleUIFallback.MAIN;
-            foreach (UIRepositionButton rs in repositionSelections)
+            foreach (UIRepositionButton rs in repositionButtons)
             {
                 DeactivateCanvasGroup(rs.GetCanvasGroup());
                 rs.UpdateBattleStationUI();
@@ -677,7 +777,7 @@ namespace SelfConscious
             }
 
             // Final UI update check
-            foreach (UIRepositionButton rs in repositionSelections)
+            foreach (UIRepositionButton rs in repositionButtons)
             {
                 rs.UpdateBattleStationUI();
             }
@@ -734,7 +834,7 @@ namespace SelfConscious
                         break;
                     case TargetingType.ALLYSINGLE:
                         {
-                            targets.Add(enemyParty[Random.Range(0, enemyParty.Count)]);
+                            targets.Add(enemyParty[UnityEngine.Random.Range(0, enemyParty.Count)]);
                             break;
                         }
                     case TargetingType.ALLYALL:
@@ -783,17 +883,10 @@ namespace SelfConscious
             {
                 bp.UpdateUI();
             }
-            foreach (UIRepositionButton rs in repositionSelections)
+            foreach (UIRepositionButton rs in repositionButtons)
             {
                 rs.UpdateBattleStationUI();
             }
-            yield return null;
-        }
-        #endregion
-
-        IEnumerator EndBattle()
-        {
-            endSequenceCanvas.SetActive(true);
             yield return null;
         }
         #endregion
