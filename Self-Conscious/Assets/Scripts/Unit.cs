@@ -584,7 +584,7 @@ namespace SelfConscious
         {
             if (shieldStacks.Count > 0)
             {
-                dmgModifier -= (int)shieldStacks[0];
+                dmgModifier += (int)shieldStacks[0];
                 shieldStacks.RemoveAt(0);
             }
             UpdateShieldIcons();

@@ -1212,6 +1212,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1739760662}
     m_Modifications:
+    - target: {fileID: 2059317336169999278, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Name
+      value: GiantSeated
+      objectReference: {fileID: 0}
+    - target: {fileID: 3109415315544057872, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a1cd07338864b429a92b18696edff0cb, type: 3}
     - target: {fileID: 4433283269755720029, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
       propertyPath: m_Name
       value: GiantButton
@@ -1224,6 +1232,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Ian
       objectReference: {fileID: 0}
+    - target: {fileID: 6817949666432237791, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817949666432237791, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 029da9fd5792343929cbb6ec371fd9f7, type: 2}
     - target: {fileID: 7172526195608856939, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
       propertyPath: unit
       value: 
@@ -1901,6 +1917,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1739760662}
     m_Modifications:
+    - target: {fileID: 2059317336169999278, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Name
+      value: ProtagSeated
+      objectReference: {fileID: 0}
+    - target: {fileID: 3109415315544057872, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 745ab81a5a07342daaaf9d52a41d05d5, type: 3}
     - target: {fileID: 4433283269755720029, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
       propertyPath: m_Name
       value: ProtagonistButton
@@ -1913,6 +1937,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Zego
       objectReference: {fileID: 0}
+    - target: {fileID: 6817949666432237791, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817949666432237791, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 162e27718faaf45a69e93f8407582b19, type: 2}
     - target: {fileID: 7172526195608856939, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
       propertyPath: unit
       value: 
@@ -2436,6 +2468,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1739760662}
     m_Modifications:
+    - target: {fileID: 2059317336169999278, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Name
+      value: NerdSeated
+      objectReference: {fileID: 0}
+    - target: {fileID: 3109415315544057872, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4deb1dcdce5664ac4a52810a8f8f763f, type: 3}
     - target: {fileID: 4433283269755720029, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
       propertyPath: m_Name
       value: NerdButton
@@ -2448,6 +2488,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Sid
       objectReference: {fileID: 0}
+    - target: {fileID: 6817949666432237791, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817949666432237791, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3c6e01ab19df14dcfbed998bc5bb0087, type: 2}
     - target: {fileID: 7172526195608856939, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
       propertyPath: unit
       value: 
@@ -5016,8 +5064,8 @@ MonoBehaviour:
 
 
     In this game, you control
-    "SKETCH-O-GRAMS", carbon-copies of your which you control from a command center
-    and use to fight bad guys.'
+    SKETCH-O-GRAMS, carbon-copies of you and your allies which are piloted from the
+    command center and used to fight the BAD GUYS.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 19e6fadcba9c4ed4f8496e57e9fb16b0, type: 2}
   m_sharedMaterial: {fileID: -8257289988228764286, guid: 19e6fadcba9c4ed4f8496e57e9fb16b0, type: 2}
@@ -5743,6 +5791,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1739760662}
     m_Modifications:
+    - target: {fileID: 2059317336169999278, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Name
+      value: PrincessSeated
+      objectReference: {fileID: 0}
+    - target: {fileID: 3109415315544057872, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 920a6423a81744720b4b4b834a818c88, type: 3}
     - target: {fileID: 4433283269755720029, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
       propertyPath: m_Name
       value: PrincessButton
@@ -5755,6 +5811,18 @@ PrefabInstance:
       propertyPath: m_text
       value: Cora
       objectReference: {fileID: 0}
+    - target: {fileID: 5990410547963930997, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817949666432237791, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817949666432237791, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a90d2bf08851b4c54830ab0fa5bbd7e1, type: 2}
     - target: {fileID: 7172526195608856939, guid: 7a0d2ac83c5ccdc4cb9990be78ffcd96, type: 3}
       propertyPath: unit
       value: 
