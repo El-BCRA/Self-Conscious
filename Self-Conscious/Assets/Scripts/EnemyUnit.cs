@@ -62,6 +62,7 @@ namespace SelfConscious
                 shieldText.text = "";
                 shieldPlusText.text = "";
             }
+            
             for (int i = 0; i < shieldIcons.Count; i++)
             {
                 if (i < shieldStacks.Count)
