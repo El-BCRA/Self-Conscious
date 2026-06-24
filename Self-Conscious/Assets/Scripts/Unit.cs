@@ -23,7 +23,7 @@ namespace SelfConscious
         [SerializeField] protected int currentWP;
 
         [Header("Battle Data Fields")]
-        protected List<uint> shieldStacks = new List<uint>();
+        [SerializeField] protected List<uint> shieldStacks = new List<uint>();
         [SerializeField] protected float hitJitter = 0.3f;
         [SerializeField] protected float hitOffset = 0.5f;
 
@@ -313,7 +313,9 @@ namespace SelfConscious
                         {
                             int dmgModifier = 0;
                             int dmg = 0;
-                            ApplyShieldStacks(dmgModifier);
+                            Debug.Log("Calling ApplyShieldStacks on a value of " + dmgModifier);
+                            dmgModifier = ApplyShieldStacks();
+                            Debug.Log("Returned a value of " + dmgModifier);
                             switch (effect.percentScaleBase)
                             {
                                 case PercentScaleBase.NONE:
@@ -580,15 +582,16 @@ namespace SelfConscious
         #endregion
 
         #region SHIELD LOGIC
-        public int ApplyShieldStacks(int dmgModifier)
+        public int ApplyShieldStacks()
         {
+            int returnMod = 0;
             if (shieldStacks.Count > 0)
             {
-                dmgModifier += (int)shieldStacks[0];
+                returnMod = (int)shieldStacks[0];
                 shieldStacks.RemoveAt(0);
             }
             UpdateShieldIcons();
-            return dmgModifier;
+            return returnMod;
         }
 
         public virtual void UpdateShieldIcons()
@@ -601,18 +604,17 @@ namespace SelfConscious
         #region RESOURCE MOD OVER TIME LOGIC 
         public void TickResourceMods()
         {
-            Debug.Log("Ticking resource mods for " + unitName);
+            // Debug.Log("Ticking resource mods for " + unitName);
             if (damageOverTime.GetModLifetime() > 0)
             {
-                Debug.Log("Damage over time mod amount: " + damageOverTime.GetModAmount() + ", lifetime: " + damageOverTime.GetModLifetime());
+                // Debug.Log("Damage over time mod amount: " + damageOverTime.GetModAmount() + ", lifetime: " + damageOverTime.GetModLifetime());
                 // Get base damage amount from the damage over time mod, scaled appropriately
                 int dmg = (int)damageOverTime.GetScaledAmount(this);
 
                 // Apply shield stacks to damage before applying damage over time
                 if (shieldStacks.Count > 0)
                 {
-                    int dmgModifier = 0;
-                    ApplyShieldStacks(dmgModifier);
+                    int dmgModifier = ApplyShieldStacks();
                     dmg = (int)damageOverTime.GetModAmount() - dmgModifier;
                 }
 
