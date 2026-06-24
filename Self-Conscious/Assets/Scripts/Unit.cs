@@ -26,6 +26,7 @@ namespace SelfConscious
         [SerializeField] protected List<uint> shieldStacks = new List<uint>();
         [SerializeField] protected float hitJitter = 0.3f;
         [SerializeField] protected float hitOffset = 0.5f;
+        [SerializeField] public Vector3 homePosition;
 
         [Header("Resource Mod Over Time")]
         protected ResourceModOverTime damageOverTime;
@@ -39,6 +40,7 @@ namespace SelfConscious
             healOverTime = new ResourceModOverTime(0, 0, PercentScaleBase.NONE, ResourceOverTime.HEAL);
             drainOverTime = new ResourceModOverTime(0, 0, PercentScaleBase.NONE, ResourceOverTime.DRAIN);
             replenishOverTime = new ResourceModOverTime(0, 0, PercentScaleBase.NONE, ResourceOverTime.REPLENISH);
+            homePosition = transform.position;
         }
         
         #region GETTERS & SETTERS
@@ -171,7 +173,7 @@ namespace SelfConscious
 
         public float GetHitAnimationTime()
         {
-            return hitJitter * 2;
+            return 1f;
         }
         #endregion
 
@@ -303,7 +305,7 @@ namespace SelfConscious
             }
         }
 
-        public void ApplyAbility(AbilityData ability, Unit source)
+        public IEnumerator ApplyAbility(AbilityData ability, Unit source)
         {
             foreach (AbilityEffectData effect in ability.effectList)
             {
@@ -569,14 +571,19 @@ namespace SelfConscious
                             break;
                         }
                 }   
+                StopCoroutine(Impact());
+                transform.position = homePosition;
+                StartCoroutine(Impact());
+                yield return new WaitForSeconds(.33f);
             }
-            StartCoroutine(Impact());
+            yield return null;
         }
         #endregion
 
         #region BATTLE FLOW
         public void StartTurn()
         {
+            homePosition = transform.position;
             StartCoroutine(TurnStart());
         }
         #endregion
@@ -622,6 +629,7 @@ namespace SelfConscious
                 if (dmg > 0)
                 {
                     SetCurrentHP(currentHP - dmg);
+                    StartCoroutine(Impact());
                 }
                 damageOverTime.SetModLifetime(damageOverTime.GetModLifetime() - 1);
 
@@ -642,6 +650,7 @@ namespace SelfConscious
                 if (heal > 0)
                 {
                     SetCurrentHP(currentHP + heal);
+                    StartCoroutine(Impact());
                 }
                 healOverTime.SetModLifetime(healOverTime.GetModLifetime() - 1);
 
@@ -662,6 +671,7 @@ namespace SelfConscious
                 if (drain > 0)
                 {
                     SetCurrentWP(currentWP - drain);
+                    StartCoroutine(Impact());
                 }
                 drainOverTime.SetModLifetime(drainOverTime.GetModLifetime() - 1);
                 
@@ -682,6 +692,7 @@ namespace SelfConscious
                 if (replenish > 0)
                 {
                     SetCurrentWP(currentWP + replenish);
+                    StartCoroutine(Impact());
                 }
                 replenishOverTime.SetModLifetime(replenishOverTime.GetModLifetime() - 1);
 
@@ -703,6 +714,8 @@ namespace SelfConscious
         
         public virtual IEnumerator Impact()
         {
+            homePosition = transform.position;
+            BattleManager.Instance.PlayImpactSound();
             characterSprites.transform.position = characterSprites.transform.position - new Vector3(hitOffset, 0, 0);
             yield return new WaitForSeconds(hitJitter/2);
             characterSprites.transform.position = characterSprites.transform.position + new Vector3(hitOffset, 0, 0);
@@ -710,6 +723,12 @@ namespace SelfConscious
             characterSprites.transform.position = characterSprites.transform.position - new Vector3(hitOffset, 0, 0);
             yield return new WaitForSeconds(hitJitter);
             characterSprites.transform.position = characterSprites.transform.position + new Vector3(hitOffset, 0, 0);
+            transform.position = homePosition;
+        }
+
+        public virtual IEnumerator AttackWindup()
+        {
+            yield return null;
         }
 
         public virtual IEnumerator TurnStart()

@@ -59,6 +59,7 @@ namespace SelfConscious
         {
             currentUnit = unit;
             unit.transform.position = transform.position;
+            unit.homePosition = transform.position;
             UpdateUI();
             unit.SetBattlePosition(this);
         }

@@ -34,9 +34,11 @@ namespace SelfConscious
         #region VARIABLES
         [Header("Audio")]
         [SerializeField] private AudioSource longScribble;
+        [SerializeField] private AudioSource paperCrinkle;
 
         [Header("Current Battle State")]
         [SerializeField] private BattleState battleState;
+        [SerializeField] private float turnHandoffDelay = 1f;
 
         [Header("Party Battle Positions")]
         [SerializeField] private BattlePosition activeBP;
@@ -89,7 +91,7 @@ namespace SelfConscious
         [SerializeField] private GameObject endSequenceCanvas;
 
         [Header("Flags")]
-        private bool TutorialCompleted = false;
+        [SerializeField] private bool isFinalBattle = false;
         private bool selectionUIVisible = false;
 
         public static BattleManager Instance;
@@ -124,12 +126,10 @@ namespace SelfConscious
             battleState = BattleState.START;
 
             StartCoroutine(InitializeBattle());
-            if (tutorialTracker != 0)
+
+            if (tutorialTracker == 0)
             {
-                ChangeBattleState(BattleState.PLAYERTURN);      
-            } else
-            {
-                TutorialStart();
+                TutorialStart();    
             }
         }
 
@@ -450,6 +450,11 @@ namespace SelfConscious
         #endregion
 
         #region UNIT FUNCITONS
+        public void PlayImpactSound()
+        {
+            paperCrinkle.Play();
+        }
+
         public void EnemyDefeat(EnemyUnit enemy)
         {
             // Remove the ability to target this enemy
@@ -611,6 +616,11 @@ namespace SelfConscious
             {
                 DeactivateCanvasGroup(cg);
             }
+
+            if (isFinalBattle)
+            {
+                ChangeBattleState(BattleState.PLAYERTURN);  
+            }
         }
 
         // Turn on player interactables
@@ -625,7 +635,14 @@ namespace SelfConscious
 
         IEnumerator EndBattle()
         {
-            endSequenceCanvas.SetActive(true);
+            if (isFinalBattle)
+            {
+                endSequenceCanvas.SetActive(true);
+            }
+            else
+            {
+                GameManager.Instance.LoadScene("ChaseCutscene", 1.0f);
+            }
             yield return null;
         }
         #endregion
@@ -715,7 +732,7 @@ namespace SelfConscious
             source.UseAbility(ability);
             foreach(Unit target in targets)
             {
-                target.ApplyAbility(ability, source);
+                target.StartCoroutine(target.ApplyAbility(ability, source));
                 target.HideName();
             }
             foreach (BattlePosition bp in battlePositions)
@@ -727,7 +744,6 @@ namespace SelfConscious
                 rs.UpdateBattleStationUI();
             }
             yield return new WaitForSeconds(activeBP.GetUnit().GetHitAnimationTime());
-
             StartCoroutine(PlayerEndTurn());
             yield return null;
         }
@@ -809,6 +825,7 @@ namespace SelfConscious
         // Called once the last of the player's units has carried out their turn
         IEnumerator PlayerEndTurn()
         {
+            yield return new WaitForSeconds(turnHandoffDelay);
             activeBP.GetUnit().HideName();
             NextBattlePosition();
             if (activeBP == playerBPDefense)
@@ -893,7 +910,7 @@ namespace SelfConscious
             source.UseAbility(ability);
             foreach (Unit target in targets)
             {
-                target.ApplyAbility(ability, source);
+                target.StartCoroutine(target.ApplyAbility(ability, source));
                 target.HideName();
             }
             foreach (BattlePosition bp in battlePositions)
