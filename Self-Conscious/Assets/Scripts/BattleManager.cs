@@ -84,10 +84,12 @@ namespace SelfConscious
         [Header("Sequence Canvases")]
         [SerializeField] private GameObject beginSequenceCanvas1;
         [SerializeField] private GameObject beginSequenceCanvas2;
+        [SerializeField] private GameObject beginSequenceCanvas3;
         [SerializeField] private GameObject continueTextCanvas;
         [SerializeField] private GameObject endSequenceCanvas;
 
         [Header("Flags")]
+        private bool TutorialCompleted = false;
         private bool selectionUIVisible = false;
 
         public static BattleManager Instance;
@@ -113,14 +115,22 @@ namespace SelfConscious
         {
             beginSequenceCanvas1.SetActive(false);
             beginSequenceCanvas2.SetActive(false);
+            beginSequenceCanvas3.SetActive(false);
             endSequenceCanvas.SetActive(false);
+            continueTextCanvas.SetActive(true);
 
             cancelAction = InputSystem.actions.FindAction("Cancel");
 
             battleState = BattleState.START;
 
             StartCoroutine(InitializeBattle());
-            TutorialStart();
+            if (tutorialTracker != 0)
+            {
+                ChangeBattleState(BattleState.PLAYERTURN);      
+            } else
+            {
+                TutorialStart();
+            }
         }
 
         void Update()
@@ -467,10 +477,10 @@ namespace SelfConscious
 
         #region TUTORIAL SEQUENCE
         [Header("Tutorial Continue Text")]
-        public TMP_Text continueText;
-        public float flashTimeMultiplier = 1f;
-        public float continueTextDelay = 2f;
-        private int tutorialTracker;
+        [SerializeField] private TMP_Text continueText;
+        [SerializeField] private float flashTimeMultiplier = 1f;
+        [SerializeField] private float continueTextDelay = 1f;
+        [SerializeField] private int tutorialTracker;
         private IDisposable m_Eventlistener;
         
         private void OnDisable()
@@ -500,6 +510,13 @@ namespace SelfConscious
                 case 1:
                     {
                         beginSequenceCanvas2.SetActive(false);
+                        beginSequenceCanvas3.SetActive(true);
+                        StartCoroutine(ContinueText());
+                        break;
+                    }
+                case 2:
+                    {
+                        beginSequenceCanvas3.SetActive(false);
                         continueTextCanvas.SetActive(false);
                         ChangeBattleState(BattleState.PLAYERTURN);
                         break;
