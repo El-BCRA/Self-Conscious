@@ -728,6 +728,8 @@ namespace SelfConscious
         IEnumerator PlayerAbilityActivate(AbilityData ability, Unit source, List<Unit> targets)
         {
             Debug.Log(source.name + " ended their turn by using the ability " + ability.abilityName);
+            source.StartCoroutine(source.AttackWindup());
+            yield return new WaitForSeconds(1f);
 
             source.UseAbility(ability);
             foreach(Unit target in targets)
@@ -841,11 +843,10 @@ namespace SelfConscious
 
         IEnumerator EnemyTurn()
         {
-            Debug.Log("The enemies are taking their turns.");
-            yield return new WaitForSeconds(1f);
+            //Debug.Log("The enemies are taking their turns.");
             foreach (EnemyUnit enemy in enemyParty)
             {
-                Debug.Log(enemy.name + " is taking their turn.");
+                // Debug.Log(enemy.name + " is taking their turn.");
                 
                 // All enemy turn actions would be determined and executed here. 
                 // For now, we'll just have them wait for a moment to simulate taking a turn.
@@ -899,13 +900,15 @@ namespace SelfConscious
                 yield return new WaitForSeconds(enemy.GetHitAnimationTime());
                 yield return new WaitForSeconds(1f);
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(.5f);
             ChangeBattleState(BattleState.PLAYERTURN);
         }
 
         IEnumerator EnemyAbilityActivate(AbilityData ability, Unit source, List<Unit> targets)
         {
             Debug.Log(source.name + " used the ability " + ability.abilityName);
+            source.StartCoroutine(source.AttackWindup());
+            yield return new WaitForSeconds(1f);
             
             source.UseAbility(ability);
             foreach (Unit target in targets)

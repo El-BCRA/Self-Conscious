@@ -129,5 +129,19 @@ namespace SelfConscious
         {
             battlePosition.UpdateUI();
         }
+
+        public override IEnumerator AttackWindup()
+        {
+            homePosition = transform.position;
+            float counter = 0;
+            while (counter < 0.5)
+            {
+                transform.position = transform.position - new Vector3((float)(hitOffset / 0.5f) * Time.deltaTime, 0, 0);
+                counter += Time.deltaTime;
+                yield return null;
+            }
+            yield return new WaitForSeconds(.5f);
+            transform.position = homePosition;
+        }
     }
 }
