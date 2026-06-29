@@ -17,15 +17,15 @@ namespace SelfConscious
         private void Awake()
         {
             Cursor.visible = false;
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(this);
-            }
-            else if (Instance != this)
+            if (Instance != null && Instance != this)
             {
                 Destroy(this);
+                return;
             }
+
+            Instance = this;
+
+            DontDestroyOnLoad(this);
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created

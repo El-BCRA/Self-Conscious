@@ -28,6 +28,10 @@ namespace SelfConscious
             nameText.text = unitName;
             HideName();
             SetIdle();
+            if (currentHP == 0)
+            {
+                SetDowned();
+            }
         }
 
         // Update is called once per frame

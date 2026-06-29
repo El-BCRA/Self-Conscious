@@ -202,10 +202,22 @@ namespace SelfConscious
                         break;
                     }
             }
+
+            if (activeBP == playerBPDefense)
+            {
+                ChangeBattleState(BattleState.ENEMYTURN);
+            }
+            else
+            {
+                StartCoroutine(PlayerTurn());
+            }
         }
         #endregion
 
         #region GETTERS & SETTERS
+        
+        public BattlePosition GetActiveBattlePosition() { return activeBP; }
+        
         public void CacheAbility(AbilityData data)
         {
             cachedAbility = data;
@@ -630,6 +642,21 @@ namespace SelfConscious
             activeBP.SetActive();
             selectionUIVisible = true;
             fallbackLayer = BattleUIFallback.MAIN;
+
+            if (activeBP.GetUnit().GetDowned())
+            {
+                activeBP.GetUnit().HideName();
+                NextBattlePosition();
+            }
+            yield return null;
+        }
+
+        // Called at the end of each unit's turn. Transitions to enemy turn if last unit in turn order
+        IEnumerator PlayerEndTurn()
+        {
+            yield return new WaitForSeconds(turnHandoffDelay);
+            activeBP.GetUnit().HideName();
+            NextBattlePosition();
             yield return null;
         }
 
@@ -824,23 +851,6 @@ namespace SelfConscious
         #endregion
 
         #region ENEMY FLOW
-        // Called once the last of the player's units has carried out their turn
-        IEnumerator PlayerEndTurn()
-        {
-            yield return new WaitForSeconds(turnHandoffDelay);
-            activeBP.GetUnit().HideName();
-            NextBattlePosition();
-            if (activeBP == playerBPDefense)
-            {
-                ChangeBattleState(BattleState.ENEMYTURN);
-            }
-            else
-            {
-                StartCoroutine(PlayerTurn());
-            }
-            yield return null;
-        }
-
         IEnumerator EnemyTurn()
         {
             //Debug.Log("The enemies are taking their turns.");

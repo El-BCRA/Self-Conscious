@@ -24,7 +24,7 @@ namespace SelfConscious
         [SerializeField] private PencilScribble scribble;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        protected void Start()
         {
             selectionHighlight.SetActive(false);
             startingScale = selectionHighlight.GetComponent<RectTransform>().localScale.x;
