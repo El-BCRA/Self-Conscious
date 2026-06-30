@@ -87,6 +87,7 @@ namespace SelfConscious
             downedSprite.color = new Color(1f, 1f, 1f, 1f);
             activeSprite.color = new Color(1f, 1f, 1f, 0f);
             idleSprite.color = new Color(1f, 1f, 1f, 0f);
+            BattleManager.Instance.CheckLose();
         }
 
         public BattlePosition GetBattlePosition()

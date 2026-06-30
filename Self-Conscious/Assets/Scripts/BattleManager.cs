@@ -89,6 +89,7 @@ namespace SelfConscious
         [SerializeField] private GameObject beginSequenceCanvas3;
         [SerializeField] private GameObject continueTextCanvas;
         [SerializeField] private GameObject endSequenceCanvas;
+        [SerializeField] private GameObject loseGameCanvas;
 
         [Header("Flags")]
         [SerializeField] private bool isFinalBattle = false;
@@ -118,8 +119,10 @@ namespace SelfConscious
             beginSequenceCanvas1.SetActive(false);
             beginSequenceCanvas2.SetActive(false);
             beginSequenceCanvas3.SetActive(false);
+            loseGameCanvas.SetActive(false);
             endSequenceCanvas.SetActive(false);
             continueTextCanvas.SetActive(true);
+
 
             cancelAction = InputSystem.actions.FindAction("Cancel");
 
@@ -585,6 +588,16 @@ namespace SelfConscious
         #endregion
 
         #region BATTLE FLOW
+        public void CheckLose()
+        {
+            if (playerBPDefense.GetUnit().GetDowned() && playerBPSupport.GetUnit().GetDowned() 
+                && playerBPAttackFront.GetUnit().GetDowned() && playerBPAttackBack.GetUnit().GetDowned())
+            {
+                StopAllCoroutines();
+                loseGameCanvas.SetActive(true);
+            }
+        }
+
         IEnumerator InitializeBattle()
         {
             // Spawn in player and enemy units to their appropriate battle positions
